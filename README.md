@@ -33,9 +33,9 @@ No problems yet.
 # To Come:
 
 * Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
-* User Specific Data
-* User Dashboard
-* Website Parsing
+* User Specific Data - Users want their #own data saved?! Who knew?
+* User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
+* Website Parsing - Have some ideas, but more research is needed. 
 
 
 ## Built With
