@@ -44,6 +44,7 @@ No problems yet.
 * CSS
 * JavaScript
 * Angular
+* TypeScript
 * Bootstrap
 * Sass
 
