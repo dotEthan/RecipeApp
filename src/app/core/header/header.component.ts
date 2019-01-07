@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { DataStorageService } from '../shared/data-storage.service';
-import { RecipeService } from '../recipes/recipe.service';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { RecipeService } from '../../recipes/recipe.service';
 import { Response } from '@angular/http';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../auth-modal/auth.service';
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html'
-
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent {
 
@@ -22,5 +22,13 @@ export class HeaderComponent {
 
     onFetch() {
         this.dataStorageService.fetchRecipes();
+    }
+
+    onClick(type: string) {
+        this.authService.authType.next(type);
+    }
+
+    onSelect() {
+        this.authService.modalOpen.next(false);
     }
 }

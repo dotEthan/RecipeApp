@@ -1,0 +1,17 @@
+<div class="auth"
+     *ngIf="modalOpen">
+  <div class="auth__modal">
+    <div class="auth__modal--white">
+      <button type="button"
+              class="close"
+              aria-label="Close"
+              (click)="onClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div>
+        <app-signin [authType]="authType"
+                    [errorMsg]="error"></app-signin>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,26 @@
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
     token: string;
+    authType = new Subject();
+    errorMsg = new Subject();
+    modalOpen = new Subject();
 
     constructor(private router: Router) { }
     signupUser(email: string, password: string) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .catch(error => console.log(error));
+            .then(
+                response => {
+                    this.signinUser(email, password);
+                    this.router.navigate(['/']);
+                    this.modalOpen.next(false);
+                }
+            )
+            .catch(error => this.errorMsg.next(error.code));
     }
 
 
@@ -18,13 +29,16 @@ export class AuthService {
             .then(
                 response => {
                     this.router.navigate(['/']);
+                    this.modalOpen.next(false);
                     firebase.auth().currentUser.getIdToken()
                         .then(
                             (token) => this.token = token
                         )
                 }
             ).catch(
-                error => console.log(error)
+                error => {
+                    this.errorMsg.next(error.code);
+                }
             );
     }
 

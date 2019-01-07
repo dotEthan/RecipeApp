@@ -1,1 +1,122 @@
-/* You can add global styles to this file, and also import other style files */
+$navbar-height: 75px
+$navbar-height-minus: 77px
+$borderize-margin: 30px
+
+// App
+.fullbackground
+    height: calc(100vh - #{$navbar-height-minus})
+    display: flex
+    align-items: center
+    justify-content: center
+    background: white url('assets/main.jpg') no-repeat center top
+    background-size: cover
+
+.attribute
+    position: absolute
+    bottom: #{$borderize-margin * 2}
+    right: #{$borderize-margin * 2}
+    a
+        color: white
+
+.app__row
+    width: 100%
+
+// Home
+.titleback
+    background: rgba(white,.5)
+    padding: 15px 30px
+    border-radius: 10px
+    text-align: center
+    z-index: 1
+    transform: translateY(-50%)
+
+// Header
+.navbar
+    margin-bottom: 0
+
+.nav__container
+    height: $navbar-height
+    display: flex
+    align-items: center
+
+.nav__header
+    display: flex
+    justify-content: space-between
+    flex-grow: 1
+
+.nav__items__container
+    display: flex
+
+// Auth 
+.auth
+    width: 100vw
+    height: calc(100vh - #{$navbar-height-minus})
+    position: absolute
+    width: 100%
+    top: $navbar-height
+    left: 0
+
+.auth__modal
+    height: calc(100vh - #{$navbar-height-minus})
+    justify-content: center
+    align-items: center
+    background-color: rgba(0,0,0,.5)
+    display: flex
+    justify-content: center
+    align-items: center
+    z-index: 100
+
+    &.open
+        display: flex
+
+.auth__modal--white
+    background: white
+    width: 350px
+    height: 400px
+    z-index: 1000
+    position: relative
+    border-radius: 15px
+    box-shadow: 2px 3px 10px 1px rgba(0,0,0,.3)
+
+.close
+    position: absolute
+    top: 15px
+    right: 15px
+    width: 25px
+    height: 25px
+    z-index: 99
+
+.auth__title
+    margin-bottom: 50px
+
+.auth__warning
+    color: red
+    font-size: 0.7em
+    margin-top: 5px
+
+// Feature Components
+.borderize
+    background: white
+    margin: $borderize-margin 0
+    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin * 2})
+    border-radius: 15px
+    width: calc(100vw - #{$borderize-margin * 2})
+    overflow: auto
+
+// Recipes
+.recipes__title
+    margin: 25px 0
+
+.recipe__edit__container
+    overflow: auto
+
+// Shopping List
+
+.sl__container
+    background: white
+    padding: 25px
+    height: 80vh
+    overflow: auto
+    border-radius: 15px
+    @media (min-width: 768px)
+        height: 50vh
