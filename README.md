@@ -31,12 +31,18 @@ No problems yet.
 
 ### To Come:
 
+* Update to Bootstrap 4
 * Persistant login 
 * User Specific Data - Users want their #own data saved?! Who knew?
+* Auto Fetch on Login
+* Shopping List Saving
+* Upload Recipe Image
+* Mobile Menu & alterations
 * Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
 * Animations - Once the functionality is finished, making things less jarring will be nice.
 * User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
 * Website Parsing - Have some ideas, but more research is needed. 
+* Meal Planning, Calorie/Nutrient Counting and who knows what else...
 
 
 ## Built With
