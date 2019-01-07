@@ -32,8 +32,9 @@ No problems yet.
 ### To Come:
 
 * Persistant login 
-* Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
 * User Specific Data - Users want their #own data saved?! Who knew?
+* Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
+* Animations - Once the functionality is finished, making things less jarring will be nice.
 * User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
 * Website Parsing - Have some ideas, but more research is needed. 
 
