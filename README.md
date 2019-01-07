@@ -28,10 +28,10 @@ No problems yet.
 * Storage, editing and deleteing
 * Ingredient to Shopping list
 * routing
-* Persistant login 
 
 ### To Come:
 
+* Persistant login 
 * Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
 * User Specific Data - Users want their #own data saved?! Who knew?
 * User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
@@ -41,7 +41,7 @@ No problems yet.
 ## Built With
 
 * HTML
-* CSS
+* SASS
 * JavaScript
 * Angular
 * TypeScript
