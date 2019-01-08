@@ -37,6 +37,7 @@ No problems yet.
 * Auto Fetch on Login
 * Shopping List Saving
 * Upload Recipe Image
+* Implement and maintain TDD
 * Mobile Menu & alterations
 * Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
 * Animations - Once the functionality is finished, making things less jarring will be nice.
