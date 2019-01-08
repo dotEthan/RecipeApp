@@ -5,7 +5,7 @@ The early stage starting framework for what I hope to turn into a recipe storage
 
 ### Status
 
-Functionality: 75%
+Functionality: 40%
 Design: 20%
 So, early days still.
 
