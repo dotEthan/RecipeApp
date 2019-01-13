@@ -14,7 +14,7 @@
             </ul>
             <ul class="nav
                        navbar-nav">
-                <ng-template [ngIf]="!authService.isAuthenticated()">
+                <ng-template [ngIf]="!(authState | async).authenticated">
                     <li><a style="cursor:pointer"
                            (click)="onClick('register')"
                            routerLink="/">Register</a></li>
@@ -22,22 +22,24 @@
                            (click)="onClick('signin')"
                            routerLink="/">Sign In</a></li>
                 </ng-template>
-                <li *ngIf="authService.isAuthenticated()"><a (click)="authService.logout()"
-                       style="cursor: pointer"
-                       routerLink="/">Log Out</a></li>
-                <li class="dropdown"
-                    appDropdown
-                    *ngIf="authService.isAuthenticated()">
-                    <a style="cursor: pointer"
-                       class="dropdown-toggle"
-                       role="button">Manage <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a style="cursor: pointer"
-                               (click)="onSave()">Save Data</a></li>
-                        <li><a style="cursor: pointer"
-                               (click)="onFetch()">Fetch Data</a></li>
-                    </ul>
-                </li>
+                <ng-template [ngIf]="(authState | async).authenticated">
+                    <li><a (click)="authLogout()"
+                           style="cursor: pointer"
+                           routerLink="/">Log Out</a></li>
+                    <li class="dropdown"
+                        appDropdown
+                        *ngIf="(authState | async).authenticated">
+                        <a style="cursor: pointer"
+                           class="dropdown-toggle"
+                           role="button">Manage <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a style="cursor: pointer"
+                                   (click)="onSave()">Save Data</a></li>
+                            <li><a style="cursor: pointer"
+                                   (click)="onFetch()">Fetch Data</a></li>
+                        </ul>
+                    </li>
+                </ng-template>
             </ul>
         </div>
     </div>
