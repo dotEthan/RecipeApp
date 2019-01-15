@@ -6,7 +6,6 @@ import { Subject, BehaviorSubject } from 'rxjs';
     providedIn: 'root'
 })
 export class AuthService {
-    // authType = new Subject();
     errorMsg = new Subject();
     modalOpen = new Subject();
     authType = new BehaviorSubject('register');

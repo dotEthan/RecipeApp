@@ -1,11 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './core/header/header.component';
+import { AuthModalComponent } from './core/auth-modal/auth-modal.component';
+import { RouterOutlet } from '@angular/router';
+import { AuthOverComponent } from './core/auth-modal/auth-over/auth-over.component';
+import { SigninComponent } from './core/auth-modal/auth-over/signin/signin.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        AuthModalComponent,
+        RouterOutlet,
+        AuthOverComponent,
+        SigninComponent
       ],
     }).compileComponents();
   }));

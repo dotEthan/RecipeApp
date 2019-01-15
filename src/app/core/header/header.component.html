@@ -16,11 +16,9 @@
                        navbar-nav">
                 <ng-template [ngIf]="!(authState | async).authenticated">
                     <li><a style="cursor:pointer"
-                           (click)="onClick('register')"
-                           routerLink="/">Register</a></li>
+                           (click)="onClick('register')">Register</a></li>
                     <li><a style="cursor:pointer"
-                           (click)="onClick('signin')"
-                           routerLink="/">Sign In</a></li>
+                           (click)="onClick('signin')">Sign In</a></li>
                 </ng-template>
                 <ng-template [ngIf]="(authState | async).authenticated">
                     <li><a (click)="authLogout()"
