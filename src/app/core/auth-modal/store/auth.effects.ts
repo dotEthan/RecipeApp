@@ -34,7 +34,7 @@ export class AuthEffects {
                 ];
             }),
             tap(() => {
-                this.authService.modalOpen.next(false);
+                this.authService.modalOpen.next('false');
             }));
 
     @Effect()
@@ -61,7 +61,7 @@ export class AuthEffects {
                 ];
             }),
             tap(() => {
-                this.authService.modalOpen.next(false);
+                this.authService.modalOpen.next('false');
             }));
 
     @Effect({ dispatch: false }) // No final state changes

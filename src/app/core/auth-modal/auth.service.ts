@@ -1,10 +1,13 @@
 
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthService {
-    authType = new Subject();
+    // authType = new Subject();
     errorMsg = new Subject();
     modalOpen = new Subject();
+    authType = new BehaviorSubject('register');
 }

@@ -32,11 +32,13 @@ export class HeaderComponent implements OnInit {
     }
 
     onClick(type: string) {
+        // console.log(type);
         this.authService.authType.next(type);
+        this.authService.modalOpen.next('true');
     }
 
     onSelect() {
-        this.authService.modalOpen.next(false);
+        this.authService.modalOpen.next('false');
     }
 
     authLogout() {

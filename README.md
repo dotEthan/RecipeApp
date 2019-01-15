@@ -31,6 +31,7 @@ No problems yet.
 
 ### To Come:
 
+* Warnings for logging in and trying to edit or create recipes anonymously
 * Update to Bootstrap 4
 * Persistant login 
 * User Specific Data - Users want their #own data saved?! Who knew?

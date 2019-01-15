@@ -7,34 +7,15 @@ import { AuthService } from './auth.service';
   styleUrls: ['./auth-modal.component.sass']
 })
 export class AuthModalComponent implements OnInit {
-  modalOpen = false
-  authType: string
-  error: string;
+  modalOpen = 'false'
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.authType.subscribe(
-      (type: string) => {
-        this.modalOpen = true;
-        this.authType = type;
-      }
-    );
-
-    this.authService.errorMsg.subscribe(
-      (msg: string) => {
-        this.error = msg;
-      }
-    );
-
     this.authService.modalOpen.subscribe(
-      (shouldOpen: boolean) => {
+      (shouldOpen: string) => {
         this.modalOpen = shouldOpen;
       }
     );
-  }
-
-  onClose() {
-    this.modalOpen = false;
   }
 
 }
