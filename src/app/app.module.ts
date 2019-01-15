@@ -16,6 +16,7 @@ import { CoreModule } from './core/core.module';
 import { reducers } from './store/app-reducer';
 import { AuthEffects } from './core/auth-modal/store/auth.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
   declarations: [

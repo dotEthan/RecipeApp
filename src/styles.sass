@@ -21,6 +21,17 @@ $borderize-margin: 30px
 .app__row
     width: 100%
 
+.router-contain 
+    position: absolute
+    top: $navbar-height
+    left: 0
+    width: 100%
+    height: calc(100vh - #{$navbar-height-minus})
+    display: flex
+    justify-content: center
+    align-items: center
+    overflow: hidden
+
 // Home
 .titleback
     background: rgba(white,.5)
@@ -48,32 +59,40 @@ $borderize-margin: 30px
     display: flex
 
 // Auth 
-.auth
-    width: 100vw
-    height: calc(100vh - #{$navbar-height-minus})
+.auth__contain
     position: absolute
-    width: 100%
     top: $navbar-height
     left: 0
+    width: 100%
+    height: calc(100vh - #{$navbar-height-minus})
+    pointer-events: none
+    &.over
+        pointer-events: auto
+
+.auth
+    height: calc(100vh - #{$navbar-height-minus})
+    position: relative
+    width: 100%
+    background-color: rgba(0,0,0,.5)
+    z-index: 1000
 
 .auth__modal
+    position: absolute
+    top: 0
+    left: 0
     height: calc(100vh - #{$navbar-height-minus})
+    width: 100%
     justify-content: center
     align-items: center
-    background-color: rgba(0,0,0,.5)
     display: flex
     justify-content: center
     align-items: center
-    z-index: 100
-
-    &.open
-        display: flex
+    z-index: 1000
 
 .auth__modal--white
     background: white
     width: 350px
     height: 400px
-    z-index: 1000
     position: relative
     border-radius: 15px
     box-shadow: 2px 3px 10px 1px rgba(0,0,0,.3)
@@ -102,6 +121,7 @@ $borderize-margin: 30px
     border-radius: 15px
     width: calc(100vw - #{$borderize-margin * 2})
     overflow: auto
+    max-width: 1366px
 
 // Recipes
 .recipes__title
@@ -118,5 +138,6 @@ $borderize-margin: 30px
     height: 80vh
     overflow: auto
     border-radius: 15px
+    max-width: 500px
     @media (min-width: 768px)
         height: 50vh

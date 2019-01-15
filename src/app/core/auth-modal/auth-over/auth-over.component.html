@@ -1,0 +1,12 @@
+<div class="auth__modal--white"
+     [@modalOpen]="modalOpen">
+  <button type="button"
+          class="close"
+          aria-label="Close"
+          (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div>
+    <app-signin></app-signin>
+  </div>
+</div>
