@@ -7,7 +7,7 @@ export interface State {
 
 const initialState: State = {
     token: null,
-    authenticated: false
+    authenticated: false,
 }
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
@@ -29,6 +29,16 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
                 ...state,
                 token: action.payload
             };
+        case AuthActions.SET_DATA:
+            return {
+                ...state
+            };
+
+        case AuthActions.SET_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            }
         default:
             return state;
     }

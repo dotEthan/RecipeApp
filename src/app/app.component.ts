@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './shared/animations';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from './store/app-reducer';
+import * as AuthActions from './core/auth-modal/store/auth.actions';
+import * as RecipeActions from './recipes/store/recipes.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +18,18 @@ import { slideInAnimation } from './shared/animations';
 })
 export class AppComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     firebase.initializeApp({
       apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",
       authDomain: "angular-testing-a4072.firebaseapp.com"
     });
+
+    if (window.localStorage.getItem('token')) {
+      this.store.dispatch(new AuthActions.SetData());
+      this.store.dispatch(new RecipeActions.FetchRecipes());
+    }
   }
 
   prepareRoute(outlet: RouterOutlet) {

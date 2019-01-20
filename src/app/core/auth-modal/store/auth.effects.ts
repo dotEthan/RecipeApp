@@ -1,12 +1,15 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map, switchMap, mergeMap, tap } from 'rxjs/operators';
-import { from } from 'rxjs';
+import { from, pipe } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import * as AuthActions from './auth.actions';
 import * as firebase from 'firebase';
 import { AuthService } from '../auth.service';
+import * as fromApp from '../../../store/app-reducer'
+import * as RecipeActions from '../../../recipes/store/recipes.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -23,6 +26,7 @@ export class AuthEffects {
                 return from(firebase.auth().currentUser.getIdToken());
             }),
             mergeMap((token: string) => {
+                window.localStorage.setItem('token', token);
                 return [
                     {
                         type: AuthActions.SIGNUP
@@ -50,6 +54,8 @@ export class AuthEffects {
                 return from(firebase.auth().currentUser.getIdToken());
             }),
             mergeMap((token: string) => {
+                console.log('token: ' + token);
+                window.localStorage.setItem('token', token);
                 return [
                     {
                         type: AuthActions.SIGNIN
@@ -61,8 +67,25 @@ export class AuthEffects {
                 ];
             }),
             tap(() => {
+                console.log('in signin, auth Effects');
+                this.store.dispatch(new RecipeActions.FetchRecipes());
                 this.authService.modalOpen.next('false');
             }));
+
+    @Effect()
+    setData = this.actions$
+        .pipe(ofType(AuthActions.SET_DATA),
+            mergeMap(() => {
+                return [
+                    {
+                        type: AuthActions.SIGNIN
+                    },
+                    {
+                        type: AuthActions.SET_TOKEN,
+                        payload: window.localStorage.getItem('token')
+                    }
+                ]
+            }))
 
     @Effect({ dispatch: false }) // No final state changes
     authLogout = this.actions$
@@ -71,7 +94,10 @@ export class AuthEffects {
                 this.router.navigate(['/']);
             }));
 
-    constructor(private actions$: Actions, private router: Router, private authService: AuthService) {
+    constructor(private actions$: Actions,
+        private router: Router,
+        private authService: AuthService,
+        private store: Store<fromApp.AppState>) {
 
     }
 }

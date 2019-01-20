@@ -29,13 +29,14 @@ No problems yet.
 * Ingredient to Shopping list
 * routing
 * Animations
+* Persistant login 
+* Auto Fetch on Login
 
 ### To Come:
 
+* Remove Recipe Detail Animation
 * Warnings for logging in and trying to edit or create recipes anonymously
-* Persistant login 
 * User Specific Data - Users want their #own data saved?! Who knew?
-* Auto Fetch on Login
 * Shopping List Saving
 * Upload Recipe Image
 * Implement and maintain TDD
