@@ -17,10 +17,13 @@ export class HeaderComponent implements OnInit {
     authState: Observable<fromAuth.State>;
 
     constructor(private authService: AuthService,
-        private store: Store<fromApp.AppState>) { }
+        private store: Store<fromApp.AppState>) {
+
+    }
 
     ngOnInit() {
         this.authState = this.store.select('auth');
+
     }
 
     onSave() {
@@ -28,11 +31,11 @@ export class HeaderComponent implements OnInit {
     }
 
     onFetch() {
+        console.log('header Go!');
         this.store.dispatch(new RecipeActions.FetchRecipes());
     }
 
     onClick(type: string) {
-        // console.log(type);
         this.authService.authType.next(type);
         this.authService.modalOpen.next('true');
     }
@@ -43,5 +46,6 @@ export class HeaderComponent implements OnInit {
 
     authLogout() {
         this.store.dispatch(new AuthActions.Logout());
+        window.localStorage.removeItem('token');
     }
 }

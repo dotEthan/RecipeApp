@@ -12,26 +12,7 @@ export interface State {
 }
 
 const initialState: State = {
-    recipes: [
-        new Recipe(
-            "Burger",
-            "really good food",
-            "https://upload.wikimedia.org/wikipedia/commons/6/60/Vegan_patties_with_potatoes_and_salad.jpg",
-            [
-                new Ingredient('meat', 1),
-                new Ingredient('French Fries', 20)
-            ]
-        ),
-        new Recipe(
-            "Schnitzel",
-            "At best OK food",
-            "https://upload.wikimedia.org/wikipedia/commons/6/60/Vegan_patties_with_potatoes_and_salad.jpg",
-            [
-                new Ingredient('bun', 2),
-                new Ingredient('meat', 1)
-            ]
-        )
-    ]
+    recipes: []
 };
 
 export function recipeReducer(state = initialState, action: RecipeActions.RecipesActions) {
