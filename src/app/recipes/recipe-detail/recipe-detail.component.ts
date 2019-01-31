@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';
+import * as AuthActions from '../../core/auth-modal/store/auth.actions';
 import * as fromAuth from '../../core/auth-modal/store/auth.reducers';
 import * as fromApp from '../../store/app-reducer';
 
@@ -21,8 +22,7 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private store: Store<fromRecipe.FeatureState>,
-    private store2: Store<fromAuth.State>) { }
+    private store: Store<fromRecipe.FeatureState>) { }
 
   ngOnInit() {
     this.route.params
@@ -33,7 +33,6 @@ export class RecipeDetailComponent implements OnInit {
         }
       );
 
-    console.log("Auth = " + this.store2.select('authenticated'));
   }
 
   onAddToShoppingList() {

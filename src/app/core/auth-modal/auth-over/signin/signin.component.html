@@ -3,6 +3,8 @@
           <div class="text-center auth__title">
                <h1>{{ thisType | titlecase }}</h1>
           </div>
+          <div class="auth__warning"
+               *ngIf="error">{{ error }}</div>
           <form (ngSubmit)="onSignin(f)"
                 #f="ngForm">
                <div class="form-group">
@@ -11,13 +13,8 @@
                            id="email"
                            name="email"
                            class="form-control"
-                           ngModel>
-                    <div class="auth__warning"
-                         *ngIf="error === 'auth/user-not-found'">Email Address Not Found</div>
-                    <div class="auth__warning"
-                         *ngIf="error === 'auth/invalid-email'">Please Enter Valid Email Address</div>
-                    <div class="auth__warning"
-                         *ngIf="error === 'auth/email-already-in-use'">Email Already Registered</div>
+                           ngModel
+                           email>
                </div>
                <div class="form-group">
                     <label for="password">Password:</label>
@@ -26,10 +23,6 @@
                            name="password"
                            class="form-control"
                            ngModel>
-                    <div class="auth__warning"
-                         *ngIf="error === 'auth/wrong-password'">Wrong Password</div>
-                    <div class="auth__warning"
-                         *ngIf="error === 'auth/weak-password'">Password Must Be At Least 6 Characters</div>
                </div>
                <button class="btn btn-primary"
                        type="submit"

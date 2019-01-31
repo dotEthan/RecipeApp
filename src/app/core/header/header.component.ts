@@ -46,6 +46,5 @@ export class HeaderComponent implements OnInit {
 
     authLogout() {
         this.store.dispatch(new AuthActions.Logout());
-        window.localStorage.removeItem('token');
     }
 }
