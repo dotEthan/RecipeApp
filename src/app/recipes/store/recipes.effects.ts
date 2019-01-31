@@ -3,6 +3,7 @@ import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import * as firebase from 'firebase';
 
 import * as RecipesActions from './recipes.actions';
 import * as fromRecipes from './recipes.reducer';
@@ -10,12 +11,13 @@ import { Recipe } from '../recipe.model';
 
 @Injectable()
 export class RecipeEffects {
+
     @Effect()
     recipeFetch = this.actions$
         .pipe(ofType(RecipesActions.FETCH_RECIPES),
             switchMap((action: RecipesActions.FetchRecipes) => {
-                console.log('fetching');
-                return this.httpClient.get<Recipe[]>('https://angular-testing-a4072.firebaseio.com/recipes.json')
+                let uid = window.localStorage.getItem('uid');
+                return this.httpClient.get<Recipe[]>('https://angular-testing-a4072.firebaseio.com/' + uid + '/recipes.json')
             }),
             map(
                 (recipes) => {
@@ -36,8 +38,8 @@ export class RecipeEffects {
         .pipe(ofType(RecipesActions.STORE_RECIPES),
             withLatestFrom(this.store.select('recipes')),
             switchMap(([action, state]) => {
-                console.log(state);
-                return this.httpClient.put('https://angular-testing-a4072.firebaseio.com/recipes.json', state.recipes);
+                let uid = firebase.auth().currentUser.uid;
+                return this.httpClient.put('https://angular-testing-a4072.firebaseio.com/' + uid + '/recipes.json', state.recipes);
             }));
 
     constructor(private actions$: Actions, private httpClient: HttpClient, private store: Store<fromRecipes.FeatureState>) { }

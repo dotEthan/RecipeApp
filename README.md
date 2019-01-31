@@ -31,16 +31,18 @@ No problems yet.
 * Animations
 * Persistant login 
 * Auto Fetch on Login
+* Login Warnings
+* User Specific Data
+* Mobile Menu
 
 ### To Come:
 
+* Mobile Layout
 * Remove Recipe Detail Animation
-* Warnings for logging in and trying to edit or create recipes anonymously
-* User Specific Data - Users want their #own data saved?! Who knew?
+* Warnings for trying to edit or create recipes anonymously
 * Shopping List Saving
 * Upload Recipe Image
 * Implement and maintain TDD
-* Mobile Menu & alterations
 * Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
 * User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
 * Website Parsing - Have some ideas, but more research is needed. 

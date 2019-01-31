@@ -27,7 +27,8 @@ export class AppComponent implements OnInit {
     });
 
     if (window.localStorage.getItem('token')) {
-      this.store.dispatch(new AuthActions.SetData());
+      console.log("autologin");
+      this.store.dispatch(new AuthActions.AutoLogin());
       this.store.dispatch(new RecipeActions.FetchRecipes());
     }
   }

@@ -1,7 +1,7 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { map, switchMap, mergeMap, tap } from 'rxjs/operators';
-import { from, pipe } from 'rxjs';
+import { map, switchMap, mergeMap, tap, take, catchError } from 'rxjs/operators';
+import { from, pipe, throwError, empty } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -13,6 +13,7 @@ import * as RecipeActions from '../../../recipes/store/recipes.actions';
 
 @Injectable()
 export class AuthEffects {
+
     @Effect()
     authSignup = this.actions$
         .pipe(ofType(AuthActions.TRY_SIGNUP),
@@ -27,6 +28,7 @@ export class AuthEffects {
             }),
             mergeMap((token: string) => {
                 window.localStorage.setItem('token', token);
+                window.localStorage.setItem('uid', firebase.auth().currentUser.uid);
                 return [
                     {
                         type: AuthActions.SIGNUP
@@ -38,6 +40,7 @@ export class AuthEffects {
                 ];
             }),
             tap(() => {
+                this.store.dispatch(new RecipeActions.FetchRecipes());
                 this.authService.modalOpen.next('false');
             }));
 
@@ -48,14 +51,19 @@ export class AuthEffects {
                 return action.payload;
             }),
             switchMap((authData: { username: string, password: string }) => {
-                return from(firebase.auth().signInWithEmailAndPassword(authData.username, authData.password));
+                return from(firebase.auth().signInWithEmailAndPassword(authData.username, authData.password))
+                    .pipe(
+                        catchError((err) => {
+                            this.authService.errorMsg.next(err.code);
+                            return empty();
+                        }));
             }),
             switchMap(() => {
                 return from(firebase.auth().currentUser.getIdToken());
             }),
             mergeMap((token: string) => {
-                console.log('token: ' + token);
                 window.localStorage.setItem('token', token);
+                window.localStorage.setItem('uid', firebase.auth().currentUser.uid);
                 return [
                     {
                         type: AuthActions.SIGNIN
@@ -66,15 +74,18 @@ export class AuthEffects {
                     }
                 ];
             }),
+            // catchError((err) => {
+            //     console.log('signing error = ', err.code);
+            //     return throwError(err);
+            // }),
             tap(() => {
-                console.log('in signin, auth Effects');
                 this.store.dispatch(new RecipeActions.FetchRecipes());
                 this.authService.modalOpen.next('false');
             }));
 
     @Effect()
-    setData = this.actions$
-        .pipe(ofType(AuthActions.SET_DATA),
+    autoLogin = this.actions$
+        .pipe(ofType(AuthActions.AUTO_LOGIN),
             mergeMap(() => {
                 return [
                     {
@@ -85,12 +96,14 @@ export class AuthEffects {
                         payload: window.localStorage.getItem('token')
                     }
                 ]
-            }))
+            }));
 
     @Effect({ dispatch: false }) // No final state changes
     authLogout = this.actions$
         .pipe(ofType(AuthActions.LOGOUT),
             tap(() => {
+                window.localStorage.removeItem('token');
+                window.localStorage.removeItem('uid');
                 this.router.navigate(['/']);
             }));
 

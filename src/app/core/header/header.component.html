@@ -5,7 +5,16 @@
                class="navbar-brand"
                (click)="onSelect()">Recipe Book</a>
         </div>
-        <div class="navbar-default nav__header">
+        <div class="beyond-burger">
+            <div class="burger-container"
+                 (click)="menuClick($event)">
+                <div class="line1 stopped"></div>
+                <div class="line2 stopped"></div>
+                <div class="line3 stopped"></div>
+            </div>
+        </div>
+        <div class="navbar-default nav__header"
+             #headermenu>
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a routerLink="/recipes"
                        (click)="onSelect()">Recipes</a></li>
