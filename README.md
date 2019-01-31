@@ -31,12 +31,13 @@ No problems yet.
 * Animations
 * Persistant login 
 * Auto Fetch on Login
+* Login Warnings
+* User Specific Data
 
 ### To Come:
 
 * Remove Recipe Detail Animation
-* Warnings for logging in and trying to edit or create recipes anonymously
-* User Specific Data - Users want their #own data saved?! Who knew?
+* Warnings for trying to edit or create recipes anonymously
 * Shopping List Saving
 * Upload Recipe Image
 * Implement and maintain TDD
