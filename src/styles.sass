@@ -1,6 +1,10 @@
 $navbar-height: 75px
 $navbar-height-minus: 77px
 $borderize-margin: 30px
+$lineheight: 3px
+$spaceheight: 6px
+$lineoneoffset: $lineheight + $spaceheight
+$iconheight: ($lineheight * 3) + ($spaceheight *2)
 
 // App
 .fullbackground
@@ -41,9 +45,15 @@ $borderize-margin: 30px
     z-index: 1
     transform: translateY(-50%)
 
-// Header
+// Header 
 .navbar
     margin-bottom: 0
+
+.navbar-header
+    flex-grow: 1
+
+    @media (min-width: 768px) 
+        flex-grow: 0
 
 .nav__container
     height: $navbar-height
@@ -51,9 +61,173 @@ $borderize-margin: 30px
     align-items: center
 
 .nav__header
+    position: absolute
+    top: 70px
+    left: 100%
     display: flex
-    justify-content: space-between
-    flex-grow: 1
+    flex-direction: column
+    padding: 25px
+    transition: all .5s ease-in-out
+    width: 300px
+    z-index: 1
+
+    &.active
+        left: 75%
+        z-index: 99
+
+    @media (min-width: 768px) 
+        position: relative
+        left: 0
+        top: 0
+        justify-content: space-between
+        flex-grow: 1
+        flex-direction: row
+        padding: 0
+        border: none
+        width: auto
+
+// Burger Button
+.beyond-burger
+    position: relative
+    display: block
+    width: 50px
+    height: 50px
+    // z-index: 99
+    
+    @media (min-width: 768px)
+        display: none 
+
+.navbar-nav
+    margin: 0
+
+.burger-container 
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 35px
+  height: $iconheight
+  cursor: pointer
+
+  .line1 
+    animation: firstline--back 1s
+  
+
+  .line2 
+    margin: $spaceheight 0
+    animation: secondline--back 1s
+  
+
+  .line3 
+    animation: thirdline--back 1s
+  
+
+  &.active 
+
+    .line1 
+      animation: firstline 1s forwards
+    
+
+    .line2 
+      animation: secondline 1s forwards
+    
+
+    .line3 
+      animation: thirdline 1s forwards
+    
+  
+
+
+.line1, .line2, .line3 
+  height: $lineheight
+  background: black
+  border-radius: 2px
+
+
+.stopped 
+  -webkit-animation: none
+  animation: none !important
+
+
+@keyframes firstline 
+  0% 
+    transform: translateY(0)
+  
+  50% 
+    transform: translateY($lineoneoffset)
+  
+  
+  100% 
+    transform: translateY($lineoneoffset) rotate(45deg)
+  
+
+
+@keyframes secondline 
+  0% 
+    transform: scale(1)
+  
+  50% 
+    transform: scale(0)
+  
+  
+  100% 
+    transform: scale(0)
+  
+
+
+@keyframes thirdline 
+  0% 
+    transform: translateY(0)
+  
+  50% 
+    transform: translateY(-$lineoneoffset)
+  
+  
+  100% 
+    transform: translateY(-$lineoneoffset) rotate(-45deg)
+  
+
+
+@keyframes firstline--back 
+  0% 
+    transform: translateY($lineoneoffset) rotate(45deg)
+  
+  50% 
+    transform: translateY($lineoneoffset) rotate(0deg)
+  
+  
+  100% 
+    transform: translateY(0)
+  
+
+
+@keyframes secondline--back 
+  0% 
+    transform: scale(0)
+  
+  50% 
+    transform: scale(0)
+  
+  
+  100% 
+    transform: scale(1)
+  
+
+
+@keyframes thirdline--back 
+  0% 
+    transform: translateY(-$lineoneoffset) rotate(-45deg)
+  
+  50% 
+    transform: translateY(-$lineoneoffset) rotate(0deg)
+  
+  
+  100% 
+    transform: translateY(0)
+  
+
+
+    
 
 .nav__items__container
     display: flex

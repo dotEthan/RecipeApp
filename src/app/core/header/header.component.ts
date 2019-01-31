@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,7 @@ import * as RecipeActions from '../../recipes/store/recipes.actions';
     styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
+    @ViewChild('headermenu') headermenu: ElementRef;
     authState: Observable<fromAuth.State>;
 
     constructor(private authService: AuthService,
@@ -46,5 +47,14 @@ export class HeaderComponent implements OnInit {
 
     authLogout() {
         this.store.dispatch(new AuthActions.Logout());
+    }
+
+    menuClick(e) {
+        this.headermenu.nativeElement.classList.toggle('active');
+        e.currentTarget.classList.toggle('active');
+        const childLength = e.currentTarget.children.length;
+        for (let i = 0; i < childLength; i++) {
+            e.currentTarget.children[i].classList.remove('stopped');
+        }
     }
 }
