@@ -1,41 +1,80 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+// import { RouterOutlet } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
+import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import * as firebase from 'firebase';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { AuthModalComponent } from './core/auth-modal/auth-modal.component';
-import { RouterOutlet } from '@angular/router';
 import { AuthOverComponent } from './core/auth-modal/auth-over/auth-over.component';
 import { SigninComponent } from './core/auth-modal/auth-over/signin/signin.component';
+// Store
+import * as fromApp from './store/app-reducer'; // from root reducer
+import * as fromShoppingList from './shopping-list/store/shopping-list.reducers'; // from feature reducers
+import * as fromRecipes from './recipes/store/recipes.reducer'; // from feature reducers
+import * as fromAuth from './core/auth-modal/store/auth.reducers'; // from feature reducers
+
+import * as AuthActions from './core/auth-modal/store/auth.actions'; // actions to test
+import * as RecipeActions from './recipes/store/recipes.actions'; // actions to test
+import * as ShoppingListActions from './shopping-list/store/shopping-list.actions'; // actions to test
+
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  let store: Store<fromApp.AppState>;
+
   beforeEach(async(() => {
+
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
         HeaderComponent,
         AuthModalComponent,
-        RouterOutlet,
         AuthOverComponent,
         SigninComponent
+      ],
+      imports: [
+        FormsModule,
+        RouterTestingModule.withRoutes([]),
+        StoreModule.forRoot({
+          ...fromApp.reducers,
+          shoppingList: combineReducers(fromShoppingList.shoppingListReducer),
+          recipes: combineReducers(fromRecipes.recipeReducer),
+          auth: combineReducers(fromAuth.authReducer),
+        }),
+        BrowserAnimationsModule,
       ],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  beforeEach(() => {
 
-  it(`should have as title 'Project'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Project');
-  });
+    store = TestBed.get(Store);
+    spyOn(store, 'dispatch').and.callThrough();
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.debugElement.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to Project!');
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should dispatch store action autologin if local storage has token saved on init', () => {
+    // spyOn(firebase, 'initializeApp').and.callFake(() => true);
+
+    let spy = spyOn(localStorage, 'getItem').and.callFake((key) => {
+      return key;
+    });
+
+    component.ngOnInit();
+
+    expect(spy).toHaveBeenCalledWith('token');
+
   });
 });

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+// import { Store } from '@ngrx/store';
 
-import * as fromApp from '../store/app-reducer';
-import * as RecipeActions from './store/recipes.actions';
+// import * as fromApp from '../store/app-reducer';
 
 @Component({
   selector: 'app-recipes',
@@ -11,9 +10,10 @@ import * as RecipeActions from './store/recipes.actions';
 })
 export class RecipesComponent implements OnInit {
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor() { }
 
   ngOnInit() {
+    console.log('recipes initializing');
   }
 
 }

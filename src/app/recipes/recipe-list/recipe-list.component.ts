@@ -19,6 +19,7 @@ export class RecipeListComponent implements OnInit {
     private store: Store<fromRecipe.FeatureState>) { }
 
   ngOnInit() {
+    console.log('recipe-list initializing');
     this.recipeState = this.store.select('recipes');
   }
 
