@@ -1,16 +1,12 @@
 # Recipe App
-Landing Page Coming Soon
-
-The early stage starting framework for what I hope to turn into a recipe storage and shopping list app. A proof of concept for my over all idea of a larger, modularized personal assistant app. 
-
-[Landing Page is Here! Woot Woot!](https://stupefied-morse-5e1233.netlify.com/)
+[Landing Page is Here!](https://stupefied-morse-5e1233.netlify.com/)
 
 Once I implement testing for the current build I'm going to take a break and thoroughly redesign the layout with responsive design and accessibility as the focus. 
 
 ### Status
 
-Functionality: 40%
-Design: 20%
+Functionality: 40%  
+Design: 20%  
 So, early days still.
 
 ## Overview and Thoughts
@@ -21,11 +17,11 @@ Learned a great overview of Angular using [Maximilian Schwarzmüller's Udemy Tut
 
 Working with firebase as a backend and learning AngularFire for data pipeline and authentication.
 
-Have implemented most of the basic recipe app functionality, and gone through a number of [tutorials](https://www.udemy.com/testing-angular-apps/learn/v4/content) regarding TDD. Currently in the process of getting that implemented. 
+Have implemented most of the basic recipe app functionality, and gone through a number of [tutorials](https://www.udemy.com/testing-angular-apps/learn/v4/content) regarding TDD. Currently in the process of getting unit and implementation tests set up. 
 
 ### What isn't working
 
-Getting a strange error in the Testing where a simple NgRx store.select call is creating a CORS Policy error. Been looking for answers but none found yet. For now will comment out the one line for testing purposes and put it back for production, but I don't like it. Might rebuild the store from scratch as it would be good practice and might find the problem along the way.
+Getting a strange error while testing where a simple NgRx 'this.store.select()' call seems to be creating a CORS Policy error. Been looking for answers but none found yet. For now will comment out the one line for testing purposes and put it back for production, but I don't like it. Might rebuild the store from scratch as it would be good practice and might find the problem along the way.
 
 Otherwise all is good.
 
