@@ -21,13 +21,15 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",
-      authDomain: "angular-testing-a4072.firebaseapp.com"
-    });
+    if (!firebase.apps.length) {
+      firebase.initializeApp({
+        apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",
+        authDomain: "angular-testing-a4072.firebaseapp.com"
+      });
+    }
 
     if (window.localStorage.getItem('token')) {
-      console.log("autologin");
+      // console.log("autologin");
       this.store.dispatch(new AuthActions.AutoLogin());
       this.store.dispatch(new RecipeActions.FetchRecipes());
     }

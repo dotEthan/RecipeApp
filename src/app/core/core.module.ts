@@ -31,7 +31,8 @@ import { HttpErrorInterceptor } from '../shared/error.interceptor';
         AppRoutingModule,
         HeaderComponent,
         AuthModalComponent,
-        SigninComponent
+        SigninComponent,
+        FormsModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
