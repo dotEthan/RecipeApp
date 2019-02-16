@@ -32,10 +32,7 @@ describe('RecipesComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule.withRoutes([]),
         StoreModule.forRoot({
-          ...fromApp.reducers,
-          shoppingList: combineReducers(fromShoppingList.shoppingListReducer),
-          recipes: combineReducers(fromRecipes.recipeReducer),
-          auth: combineReducers(fromAuth.authReducer),
+          ...fromApp.reducers
         }),
         BrowserAnimationsModule,
       ]

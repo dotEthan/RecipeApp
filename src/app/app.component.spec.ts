@@ -65,7 +65,7 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch store action autologin if local storage has token saved on init', () => {
+  it('should call local storage and check if token exists', () => {
     // spyOn(firebase, 'initializeApp').and.callFake(() => true);
 
     let spy = spyOn(localStorage, 'getItem').and.callFake((key) => {

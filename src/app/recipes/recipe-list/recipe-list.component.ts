@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromRecipe from '../store/recipes.reducer';
@@ -20,7 +20,8 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
     console.log('recipe-list initializing');
-    this.recipeState = this.store.select('recipes');
+    this.recipeState = this.store.pipe(select('recipes'));
+    console.log(this.recipeState);
   }
 
   onNewRecipe() {
