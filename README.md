@@ -21,9 +21,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-Getting a strange error while testing where a simple NgRx 'this.store.select()' call seems to be creating a CORS Policy error. Been looking for answers but none found yet. For now will comment out the one line for testing purposes and put it back for production, but I don't like it. Might rebuild the store from scratch as it would be good practice and might find the problem along the way.
-
-Otherwise all is good.
+Solved the strange store select error by properly implementing the store in testing. Now to build out the tests. 
 
 ## Where are we?
 
