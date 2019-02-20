@@ -52,10 +52,8 @@ describe('AppComponent', () => {
   }));
 
   beforeEach(() => {
-
-    store = TestBed.get(Store);
-    spyOn(store, 'dispatch').and.callThrough();
-
+    // store = TestBed.get(Store);
+    // spyOn(store, 'dispatch').and.callThrough();
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.debugElement.componentInstance;
     fixture.detectChanges();
@@ -66,8 +64,6 @@ describe('AppComponent', () => {
   });
 
   it('should call local storage and check if token exists', () => {
-    // spyOn(firebase, 'initializeApp').and.callFake(() => true);
-
     let spy = spyOn(localStorage, 'getItem').and.callFake((key) => {
       return key;
     });
@@ -75,6 +71,16 @@ describe('AppComponent', () => {
     component.ngOnInit();
 
     expect(spy).toHaveBeenCalledWith('token');
-
   });
+
+  it('should initialize firebase app if it does not already exist', () => {
+    // firebase.
+    console.log('inside', firebase.apps.length);
+    let spy = spyOn(firebase, 'initializeApp').and.returnValue(true);
+
+    component.ngOnInit();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
 });

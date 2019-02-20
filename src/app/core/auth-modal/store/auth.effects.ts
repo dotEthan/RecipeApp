@@ -21,7 +21,12 @@ export class AuthEffects {
                 return action.payload;
             }),
             switchMap((authData: { username: string, password: string }) => {
-                return from(firebase.auth().createUserWithEmailAndPassword(authData.username, authData.password));
+                return from(firebase.auth().createUserWithEmailAndPassword(authData.username, authData.password))
+                    .pipe(
+                        catchError((err) => {
+                            this.authService.errorMsg.next(err.code);
+                            return empty();
+                        }));
             }),
             switchMap(() => {
                 return from(firebase.auth().currentUser.getIdToken());

@@ -32,7 +32,6 @@ export class SigninComponent implements OnInit, OnDestroy {
 
     this.errSub$.subscribe(
       (msg: string) => {
-        console.log('subscription signin ' + msg);
         switch (msg) {
           case '':
             this.error = '';
@@ -48,6 +47,12 @@ export class SigninComponent implements OnInit, OnDestroy {
             break;
           case 'auth/too-many-requests':
             this.error = 'Too Many Attempts. Please Wait ten (10) Seconds Before Trying Again.';
+            break;
+          case 'auth/weak-password':
+            this.error = 'Passwords must be at least six (6) characters';
+            break;
+          case 'auth/email-already-in-use':
+            this.error = 'Email already in use, use another or sign in below';
             break;
           default:
             this.error = 'Unknown Error. Code: ' + msg;

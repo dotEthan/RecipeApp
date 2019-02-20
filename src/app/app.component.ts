@@ -22,10 +22,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (!firebase.apps.length) {
+      console.log(firebase.apps.length);
+      console.log("firebase's not here man");
       firebase.initializeApp({
         apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",
         authDomain: "angular-testing-a4072.firebaseapp.com"
       });
+      console.log("initialized firebase");
     }
 
     if (window.localStorage.getItem('token')) {

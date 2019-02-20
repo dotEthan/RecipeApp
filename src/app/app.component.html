@@ -4,7 +4,7 @@
        target="_blank">Photo by Nick Karvounis on Unsplash</a></div>
   <app-auth-modal></app-auth-modal>
   <div class="router-contain"
-       [@routeAnimations]="getState(outlet)">
+       [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>

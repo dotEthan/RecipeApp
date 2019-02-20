@@ -6,9 +6,9 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipesComponent } from './recipes/recipes.component';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'recipes', component: RecipesComponent, data: { state: 'Recipes' } },
-    { path: 'shopping-list', component: ShoppingListComponent, data: { state: 'ShoppingList' } }
+    { path: '', component: HomeComponent, data: { animation: 'HomePage' } },
+    { path: 'recipes', component: RecipesComponent, data: { state: 'Recipes', animation: 'RecipePage' } },
+    { path: 'shopping-list', component: ShoppingListComponent, data: { state: 'ShoppingList', animation: 'ShoppingListPage' } }
     // { path: '**', component: NotFound } // otherwise
 ];
 
