@@ -40,7 +40,7 @@ Solved the strange store select error by properly implementing the store in test
 
 ### Working on Now:
 * Implement and maintain TDD
-* Rebranding
+* Rebranding - Name & Logo/Icons
 
 ### To Come:
 
