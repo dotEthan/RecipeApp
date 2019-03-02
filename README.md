@@ -1,4 +1,4 @@
-# Recipe App
+# Recipeasy
 [Landing Page is Here!](https://stupefied-morse-5e1233.netlify.com/)
 
 Once I implement testing for the current build I'm going to take a break and thoroughly redesign the layout with responsive design and accessibility as the focus. 
@@ -40,6 +40,7 @@ Solved the strange store select error by properly implementing the store in test
 
 ### Working on Now:
 * Implement and maintain TDD
+* Rebranding
 
 ### To Come:
 
