@@ -7,6 +7,7 @@ export const SIGNIN = 'SIGNIN';
 export const LOGOUT = 'LOGOUT';
 export const SET_TOKEN = 'SET_TOKEN';
 export const AUTO_LOGIN = 'AUTO_LOGIN';
+export const TOGGLE_TEST_MODE = 'TOGGLE_TEST_MODE';
 
 export class TrySignup implements Action {
     readonly type = TRY_SIGNUP;
@@ -42,5 +43,9 @@ export class AutoLogin implements Action {
     readonly type = AUTO_LOGIN;
 }
 
+export class toggleTestMode implements Action {
+    readonly type = TOGGLE_TEST_MODE;
+}
 
-export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup | TrySignin | AutoLogin;
+
+export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup | TrySignin | AutoLogin | toggleTestMode;

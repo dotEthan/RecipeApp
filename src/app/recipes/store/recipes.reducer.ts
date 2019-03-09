@@ -12,7 +12,14 @@ export interface State {
 }
 
 const initialState: State = {
-    recipes: []
+    recipes: [
+        {
+            description: null,
+            imagePath: null,
+            ingredients: [{ name: null, amount: null }],
+            name: null,
+        }
+    ]
 };
 
 export function recipeReducer(state = initialState, action: RecipeActions.RecipesActions) {

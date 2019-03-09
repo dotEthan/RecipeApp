@@ -71,7 +71,7 @@ export class SigninComponent implements OnInit, OnDestroy {
     (this.thisType === 'register') ? this.store.dispatch(new AuthActions.TrySignup({ username: email, password: password })) : this.store.dispatch(new AuthActions.TrySignin({ username: email, password: password }));
   }
 
-  onClick(type: string) {
+  onSwitchTypeHandler(type: string) {
     this.authService.authType.next(type);
   }
 }

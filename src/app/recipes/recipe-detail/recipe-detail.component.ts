@@ -19,6 +19,7 @@ import * as fromApp from '../../store/app-reducer';
 export class RecipeDetailComponent implements OnInit {
   recipeState: Observable<fromRecipe.State>;
   id: number;
+  recipeStateArray: any;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -29,7 +30,10 @@ export class RecipeDetailComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
+          console.log(`recipe-detail id: ${this.id}`);
           this.recipeState = this.store.select('recipes');
+          this.recipeStateArray = Object.entries(this.recipeState);
+          console.log(this.recipeState);
         }
       );
 

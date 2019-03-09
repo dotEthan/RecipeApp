@@ -17,6 +17,7 @@ export class RecipeEffects {
         .pipe(ofType(RecipesActions.FETCH_RECIPES),
             switchMap((action: RecipesActions.FetchRecipes) => {
                 let uid = window.localStorage.getItem('uid');
+                console.log('reicpes effects earlier = ', uid);
                 return this.httpClient.get<Recipe[]>('https://angular-testing-a4072.firebaseio.com/' + uid + '/recipes.json')
             }),
             map(
@@ -26,6 +27,7 @@ export class RecipeEffects {
                             recipe['ingredients'] = [];
                         }
                     }
+                    console.log('reicpes effects recipes = ', recipes);
                     return {
                         type: RecipesActions.SET_RECIPES,
                         payload: recipes

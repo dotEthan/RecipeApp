@@ -9,7 +9,8 @@
     <hr>
     <div class="row">
       <div class="col-sx-12">
-        <div *ngIf="(recipeState | async).recipes.length > 0; else no_recipes">
+        <div class="recipeRow"
+             *ngIf="(recipeState | async).recipes.length > 0; else no_recipes">
           <app-recipe-item *ngFor="let recipeEl of (recipeState | async).recipes; let i = index"
                            [recipe]="recipeEl"
                            [index]="i"></app-recipe-item>

@@ -3,6 +3,8 @@
 
 Once I implement testing for the current build I'm going to take a break and thoroughly redesign the layout with responsive design and accessibility as the focus. 
 
+Currently you must register, I will be implmenting a "Test Mode" shortly.
+
 ### Status
 
 Functionality: 40%  
@@ -41,9 +43,12 @@ Solved the strange store select error by properly implementing the store in test
 ### Working on Now:
 * Implement and maintain TDD
 * Rebranding - Name & Logo/Icons
+* TestMode - Add Sample Recipes
 
 ### To Come:
 
+* TestMode
+* Form Reset on login
 * Mobile Layout
 * Remove Recipe Detail Animation
 * Warnings for trying to edit or create recipes anonymously

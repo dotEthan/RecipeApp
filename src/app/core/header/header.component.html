@@ -15,15 +15,19 @@
         </div>
         <div class="navbar-default nav__header"
              #headermenu>
+            <!-- <ul *ngIf="(authState | async).authenticated || (authState | async).testMode" -->
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a routerLink="/recipes"
-                       (click)="onSelect()">Recipes</a></li>
-                <li routerLinkActive="active"><a routerLink="/shopping-list"
-                       (click)="onSelect()">Shopping List</a></li>
+                <ng-template [ngIf]="(authState | async).authenticated || (authState | async).testMode">
+                    <li routerLinkActive="active"><a routerLink="/recipes"
+                           (click)="onSelect()">Recipes</a></li>
+                    <li routerLinkActive="active"><a routerLink="/shopping-list"
+                           (click)="onSelect()">Shopping List</a></li>
+                </ng-template>
             </ul>
             <ul class="nav
-                       navbar-nav">
-                <ng-template [ngIf]="!(authState | async).authenticated">
+                       navbar-nav
+                       rightward">
+                <ng-template [ngIf]="!(authState | async).authenticated && !(authState | async).testMode">
                     <li><a style="cursor:pointer"
                            (click)="onClick('register')">Register</a></li>
                     <li><a style="cursor:pointer"
@@ -34,8 +38,7 @@
                            style="cursor: pointer"
                            routerLink="/">Log Out</a></li>
                     <li class="dropdown"
-                        appDropdown
-                        *ngIf="(authState | async).authenticated">
+                        appDropdown>
                         <a style="cursor: pointer"
                            class="dropdown-toggle"
                            role="button">Manage <span class="caret"></span></a>

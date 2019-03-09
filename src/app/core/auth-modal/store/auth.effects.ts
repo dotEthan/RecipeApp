@@ -79,10 +79,6 @@ export class AuthEffects {
                     }
                 ];
             }),
-            // catchError((err) => {
-            //     console.log('signing error = ', err.code);
-            //     return throwError(err);
-            // }),
             tap(() => {
                 this.store.dispatch(new RecipeActions.FetchRecipes());
                 this.authService.modalOpen.next('false');

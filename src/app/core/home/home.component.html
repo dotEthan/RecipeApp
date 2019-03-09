@@ -3,6 +3,9 @@
         <div class="col-sm-6 col-sm-offset-3">
             <div class="titleback">
                 <h1>Welcome to Recipeasy</h1>
+                <button *ngIf='(authState | async).loggedIn === false'
+                        (click)='toggleTestMode()'
+                        [class.green]="(authState | async).testMode">Toggle Test Mode</button>
             </div>
         </div>
     </div>

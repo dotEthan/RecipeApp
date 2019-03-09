@@ -34,9 +34,9 @@
           <hr>
           <div class="auth__mistake"
                *ngIf="thisType==='register'">Already Registered? <a style="cursor: pointer"
-                  (click)="onClick('signin')">Sign in here!</a></div>
+                  (click)="onSwitchTypeHandler('signin')">Sign in here!</a></div>
           <div class="auth__mistake"
                *ngIf="thisType==='signin'">No account? <a style="cursor: pointer"
-                  (click)="onClick('register')">Register here!</a></div>
+                  (click)="onSwitchTypeHandler('register')">Register here!</a></div>
      </div>
 </div>
