@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router'
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../auth-modal/auth.service';
 import * as fromApp from '../../store/app-reducer';
 import * as fromAuth from '../../core/auth-modal/store/auth.reducers';
+import * as fromRecipe from '../../recipes/store/recipes.reducer';
 import * as AuthActions from '../auth-modal/store/auth.actions';
 import * as RecipeActions from '../../recipes/store/recipes.actions';
 
@@ -16,9 +18,11 @@ import * as RecipeActions from '../../recipes/store/recipes.actions';
 export class HeaderComponent implements OnInit {
     @ViewChild('headermenu') headermenu: ElementRef;
     authState: Observable<fromAuth.State>;
+    testMode: Observable<fromRecipe.State>;
 
     constructor(private authService: AuthService,
-        private store: Store<fromApp.AppState>) {
+        private store: Store<fromApp.AppState>,
+        private router: Router) {
 
     }
 
@@ -56,5 +60,12 @@ export class HeaderComponent implements OnInit {
         for (let i = 0; i < childLength; i++) {
             e.currentTarget.children[i].classList.remove('stopped');
         }
+    }
+
+    testModeOff() {
+        console.log('off sesame');
+        this.store.dispatch(new AuthActions.Logout());
+        this.store.dispatch(new AuthActions.toggleTestMode());
+        this.router.navigate(['']);
     }
 }

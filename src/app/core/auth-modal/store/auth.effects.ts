@@ -103,8 +103,17 @@ export class AuthEffects {
     authLogout = this.actions$
         .pipe(ofType(AuthActions.LOGOUT),
             tap(() => {
+                const emptyRecipe = [{
+                    name: '',
+                    description: '',
+                    ingredients: [],
+                    imagePath: '',
+                    directions: ''
+                }];
+
                 window.localStorage.removeItem('token');
                 window.localStorage.removeItem('uid');
+                this.store.dispatch(new RecipeActions.SetRecipes(emptyRecipe));
                 this.router.navigate(['/']);
             }));
 

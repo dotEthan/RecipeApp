@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromRecipe from '../store/recipes.reducer';
+import { RecipesService } from '../recipes.service';
 
 
 @Component({
@@ -13,13 +14,20 @@ import * as fromRecipe from '../store/recipes.reducer';
 })
 export class RecipeListComponent implements OnInit {
   recipeState: Observable<fromRecipe.State>;
+  recipeId: number;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private store: Store<fromRecipe.FeatureState>) { }
+    private store: Store<fromRecipe.FeatureState>,
+    private recipesService: RecipesService) { }
 
   ngOnInit() {
     this.recipeState = this.store.pipe(select('recipes'));
+
+    this.recipesService.recipeId.subscribe((id: number) => {
+      console.log(id);
+      this.recipeId = id;
+    })
   }
 
   onNewRecipe() {

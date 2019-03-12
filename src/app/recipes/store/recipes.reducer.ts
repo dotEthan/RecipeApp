@@ -18,6 +18,7 @@ const initialState: State = {
             imagePath: null,
             ingredients: [{ name: null, amount: null }],
             name: null,
+            directions: null
         }
     ]
 };

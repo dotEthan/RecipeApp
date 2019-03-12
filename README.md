@@ -1,9 +1,11 @@
 # Recipeasy
 [Landing Page is Here!](https://stupefied-morse-5e1233.netlify.com/)
 
-Once I implement testing for the current build I'm going to take a break and thoroughly redesign the layout with responsive design and accessibility as the focus. 
+Redesigning Layout now, further TDD will be added after redesign so I'm not testing anything (too much) that will be removed later.
 
-Currently you must register, I will be implmenting a "Test Mode" shortly.
+Test Mode Implemented. Can't edit yet, will be adding later. 
+
+[Figma Redesign document](https://www.figma.com/file/ELOJaxxPqc3QnOjwqgVNeLZZ/Recipe-App-Redesign?node-id=4%3A180) - Not sure if that can be linked. Not finished Shopping List or Mobile redesign. Working on it tomorrow. 
 
 ### Status
 
@@ -23,7 +25,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-Solved the strange store select error by properly implementing the store in testing. Now to build out the tests. 
+All going well except a strange error with ingredients being null on reload. Not breaking so will track it down after redesign.
 
 ## Where are we?
 
@@ -38,16 +40,16 @@ Solved the strange store select error by properly implementing the store in test
 * Login Warnings
 * User Specific Data
 * Mobile Menu
-
+* TestMode - Add Sample Recipes
 
 ### Working on Now:
 * Implement and maintain TDD
-* Rebranding - Name & Logo/Icons
-* TestMode - Add Sample Recipes
+* Redesign - Overlay working, now to start making it pretty and responsive.
+* Test Mode - Edit Recipes
 
 ### To Come:
 
-* TestMode
+* Measurement types for "amount"
 * Form Reset on login
 * Mobile Layout
 * Remove Recipe Detail Animation

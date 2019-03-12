@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
+import { RecipesService } from '../recipes.service';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';
-import * as AuthActions from '../../core/auth-modal/store/auth.actions';
-import * as fromAuth from '../../core/auth-modal/store/auth.reducers';
-import * as fromApp from '../../store/app-reducer';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -17,33 +15,27 @@ import * as fromApp from '../../store/app-reducer';
   styleUrls: ['./recipe-detail.component.sass']
 })
 export class RecipeDetailComponent implements OnInit {
+  // Getting Error about Ingredients on reload only. Fix. 
+
   recipeState: Observable<fromRecipe.State>;
-  id: number;
+  @Input() openId: number;
   recipeStateArray: any;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private store: Store<fromRecipe.FeatureState>) { }
+    private store: Store<fromRecipe.FeatureState>,
+    private recipeService: RecipesService) { }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          console.log(`recipe-detail id: ${this.id}`);
-          this.recipeState = this.store.select('recipes');
-          this.recipeStateArray = Object.entries(this.recipeState);
-          console.log(this.recipeState);
-        }
-      );
-
+    this.recipeState = this.store.select('recipes');
+    this.recipeStateArray = Object.entries(this.recipeState);
   }
 
   onAddToShoppingList() {
     this.store.select('recipes')
       .pipe(take(1))
       .subscribe((recipeState: fromRecipe.State) => {
-        this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.id].ingredients));
+        this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.openId].ingredients));
       });
   }
 
@@ -52,7 +44,11 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    this.store.dispatch(new RecipeActions.DeleteRecipe(this.id));
+    this.store.dispatch(new RecipeActions.DeleteRecipe(this.openId));
     this.router.navigate(['/recipes']);
+  }
+
+  onClose() {
+    this.recipeService.recipeId.next(-1);
   }
 }

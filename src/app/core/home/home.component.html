@@ -6,6 +6,8 @@
                 <button *ngIf='(authState | async).loggedIn === false'
                         (click)='toggleTestMode()'
                         [class.green]="(authState | async).testMode">Toggle Test Mode</button>
+                <p *ngIf='(authState | async).loggedIn === false'
+                   class="testModeWarn">(Test Mode Functionality Partial)</p>
             </div>
         </div>
     </div>
