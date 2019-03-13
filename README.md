@@ -1,16 +1,14 @@
 # Recipeasy
 [Landing Page is Here!](https://stupefied-morse-5e1233.netlify.com/)
 
-Redesigning Layout now, further TDD will be added after redesign so I'm not testing anything (too much) that will be removed later.
+[Figma Redesign document](https://www.figma.com/file/ELOJaxxPqc3QnOjwqgVNeLZZ/Recipe-App-Redesign?node-id=4%3A180) - working on Responsive design and Shopping List
 
-Test Mode Implemented. Can't edit yet, will be adding later. 
-
-[Figma Redesign document](https://www.figma.com/file/ELOJaxxPqc3QnOjwqgVNeLZZ/Recipe-App-Redesign?node-id=4%3A180) - Not sure if that can be linked. Not finished Shopping List or Mobile redesign. Working on it tomorrow. 
+Recipes section going through redesign, currently not working correctly, family emergency means probably no fix till Thursday or Friday at earliest. 
 
 ### Status
 
-Functionality: 40%  
-Design: 20%  
+Functionality: 50%  
+Design: 30%  
 So, early days still.
 
 ## Overview and Thoughts
@@ -46,6 +44,7 @@ All going well except a strange error with ingredients being null on reload. Not
 * Implement and maintain TDD
 * Redesign - Overlay working, now to start making it pretty and responsive.
 * Test Mode - Edit Recipes
+* Adding New Recipe Button no longer working due to redesign.
 
 ### To Come:
 

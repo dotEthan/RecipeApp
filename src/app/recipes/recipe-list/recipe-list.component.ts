@@ -25,12 +25,13 @@ export class RecipeListComponent implements OnInit {
     this.recipeState = this.store.pipe(select('recipes'));
 
     this.recipesService.recipeId.subscribe((id: number) => {
-      console.log(id);
+      // console.log(id);
       this.recipeId = id;
     })
   }
 
   onNewRecipe() {
+    console.log('move');
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 

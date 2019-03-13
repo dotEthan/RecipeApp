@@ -13,13 +13,6 @@ export interface State {
 
 const initialState: State = {
     recipes: [
-        {
-            description: null,
-            imagePath: null,
-            ingredients: [{ name: null, amount: null }],
-            name: null,
-            directions: null
-        }
     ]
 };
 

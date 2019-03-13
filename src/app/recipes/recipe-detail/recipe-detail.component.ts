@@ -18,7 +18,7 @@ export class RecipeDetailComponent implements OnInit {
   // Getting Error about Ingredients on reload only. Fix. 
 
   recipeState: Observable<fromRecipe.State>;
-  @Input() openId: number;
+  id: number;
   recipeStateArray: any;
 
   constructor(private route: ActivatedRoute,
@@ -27,6 +27,14 @@ export class RecipeDetailComponent implements OnInit {
     private recipeService: RecipesService) { }
 
   ngOnInit() {
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          console.log('params', params);
+          this.id = +params['id'];
+          console.log(this.id);
+        }
+      );
     this.recipeState = this.store.select('recipes');
     this.recipeStateArray = Object.entries(this.recipeState);
   }
@@ -35,7 +43,7 @@ export class RecipeDetailComponent implements OnInit {
     this.store.select('recipes')
       .pipe(take(1))
       .subscribe((recipeState: fromRecipe.State) => {
-        this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.openId].ingredients));
+        this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.id].ingredients));
       });
   }
 
@@ -44,11 +52,11 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    this.store.dispatch(new RecipeActions.DeleteRecipe(this.openId));
+    this.store.dispatch(new RecipeActions.DeleteRecipe(this.id));
     this.router.navigate(['/recipes']);
   }
 
   onClose() {
-    this.recipeService.recipeId.next(-1);
+    this.router.navigate(['/recipes']);
   }
 }
