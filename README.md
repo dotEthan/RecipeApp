@@ -3,7 +3,7 @@
 
 [Figma Redesign document](https://www.figma.com/file/ELOJaxxPqc3QnOjwqgVNeLZZ/Recipe-App-Redesign?node-id=4%3A180) - working on Responsive design and Shopping List
 
-Recipes section going through redesign, currently not working correctly, family emergency means probably no fix till Thursday or Friday at earliest. 
+Recipe Section mostly working again. Redesign continues.
 
 ### Status
 
@@ -44,17 +44,16 @@ All going well except a strange error with ingredients being null on reload. Not
 * Implement and maintain TDD
 * Redesign - Overlay working, now to start making it pretty and responsive.
 * Test Mode - Edit Recipes
-* Adding New Recipe Button no longer working due to redesign.
 
 ### To Come:
 
 * Measurement types for "amount"
+* Upload Recipe Image
 * Form Reset on login
 * Mobile Layout
 * Remove Recipe Detail Animation
 * Warnings for trying to edit or create recipes anonymously
 * Shopping List Saving
-* Upload Recipe Image
 * Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
 * User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
 * Website Parsing - Have some ideas, but more research is needed. 

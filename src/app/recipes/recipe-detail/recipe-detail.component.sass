@@ -10,7 +10,7 @@
     background-color: white
     z-index: 99
     border-radius: 50%
-    border: 2px solid salmon
+    border: 2px solid salmon 
     font-size: 1.5em
 
 .recipe-title
@@ -19,8 +19,10 @@
 
 .recipe-description, .recipe-ingredients, .recipe-directions
     font-size: 1.4rem
-    color: #eef
-    // max-width: 90%
+    color: #eeeeff
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
 
 .recipe-section-title
     text-align: center
@@ -29,3 +31,7 @@
     background: transparent
     border: none
     padding: 5px 15px
+    width: 100%
+
+.recipe-image-bg
+    padding: 5px
