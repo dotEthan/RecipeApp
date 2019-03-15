@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto')
-    
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Montserrat')
 $navbar-height: 75px
 $navbar-height-minus: 77px
 $borderize-margin: 30px
@@ -8,106 +7,122 @@ $spaceheight: 6px
 $lineoneoffset: $lineheight + $spaceheight
 $iconheight: ($lineheight * 3) + ($spaceheight *2)
 
+*
+  box-sizing: border-box
+
 body 
-    font-family: 'Roboto', sans-serif
-h1 
+  font-family: 'Montserrat', sans-serif
+  overflow: hidden
 
-// App
+h1, h2, h3, h4, h5, h6 
+  margin: 0
+
 .fullbackground
-    height: calc(100vh - #{$navbar-height-minus})
-    display: flex
-    align-items: center
-    justify-content: center
-    background: white url('assets/main.jpg') no-repeat center top
-    background-size: cover
+  height: calc(100vh - #{$navbar-height-minus})
+  display: flex
+  align-items: center
+  justify-content: center
+  background: url('assets/main.jpg') no-repeat center top 
+  background-size: cover
 
-.attribute
+  &:before
+    content: ''
     position: absolute
-    bottom: #{$borderize-margin * 2}
-    right: #{$borderize-margin * 2}
-    a
-        color: white
-
-.app__row
-    width: 100%
-
-.router-contain 
-    position: absolute
-    top: $navbar-height
+    top: 75px 
     left: 0
     width: 100%
-    height: calc(100vh - #{$navbar-height-minus})
-    display: flex
-    justify-content: center
-    align-items: center
-    overflow: hidden
+    height: calc(100vh - #{$navbar-height})
+    background: rgba(0,0,0,.6)
+
+.attribute
+  position: absolute
+  bottom: #{$borderize-margin * 2}
+  right: #{$borderize-margin * 2}
+  a
+    color: white
+
+.app__row
+  width: 100%
+
+.router-contain 
+  position: absolute
+  top: $navbar-height
+  left: 0
+  width: 100%
+  height: calc(100vh - #{$navbar-height-minus})
+  display: flex
+  justify-content: center
+  align-items: center
+  overflow: hidden
 
 // Home
-.titleback
-    background: rgba(white,.5)
-    padding: 15px 30px
-    border-radius: 10px
-    text-align: center
-    z-index: 1
-    transform: translateY(-50%)
-    font-family: 'Pacifico', cursive
 
 // Header 
 
 .navbar-brand
-    font-size: 30px
-    font-family: 'Pacifico', cursive
+  font-size: 30px
+  font-family: 'Pacifico', cursive
 
 .navbar-header
-    flex-grow: 1
+  flex-grow: 1
 
-    @media (min-width: 768px) 
-        flex-grow: 0
+  @media (min-width: 768px) 
+    flex-grow: 0
 
 .nav__container
-    height: $navbar-height
-    display: flex
-    align-items: center
+  height: $navbar-height
+  display: flex
+  align-items: center
 
 .nav__header
-    position: absolute
-    top: 70px
-    left: 100%
-    display: flex
-    flex-direction: column
-    padding: 25px
-    transition: all .5s ease-in-out
-    width: 300px
-    z-index: 1
+  position: absolute
+  top: $navbar-height
+  left: 100vw
+  display: flex
+  flex-direction: column
+  padding: 25px
+  transition: all .5s ease-in-out
+  width: 40vw
+  z-index: 1
+
+  &.active
+    left: 60vw
+    z-index: 99
+
+  @media (min-width: 560px)
+    width: 25vw
 
     &.active
-        left: 75%
-        z-index: 99
+      left: 75vw
 
-    @media (min-width: 768px) 
-        position: relative
-        left: 0
-        top: 0
-        justify-content: space-between
-        flex-grow: 1
-        flex-direction: row
-        padding: 0
-        border: none
-        width: auto
+  @media (min-width: 768px) 
+    position: relative
+    left: 0
+    top: 0
+    justify-content: space-between
+    flex-grow: 1
+    flex-direction: row
+    padding: 0
+    border: none
+    width: auto
 
 // Burger Button
 .beyond-burger
-    position: relative
-    display: block
-    width: 50px
-    height: 50px
-    // z-index: 99
-    
-    @media (min-width: 768px)
-        display: none 
+  position: relative
+  display: block
+  width: 50px
+  height: 50px
+  cursor: pointer
+  
+  @media (min-width: 768px)
+    display: none
+
+  &:hover
+    .line1, .line2, .line3 
+      background: #333
 
 .navbar-nav
-    margin: 0
+  margin: 0
 
 .burger-container 
   position: absolute
@@ -116,7 +131,6 @@ h1
   transform: translate(-50%, -50%)
   width: 35px
   height: $iconheight
-  cursor: pointer
 
   .line1 
     animation: firstline--back 1s
@@ -149,8 +163,11 @@ h1
 
 .line1, .line2, .line3 
   height: $lineheight
-  background: black
+  background: #666
   border-radius: 2px
+
+  &:hover
+    background: #333
 
 
 .stopped 
@@ -235,9 +252,6 @@ h1
     transform: translateY(0)
   
 
-
-    
-
 .nav__items__container
     display: flex
 
@@ -300,6 +314,12 @@ h1
 
 // Recipes
 
+.recipe-title
+    text-align: center
+    margin: 10px 0
+    color: #223
+    font-size: 1.2em
+
 .recipe-overlay
     position: absolute
     top: 50%
@@ -312,11 +332,15 @@ h1
     align-items: center
     justify-content: center
     background-color: rgba(0,0,0,.85)
-    padding: 25px
+    padding: 15px
     border-radius: 15px
     width: 45vw
-    max-height: 85vh
-    box-shadow: 0 1px 5px 3px #ccc
+    max-height: 65vh
+    box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
+    overflow: auto
+
+    @media (max-width: 768px)
+      width: 80vw
 
 // Shopping List
 

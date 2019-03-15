@@ -54,11 +54,12 @@ export class HeaderComponent implements OnInit {
     }
 
     menuClick(e) {
+        console.log('current', e.currentTarget.children);
         this.headermenu.nativeElement.classList.toggle('active');
-        e.currentTarget.classList.toggle('active');
-        const childLength = e.currentTarget.children.length;
+        e.currentTarget.children[0].classList.toggle('active');
+        const childLength = e.currentTarget.children[0].children.length;
         for (let i = 0; i < childLength; i++) {
-            e.currentTarget.children[i].classList.remove('stopped');
+            e.currentTarget.children[0].children[i].classList.remove('stopped');
         }
     }
 

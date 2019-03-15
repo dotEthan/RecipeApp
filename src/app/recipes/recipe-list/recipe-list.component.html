@@ -7,14 +7,26 @@
           <app-recipe-item *ngFor="let recipeEl of (recipeState | async).recipes; let i = index"
                            [recipe]="recipeEl"
                            [index]="i"></app-recipe-item>
-          <button class="btn new-recipe"
-                  (click)="onNewRecipe()">+</button>
+          <div class="new-container">
+            <button class="btn new-recipe"
+                    (click)="onNewRecipe()">+</button>
+            <div class="recipe-title">
+              <h5>New Recipe</h5>
+            </div>
+          </div>
         </div>
-        <ng-template #no_recipes>No Recipes Loaded. Please sign in or register to begin saving recipes.</ng-template>
+        <ng-template #no_recipes>
+          <div class="no-recipes">I looked for Recipes and found none. What madness is this? Add a recipe below before
+            you starve!</div>
+          <div class="new-container">
+            <button class="btn new-recipe"
+                    (click)="onNewRecipe()">+</button>
+            <div class="recipe-title">
+              <h5>New Recipe</h5>
+            </div>
+          </div>
+        </ng-template>
       </div>
     </div>
-    <!-- <app-recipe-detail class="recipe-overlay"
-                       *ngIf="recipeId > -1"
-                       [openId]="recipeId"></app-recipe-detail> -->
   </div>
 </div>

@@ -6,37 +6,30 @@
             (click)="onClose()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <div class="row">
-      <div class="col-xs-6">
+    <div class="row recipe-header">
+      <div class="recipe-image-contain">
         <img [src]="(recipeState | async).recipes[id].imagePath"
              alt=" {{ (recipeState | async).recipes[id].name }}"
-             class="img-responsive recipe-image-bg"
-             style="max-height: 300px">
+             class="img-responsive recipe-image-bg">
       </div>
-      <div class="col-xs-6 recipe-title">
+      <div class="recipe-title">
         <div class="recipe-name">
           <h3>{{ (recipeState | async).recipes[id].name }}</h3>
         </div>
         <div class="recipe-description">
-          <h4>{{ (recipeState | async).recipes[id].description }}</h4>
+          <h4>Description:</h4>
+          <p class="recipe-description-text">{{ (recipeState | async).recipes[id].description }}</p>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div appDropdown
-             class="btn-group">
-          <button type="button"
-                  class="btn btn-primary dropdown-toggle">Manage Recipe<span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a (click)="onAddToShoppingList()"
-                 style="cursor: pointer">Add Ingredients to List</a></li>
-            <li><a style="cursor: pointer"
-                 (click)="onEditRecipe()">Edit Recipe</a></li>
-            <li><a style="cursor: pointer"
-                 (click)="onDeleteRecipe()">Delete Recipe</a></li>
-          </ul>
-        </div>
+    <div class="recipe-manage-row">
+      <div class="recipe-manage-buttons">
+        <button (click)="onAddToShoppingList()"
+                style="cursor: pointer">Add Ingredients to List</button>
+        <button style="cursor: pointer"
+                (click)="onEditRecipe()">Edit Recipe</button>
+        <button style="cursor: pointer"
+                (click)="onDeleteRecipe()">Delete Recipe</button>
       </div>
     </div>
     <div class="row">

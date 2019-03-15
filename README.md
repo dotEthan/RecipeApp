@@ -1,9 +1,9 @@
 # Recipeasy
 [Landing Page is Here!](https://stupefied-morse-5e1233.netlify.com/)
 
-[Figma Redesign document](https://www.figma.com/file/ELOJaxxPqc3QnOjwqgVNeLZZ/Recipe-App-Redesign?node-id=4%3A180) - working on Responsive design and Shopping List
+You can register to save your own recipes or use the "Test Mode" button on the main page to load dummy recipes to test functionality with.
 
-Recipe Section mostly working again. Redesign continues.
+[Figma Redesign document](https://www.figma.com/file/ELOJaxxPqc3QnOjwqgVNeLZZ/Recipe-App-Redesign?node-id=4%3A180) - working on Responsive design and Shopping List
 
 ### Status
 
@@ -23,7 +23,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-All going well except a strange error with ingredients being null on reload. Not breaking so will track it down after redesign.
+All going well except when reloading page with recipe item open, tries loading before getting info from store/firebase. Not breaking, once redesign is finished I will bring implement conditional loading.
 
 ## Where are we?
 
@@ -38,19 +38,19 @@ All going well except a strange error with ingredients being null on reload. Not
 * Login Warnings
 * User Specific Data
 * Mobile Menu
-* TestMode - Add Sample Recipes
+* TestMode
 
 ### Working on Now:
-* Implement and maintain TDD
-* Redesign - Overlay working, now to start making it pretty and responsive.
-* Test Mode - Edit Recipes
+* Redesign - Mobile & recipe overlay
+* Upload Recipe Image
 
 ### To Come:
 
+* Implement and maintain TDD
+* Loading Spinner for all side effects
 * Measurement types for "amount"
-* Upload Recipe Image
+* Multiple "Ingredients" & "Steps" panes
 * Form Reset on login
-* Mobile Layout
 * Remove Recipe Detail Animation
 * Warnings for trying to edit or create recipes anonymously
 * Shopping List Saving

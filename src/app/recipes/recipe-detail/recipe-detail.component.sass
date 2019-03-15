@@ -1,4 +1,5 @@
-
+h3 
+    margin: 0
 
 .recipe-close
     position: absolute
@@ -13,9 +14,31 @@
     border: 2px solid salmon 
     font-size: 1.5em
 
+.recipe-header
+    display: flex
+    width: 100%
+
+.recipe-manage-row
+    width: 100%
+
+.recipe-manage-buttons
+    padding: 25px 0
+    display: flex
+    justify-content: space-around
+
+    button
+        padding: 5px 10px
+        border: 2px solid #666
+        font-weight: bold
+
+.recipe-image-contain
+    display: flex
+    justify-content: center
+
 .recipe-title
     font-size: 1.8rem
     color: #eef
+    padding: 15px
 
 .recipe-description, .recipe-ingredients, .recipe-directions
     font-size: 1.4rem
@@ -24,6 +47,12 @@
     overflow: hidden
     text-overflow: ellipsis
 
+    h4 
+        font-size: 1.1em
+
+.recipe-description-text
+    font-size: .9em
+
 .recipe-section-title
     text-align: center
 
@@ -31,7 +60,8 @@
     background: transparent
     border: none
     padding: 5px 15px
-    width: 100%
+    flex-grow: 1
 
 .recipe-image-bg
-    padding: 5px
+    width: 12vw
+    height: 12vw

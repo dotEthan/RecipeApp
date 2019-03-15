@@ -5,9 +5,9 @@
                class="navbar-brand"
                (click)="onSelect()">Recipeasy</a>
         </div>
-        <div class="beyond-burger">
-            <div class="burger-container"
-                 (click)="menuClick($event)">
+        <div class="beyond-burger"
+             (click)="menuClick($event)">
+            <div class="burger-container">
                 <div class="line1 stopped"></div>
                 <div class="line2 stopped"></div>
                 <div class="line3 stopped"></div>
@@ -22,11 +22,11 @@
                     <li routerLinkActive="active"><a routerLink="/shopping-list"
                            (click)="onSelect()">Shopping List</a></li>
                 </ng-template>
+                <ng-template [ngIf]="(authState | async).testMode">
+                    <li (click)="testModeOff()"
+                        class="test-text-contain"><span class="test-text">Test Mode Off</span></li>
+                </ng-template>
             </ul>
-            <ng-template [ngIf]="(authState | async).testMode">
-                <div (click)="testModeOff()"
-                     class="testText">Test Mode Off</div>
-            </ng-template>
             <ul class="nav
                        navbar-nav
                        rightward">

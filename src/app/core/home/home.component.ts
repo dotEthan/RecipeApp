@@ -48,6 +48,30 @@ export class HomeComponent implements OnInit {
       imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
       name: "Oyster Mushroom Bacon",
       directions: 'Slice thin, bake at 350 for 50 minutes, flipping once. Then coat in sauce.'
+    }, {
+      description: "Delicious on burgers, chopped up in salad or just on their own.",
+      ingredients: [{ amount: 6, name: 'Oyster Mushroom' }, { amount: 4, name: 'Seasoning' }],
+      imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
+      name: "Oyster Mushroom Bacon",
+      directions: 'Slice thin, bake at 350 for 50 minutes, flipping once. Then coat in sauce.'
+    }, {
+      description: "Delicious on burgers, chopped up in salad or just on their own.",
+      ingredients: [{ amount: 6, name: 'Oyster Mushroom' }, { amount: 4, name: 'Seasoning' }],
+      imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
+      name: "Oyster Mushroom Bacon",
+      directions: 'Slice thin, bake at 350 for 50 minutes, flipping once. Then coat in sauce.'
+    }, {
+      description: "Delicious on burgers, chopped up in salad or just on their own.",
+      ingredients: [{ amount: 6, name: 'Oyster Mushroom' }, { amount: 4, name: 'Seasoning' }],
+      imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
+      name: "Oyster Mushroom Bacon",
+      directions: 'Slice thin, bake at 350 for 50 minutes, flipping once. Then coat in sauce.'
+    }, {
+      description: "Delicious on burgers, chopped up in salad or just on their own.",
+      ingredients: [{ amount: 6, name: 'Oyster Mushroom' }, { amount: 4, name: 'Seasoning' }],
+      imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
+      name: "Oyster Mushroom Bacon",
+      directions: 'Slice thin, bake at 350 for 50 minutes, flipping once. Then coat in sauce.'
     }];
 
     this.store.dispatch(new AuthActions.toggleTestMode());
