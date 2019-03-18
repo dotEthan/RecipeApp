@@ -16,13 +16,13 @@
         <div class="navbar-default nav__header"
              #headermenu>
             <ul class="nav navbar-nav">
-                <ng-template [ngIf]="(authState | async).authenticated || (authState | async).testMode">
+                <ng-template [ngIf]="(authState | async).authenticated || testMode">
                     <li routerLinkActive="active"><a routerLink="/recipes"
                            (click)="onSelect()">Recipes</a></li>
                     <li routerLinkActive="active"><a routerLink="/shopping-list"
                            (click)="onSelect()">Shopping List</a></li>
                 </ng-template>
-                <ng-template [ngIf]="(authState | async).testMode">
+                <ng-template [ngIf]="testMode">
                     <li (click)="testModeOff()"
                         class="test-text-contain"><span class="test-text">Test Mode Off</span></li>
                 </ng-template>
@@ -30,7 +30,7 @@
             <ul class="nav
                        navbar-nav
                        rightward">
-                <ng-template [ngIf]="!(authState | async).authenticated && !(authState | async).testMode">
+                <ng-template [ngIf]="!(authState | async).authenticated && !testMode">
                     <li><a style="cursor:pointer"
                            (click)="onClick('register')">Register</a></li>
                     <li><a style="cursor:pointer"

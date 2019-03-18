@@ -9,4 +9,7 @@ export class AuthService {
     errorMsg = new BehaviorSubject('');
     modalOpen = new Subject();
     authType = new BehaviorSubject('register');
+    testMode = new BehaviorSubject(false);
+    loggedIn = new BehaviorSubject(false);
+
 }

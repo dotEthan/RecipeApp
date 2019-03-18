@@ -19,24 +19,20 @@ export class RecipeDetailComponent implements OnInit {
 
   recipeState: Observable<fromRecipe.State>;
   id: number;
-  recipeStateArray: any;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private store: Store<fromRecipe.FeatureState>,
-    private recipeService: RecipesService) { }
+    private store: Store<fromRecipe.FeatureState>) { }
 
   ngOnInit() {
     this.route.params
       .subscribe(
         (params: Params) => {
-          console.log('params', params);
           this.id = +params['id'];
-          console.log(this.id);
         }
       );
+
     this.recipeState = this.store.select('recipes');
-    this.recipeStateArray = Object.entries(this.recipeState);
   }
 
   onAddToShoppingList() {
@@ -48,6 +44,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onEditRecipe() {
+    console.log('now');
     this.router.navigate(['edit'], { relativeTo: this.route })
   }
 

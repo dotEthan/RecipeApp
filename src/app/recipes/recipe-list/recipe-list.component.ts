@@ -13,8 +13,8 @@ import { RecipesService } from '../recipes.service';
   styleUrls: ['./recipe-list.component.sass']
 })
 export class RecipeListComponent implements OnInit {
-  recipeState: Observable<fromRecipe.State>;
   recipeId: number;
+  recipeState: Observable<fromRecipe.FeatureState>;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -24,14 +24,10 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
     this.recipeState = this.store.pipe(select('recipes'));
 
-    this.recipesService.recipeId.subscribe((id: number) => {
-      // console.log(id);
-      this.recipeId = id;
-    })
+    this.recipesService.recipeId.subscribe((id: number) => this.recipeId = id);
   }
 
   onNewRecipe() {
-    console.log('move');
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 

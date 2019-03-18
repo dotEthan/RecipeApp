@@ -23,7 +23,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-All going well except when reloading page with recipe item open, tries loading before getting info from store/firebase. Not breaking, once redesign is finished I will bring implement conditional loading.
+Squished the conditional loading issue, took longer than I thought but it's now reloadable in testmode. Everything is working as expected again.
 
 ## Where are we?
 

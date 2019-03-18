@@ -6,23 +6,23 @@ export interface FeatureState extends fromApp.AppState {
     authenticated: boolean;
     uid: string;
     loggedIn: boolean;
-    testMode: boolean;
+    // testMode: boolean;
 }
 
 export interface State {
     token: string;
     authenticated: boolean;
     uid: string;
-    loggedIn: boolean;
-    testMode: boolean;
+    // loggedIn: boolean;
+    // testMode: boolean;
 }
 
 const initialState: State = {
     token: null,
     authenticated: false,
     uid: null,
-    loggedIn: false,
-    testMode: false,
+    // loggedIn: false,
+    // testMode: false,
 }
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
@@ -39,7 +39,6 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
                 ...state,
                 token: null,
                 authenticated: false,
-                loggedIn: false,
             };
         case AuthActions.SET_TOKEN:
             return {
@@ -50,12 +49,12 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
             return {
                 ...state
             };
-        case AuthActions.TOGGLE_TEST_MODE:
-            const newMode = !state.testMode;
-            return {
-                ...state,
-                testMode: newMode
-            };
+        // case AuthActions.TOGGLE_TEST_MODE:
+        //     const newMode = !state.testMode;
+        //     return {
+        //         ...state,
+        //         testMode: newMode
+        //     };
         default:
             return state;
     }

@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from './store/app-reducer';
 import * as AuthActions from './core/auth-modal/store/auth.actions';
 import * as RecipeActions from './recipes/store/recipes.actions';
+import { AuthService } from './core/auth-modal/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,22 +19,25 @@ import * as RecipeActions from './recipes/store/recipes.actions';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>,
+    private authService: AuthService) { }
 
   ngOnInit() {
     if (!firebase.apps.length) {
-      // console.log(firebase.apps.length);
-      // console.log("firebase's not here man");
       firebase.initializeApp({
         apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",
         authDomain: "angular-testing-a4072.firebaseapp.com"
       });
-      // console.log("initialized firebase");
     }
 
     if (window.localStorage.getItem('token')) {
       this.store.dispatch(new AuthActions.AutoLogin());
-      this.store.dispatch(new RecipeActions.FetchRecipes());
+    }
+
+    if (window.localStorage.getItem('testMode') === 'true') {
+      console.log('recipes action load tests');
+      this.store.dispatch(new RecipeActions.SetTestRecipes());
+      this.authService.testMode.next(true);
     }
   }
 

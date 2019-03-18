@@ -1,4 +1,5 @@
-<div class="recipe-overlay">
+<div class="recipe-overlay"
+     *ngIf="(recipeState | async).recipes.length > 0">
   <div class="overlay-contain">
     <button type="button"
             class="recipe-close"
@@ -12,12 +13,12 @@
              alt=" {{ (recipeState | async).recipes[id].name }}"
              class="img-responsive recipe-image-bg">
       </div>
-      <div class="recipe-title">
+      <div class="recipe-detail-title">
         <div class="recipe-name">
-          <h3>{{ (recipeState | async).recipes[id].name }}</h3>
+          <h4>{{ (recipeState | async).recipes[id].name }}</h4>
         </div>
         <div class="recipe-description">
-          <h4>Description:</h4>
+          <h5 class="recipe-description-title">Description:</h5>
           <p class="recipe-description-text">{{ (recipeState | async).recipes[id].description }}</p>
         </div>
       </div>
@@ -32,20 +33,20 @@
                 (click)="onDeleteRecipe()">Delete Recipe</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 recipe-ingredients">
-        <div class="recipe-section-title">Ingredients</div>
-        <ul class="list-group">
-          <li class="list-group-item"
-              *ngFor='let ingredient of (recipeState | async).recipes[id].ingredients'>
-            {{ ingredient.name }} - {{ingredient.amount}}
-          </li>
-        </ul>
-      </div>
+    <div class="ingredients-contain">
+      <div class="recipe-section-title">INGREDIENTS:</div>
+      <ul class="ingredients-list">
+        <li class="ingredient-contain"
+            *ngFor='let ingredient of (recipeState | async).recipes[id].ingredients'>
+          <div class="ingredient">
+            - {{ ingredient }}
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="row">
-      <div class="col-xs-10 col-xs-offset-1 recipe-directions">
-        <div class="recipe-section-title">Directions</div>
+    <div class="directions-contain">
+      <div class="recipe-section-title">DIRECTIONS:</div>
+      <div class="directions">
         {{ (recipeState | async).recipes[id].directions }}
       </div>
     </div>

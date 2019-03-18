@@ -3,10 +3,10 @@
         <div class="col-xs-12">
             <div class="titleback">
                 <h1 class="app-title">Welcome to Recipeasy</h1>
-                <button *ngIf='(authState | async).loggedIn === false'
+                <button *ngIf='!loggedIn'
                         (click)='toggleTestMode()'
                         class="testmode-btn"
-                        [class.testmode-on]="(authState | async).testMode">Toggle Test Mode</button>
+                        [class.testmode-on]="testMode">Toggle Test Mode</button>
             </div>
         </div>
     </div>

@@ -47,6 +47,7 @@ export class AuthEffects {
             tap(() => {
                 this.store.dispatch(new RecipeActions.FetchRecipes());
                 this.authService.modalOpen.next('false');
+                this.authService.loggedIn.next(true);
             }));
 
     @Effect()
@@ -82,8 +83,9 @@ export class AuthEffects {
             tap(() => {
                 this.store.dispatch(new RecipeActions.FetchRecipes());
                 this.authService.modalOpen.next('false');
+                this.authService.loggedIn.next(true);
             }));
-
+    // Using?
     @Effect()
     autoLogin = this.actions$
         .pipe(ofType(AuthActions.AUTO_LOGIN),
@@ -97,22 +99,22 @@ export class AuthEffects {
                         payload: window.localStorage.getItem('token')
                     }
                 ]
+            }),
+            tap(() => {
+                this.store.dispatch(new RecipeActions.FetchRecipes());
+                this.authService.loggedIn.next(true);
             }));
 
     @Effect({ dispatch: false }) // No final state changes
     authLogout = this.actions$
         .pipe(ofType(AuthActions.LOGOUT),
             tap(() => {
-                const emptyRecipe = [{
-                    name: '',
-                    description: '',
-                    ingredients: [],
-                    imagePath: '',
-                    directions: ''
-                }];
+                const emptyRecipe = [];
 
                 window.localStorage.removeItem('token');
                 window.localStorage.removeItem('uid');
+                window.localStorage.removeItem('testMode');
+                this.authService.loggedIn.next(false);
                 this.store.dispatch(new RecipeActions.SetRecipes(emptyRecipe));
                 this.router.navigate(['/']);
             }));
