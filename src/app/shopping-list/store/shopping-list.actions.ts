@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Ingredient } from '../../shared/ingredient.model';
+// import { Ingredient } from '../../shared/ingredient.model';
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';
@@ -11,19 +11,19 @@ export const STOP_EDIT = 'STOP_EDIT';
 export class AddIngredient implements Action {
     readonly type = ADD_INGREDIENT;
 
-    constructor(public payload: Ingredient) { }
+    constructor(public payload: string) { }
 }
 
 export class AddIngredients implements Action {
     readonly type = ADD_INGREDIENTS;
 
-    constructor(public payload: Ingredient[]) { }
+    constructor(public payload: string[]) { }
 }
 
 export class UpdateIngredient implements Action {
     readonly type = UPDATE_INGREDIENT;
 
-    constructor(public payload: { ingredient: Ingredient }) { }
+    constructor(public payload: { ingredient: string }) { }
 }
 
 export class DeleteIngredient implements Action {

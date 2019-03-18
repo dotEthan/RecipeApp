@@ -23,7 +23,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-Squished the conditional loading issue, took longer than I thought but it's now reloadable in testmode. Everything is working as expected again.
+Turns out fixing the reload problem broke the shopping list. Need to rebuild it from the ground up anyway. Next on the list.
 
 ## Where are we?
 
@@ -42,10 +42,12 @@ Squished the conditional loading issue, took longer than I thought but it's now 
 
 ### Working on Now:
 * Redesign - Mobile & recipe overlay
-* Upload Recipe Image
+* Rebuild Shopping List
+
 
 ### To Come:
 
+* Upload Recipe Image
 * Implement and maintain TDD
 * Loading Spinner for all side effects
 * Measurement types for "amount"
