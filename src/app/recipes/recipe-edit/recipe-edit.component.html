@@ -56,12 +56,13 @@
                formArrayName="ingredients">
             <div class="row"
                  *ngFor="let ingredientsCtrl of getControls(); let i = index"
-                 style="margin-top: 10px;">
+                 style="margin-top: 10px;"
+                 [formGroupName]='i'>
               <div class="col-xs-10">
                 <label for="ingredient">Ingredient</label>
                 <input type="text"
                        class="form-control"
-                       [formControlName]="i"
+                       formControlName="name"
                        id="ingredient">
               </div>
               <div class="col-xs-2">

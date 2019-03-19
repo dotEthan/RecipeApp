@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
-import { RecipesService } from '../recipes.service';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';

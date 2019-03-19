@@ -25,21 +25,29 @@
     </div>
     <div class="recipe-manage-row">
       <div class="recipe-manage-buttons">
-        <button (click)="onAddToShoppingList()"
-                style="cursor: pointer">Add Ingredients to List</button>
-        <button style="cursor: pointer"
-                (click)="onEditRecipe()">Edit Recipe</button>
-        <button style="cursor: pointer"
-                (click)="onDeleteRecipe()">Delete Recipe</button>
+        <button class="manage-btn-1"
+                (click)="onAddToShoppingList()"><i class="add-to-list"></i>
+          <div>Add <span class="green-word">Ingredients</span>
+            <br />
+            to Shopping List</div>
+        </button>
+        <button class="manage-btn-2"
+                (click)="onEditRecipe()"><i class="edit-recipe"></i><span class="yellow-word">Edit
+          </span>&nbsp;Recipe</button>
+        <button class="manage-btn-3"
+                (click)="onDeleteRecipe()">
+          <div class="delete-recipe"></div><span class="red-word">Delete</span>&nbsp;Recipe
+        </button>
       </div>
     </div>
     <div class="ingredients-contain">
-      <div class="recipe-section-title">INGREDIENTS:</div>
+      <div class="recipe-section-title">INGREDIENTS: <span class="help-text">(click to add ingredient to shopping
+          list)</span></div>
       <ul class="ingredients-list">
         <li class="ingredient-contain"
             *ngFor='let ingredient of (recipeState | async).recipes[id].ingredients'>
           <div class="ingredient">
-            - {{ ingredient }}
+            - {{ ingredient.name }}
           </div>
         </li>
       </ul>

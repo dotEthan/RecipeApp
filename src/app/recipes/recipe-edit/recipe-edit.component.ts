@@ -33,6 +33,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('recipe edit submit', this.recipeForm.value);
     if (this.editMode) {
       this.store.dispatch(new RecipeActions.UpdateRecipe({ index: this.id, updatedRecipe: this.recipeForm.value }));
     } else {
@@ -81,7 +82,9 @@ export class RecipeEditComponent implements OnInit {
             for (let ingredient of recipe.ingredients) {
               console.log('edit recipe ingredient: ', ingredient);
               recipeIngredients.push(
-                new FormControl(ingredient, Validators.required)
+                new FormGroup({
+                  'name': new FormControl(ingredient.name, Validators.required),
+                })
               );
             }
           }

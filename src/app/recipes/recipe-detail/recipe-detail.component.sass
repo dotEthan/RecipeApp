@@ -8,11 +8,14 @@ h3
     width: 35px 
     height: 35px
     box-shadow: 0 1px 3px 1px #ccc
-    background-color: white
+    background-color: #eef
     z-index: 99
     border-radius: 50%
     border: 2px solid salmon 
     font-size: 1.5em
+
+    &:hover
+        background-color: #ccc
 
 .recipe-header
     display: flex
@@ -29,10 +32,99 @@ h3
 
     button
         padding: 3px 5px
-        border: 2px solid #666
-        font-weight: bold
+        border: none
+        background: transparent
+        font-weight: 600
         font-size: 1rem
         width: 33%
+        display: flex
+        align-items: center
+        justify-content: center
+        color: #eeeeff
+        cursor: pointer
+
+        .add-to-list, .edit-recipe, .delete-recipe
+            background-repeat: no-repeat
+            background-size: contain
+            background-position: center
+            width: 40px
+            height: 40px
+            position: relative
+
+        .add-to-list
+            background-image: url('/assets/addlist.png')
+                
+            &:before
+                content: '+'
+                position: absolute
+                display: flex
+                justify-content: center
+                align-items: center
+                color: #1EB136
+                font-size: 2em
+                padding: 0 0px 1px 0
+                font-style: normal
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%) scale(0)
+                background: #eeeeff
+                border: 2px solid #1EB136
+                width: 25px
+                height: 25px
+                border-radius: 50%
+                transition: all .3s ease-in-out
+
+        .edit-recipe
+            background-image: url('/assets/pencil.png')
+    
+        .delete-recipe
+            background: #eeeeff
+            width: 25px
+            height: 5px
+            margin-right: 10px
+            transform: rotate(45deg)
+            transition: all .3s ease-in-out
+
+            &:before
+                content: ''
+                background: #eeeeff
+                width: 25px
+                height: 5px
+                transform: translate(-50%, -50%) rotate(90deg)
+                position: absolute
+                top: 50%
+                left: 50%
+                transition: all .3s ease-in-out
+                
+
+        .green-word, .red-word, .yellow-word
+            transition: all .3s ease-in-out
+
+        &:hover
+            
+            .green-word, .yellow-word, .red-word
+                font-weight: 700
+
+            .green-word
+                color: #1EB136
+
+            .red-word
+                color: #A41C1C
+
+
+            .yellow-word
+                color: #CEAF0A
+
+            .add-to-list:before
+                transform: translate(-50%, -50%) scale(1)
+
+            .delete-recipe
+                transform: rotate(-135deg) scale(1.2)
+                background: #A41C1C
+
+                &:before
+                    background: #A41C1C
+
 
 .recipe-image-contain
     display: flex
@@ -40,6 +132,8 @@ h3
 
 .recipe-image-bg
     border-radius: 15px
+    width: 100%
+    height: auto
 
 .recipe-detail-title
     padding: 15px 0px 15px 15px
@@ -56,6 +150,9 @@ h3
         
 .recipe-directions h5 
     font-size: 1rem
+
+.help-text
+    font-size: .8rem
 
 .recipe-description-title
     margin-bottom: 10px

@@ -6,7 +6,8 @@
              *ngIf="(recipeState | async).recipes.length > 0; else no_recipes">
           <app-recipe-item *ngFor="let recipeEl of (recipeState | async).recipes; let i = index"
                            [recipe]="recipeEl"
-                           [index]="i"></app-recipe-item>
+                           [index]="i"
+                           class="recipe-item-contain"></app-recipe-item>
           <div class="new-container">
             <button class="btn new-recipe"
                     (click)="onNewRecipe()">+</button>

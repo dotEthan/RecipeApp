@@ -11,7 +11,7 @@
            style="cursor: pointer"
            *ngFor="let ingredient of (shoppingListState | async).ingredients; let i = index"
            (click)="onEditItem(i)">
-          {{ingredient.name}} ({{ingredient.amount}})
+          {{ingredient.name}}
         </a>
       </ul>
     </div>

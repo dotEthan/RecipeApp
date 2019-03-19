@@ -1,20 +1,33 @@
 .recipeItem 
-    width: 150px
-    height: 150px
+    width: 100px
+    height: 100px
     margin-bottom: 25px
+
+    @media (min-width: 768)
+        width: 150px
+        height: 150px
 
 .recipeItem-contain
     height: 100%
     display: flex
     flex-direction: column
     align-items: center
-
+ 
 .recipe-image
-    width: 100px
-    height: 100px
+    width: 75px
+    height: 75px
     object-fit: cover
     object-position: center
     border-radius: 5px
 
+    @media (min-width: 768px)
+        width: 100px
+        height: 100px
+
+.recipe-title h5
+    font-size: 1rem
+
+    @media (min-width: 768px)
+        font-size: 12px
     
     

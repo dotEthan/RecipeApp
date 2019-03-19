@@ -23,7 +23,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-Turns out fixing the reload problem broke the shopping list. Need to rebuild it from the ground up anyway. Next on the list.
+Everythign is working fine again. Learning the importance of organizing your data structures before starting work in this project.
 
 ## Where are we?
 
@@ -42,11 +42,10 @@ Turns out fixing the reload problem broke the shopping list. Need to rebuild it 
 
 ### Working on Now:
 * Redesign - Mobile & recipe overlay
-* Rebuild Shopping List
-
 
 ### To Come:
 
+* Shopping List, edit in place
 * Upload Recipe Image
 * Implement and maintain TDD
 * Loading Spinner for all side effects
