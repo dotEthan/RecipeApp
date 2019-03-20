@@ -1,5 +1,9 @@
-h3 
+h4
+    font-size: 2em
+    
+h5 
     margin: 0
+    font-size: 1.5em
 
 .recipe-close
     position: absolute
@@ -12,48 +16,92 @@ h3
     z-index: 99
     border-radius: 50%
     border: 2px solid salmon 
-    font-size: 1.5em
+    font-size: 2rem
 
     &:hover
         background-color: #ccc
 
 .recipe-header
     display: flex
+    flex-direction: column
+    align-items: center
     width: 100%
-    text-align: left
+    height: auto
+
+
+    @media (min-width: 768px)
+        flex-direction: row
+        height: auto
 
 .recipe-image-contain
-    display: flex
-    width: 33%
+    width: 50%
+    height: 100%
+
+    @media (min-width: 768px)
+        width: 33%
+
+.recipe-image-bg
+    width: 100%
+    height: auto
+    max-height: 20vh
+    object-fit: cover
+    object-position: center
+
+    @media (min-width: 768px)
+        max-height: 20vh
 
 .recipe-image-bg
     border-radius: 15px
-    width: 100%
     height: auto
 
 .recipe-detail-title
     padding: 15px 0px 15px 15px
-    max-width: 66%
+    max-width: 100%
     color: #eeeeff
 
+    @media (min-width: 768px)
+        max-width: 66%
+
 .recipe-name
-    height: 45px
+    height: auto
     margin-bottom: 10px
+    text-align: center
+
+    @media (min-width: 768px)
+        margin: 0 10px 10px
+        text-align: left
+        height: 45px
     
 .recipe-manage-row
     width: 100%
 
+.recipe-description-title
+    margin: 0 5px 5px
+
+    @media (min-width: 768px)
+        margin: 0 10px 10px
+
+.recipe-description-text
+    font-size: 1em
+    padding: 0 10px
+
+    @media (min-width: 768px)
+        padding: 0 20px
+
 .recipe-manage-buttons
-    padding: 25px 0
+    padding: 5px 0
     display: flex
     justify-content: space-around
+
+    @media (min-width: 768px)
+        padding: 25px 0
 
     button
         padding: 3px 5px
         border: none
         background: transparent
         font-weight: 600
-        font-size: 1rem
+        font-size: 1em
         width: 33%
         display: flex
         align-items: center
@@ -79,7 +127,7 @@ h3
                 justify-content: center
                 align-items: center
                 color: #1EB136
-                font-size: 2em
+                font-size: .8rem
                 padding: 0 0px 1px 0
                 font-style: normal
                 top: 50%
@@ -87,10 +135,15 @@ h3
                 transform: translate(-50%, -50%) scale(0)
                 background: #eeeeff
                 border: 2px solid #1EB136
-                width: 25px
-                height: 25px
+                width: 10px
+                height: 10px
                 border-radius: 50%
                 transition: all .3s ease-in-out
+
+                @media (min-width: 768px)
+                    width: 25px
+                    height: 25px
+                    font-size: 2rem
 
         .edit-recipe
             background-image: url('/assets/pencil.png')
@@ -104,12 +157,16 @@ h3
             &:before, &:after
                 content: ''
                 background: #eeeeff
-                width: 25px
-                height: 5px
+                width: 15px
+                height: 3px
                 position: absolute
                 top: 50%
                 left: 50%
                 transition: all .3s ease-in-out
+
+                @media (min-width: 768px)
+                    width: 25px
+                    height: 5px
 
             &:before                
                 transform: translate(-50%, -50%) rotate(45deg)
@@ -149,26 +206,23 @@ h3
 .ingredients-contain, .directions-contain
     width: 100%
     color: #eeeeff
+    padding: 0 5px
+    margin-bottom: 15px
+
+    @media (min-width: 768px)
+        padding: 0 25px
         
-.recipe-directions h5 
-    font-size: 1rem
-
 .help-text
-    font-size: .8rem
-
-.recipe-description-title
-    margin-bottom: 10px
-
-.recipe-description-text
     font-size: .8em
 
 .ingredients-list
-    background: transparent
-    border: none
-    padding: 5px 15px
+    padding: 5px 5px
     width: 100%
     display: flex
     flex-wrap: wrap
+
+    @media (min-width: 768px)
+        padding: 5px 15px
 
 .ingredient-contain
     width: 33%
@@ -177,12 +231,11 @@ h3
     display: flex
     padding: 5px
 
-.ingredient, .directions
-    font-size: 1rem
+.directions-section-title
+    margin-bottom: 10px
 
-.recipe-image-bg
-    width: 100%
-    height: 100%
-    max-height: 20vh
-    object-fit: cover
-    object-position: center
+.directions-text, .ingredients-text
+    padding: 0 5px
+
+    @media (min-width: 768px)
+        padding: 0 10px

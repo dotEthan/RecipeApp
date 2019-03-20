@@ -24,11 +24,10 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('shoppingList')
       .subscribe(
         data => {
-          console.log('shopping list data', data);
           if (data.editedIngredientIndex > -1) {
             this.editedItem = data.editedIngredient;
             this.editMode = true;
-            this.slForm.setValue({ 'name': this.editedItem });
+            this.slForm.setValue(this.editedItem);
           } else {
             this.editMode = false;
           }
@@ -42,10 +41,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    // const value = form.value;
     const newIngredient = form.value;
     if (this.editMode) {
-      console.log('editing: ', newIngredient);
       this.store.dispatch(new ShoppingListActions.UpdateIngredient({ ingredient: newIngredient }));
     } else {
       this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));

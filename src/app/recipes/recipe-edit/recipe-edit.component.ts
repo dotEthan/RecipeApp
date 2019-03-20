@@ -83,7 +83,7 @@ export class RecipeEditComponent implements OnInit {
               console.log('edit recipe ingredient: ', ingredient);
               recipeIngredients.push(
                 new FormGroup({
-                  'name': new FormControl(ingredient, Validators.required),
+                  'name': new FormControl(ingredient.name, Validators.required),
                 })
               );
             }

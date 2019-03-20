@@ -332,23 +332,29 @@ h1, h2, h3, h4, h5, h6
     top: 50%
     left: 50%
     transform: translate(-50%,-50%)
+    // overflow-y: auto
 
 .overlay-contain
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    background-color: rgba(0,0,0,.85)
+    display: block
+    background-color: rgba(0,0,0,.9)
     padding: 15px
     border-radius: 15px
-    width: 45vw 
-    max-height: 85vh
+    width: 80vw
+    max-height: 70vh
     box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
+    font-size: .7rem
     overflow-y: auto
-    font-size: .8rem
+    position: relative
 
-    @media (max-width: 1024px)
-      width: 80vw
+    @media (min-width: 1024px)
+      width: 45vw 
+
+    @media (min-width: 768px)
+      font-size: 1rem
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
 
 .recipe-title
     text-align: center

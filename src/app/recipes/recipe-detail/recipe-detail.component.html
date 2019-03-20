@@ -1,17 +1,17 @@
 <div class="recipe-overlay"
      *ngIf="(recipeState | async).recipes.length > 0">
+  <button type="button"
+          class="recipe-close"
+          aria-label="Close"
+          (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <div class="overlay-contain">
-    <button type="button"
-            class="recipe-close"
-            aria-label="Close"
-            (click)="onClose()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="row recipe-header">
+    <div class="recipe-header">
       <div class="recipe-image-contain">
         <img [src]="(recipeState | async).recipes[id].imagePath"
              alt=" {{ (recipeState | async).recipes[id].name }}"
-             class="img-responsive recipe-image-bg">
+             class="recipe-image-bg">
       </div>
       <div class="recipe-detail-title">
         <div class="recipe-name">
@@ -29,7 +29,7 @@
                 (click)="onAddToShoppingList()"><i class="add-to-list"></i>
           <div>Add <span class="green-word">Ingredients</span>
             <br />
-            to Shopping List</div>
+            to List</div>
         </button>
         <button class="manage-btn-2"
                 (click)="onEditRecipe()"><i class="edit-recipe"></i><span class="yellow-word">Edit
@@ -46,15 +46,15 @@
       <ul class="ingredients-list">
         <li class="ingredient-contain"
             *ngFor='let ingredient of (recipeState | async).recipes[id].ingredients'>
-          <div class="ingredient">
+          <div class="ingredient-text">
             - {{ ingredient.name }}
           </div>
         </li>
       </ul>
     </div>
     <div class="directions-contain">
-      <div class="recipe-section-title">DIRECTIONS:</div>
-      <div class="directions">
+      <div class="directions-section-title">DIRECTIONS:</div>
+      <div class="directions-text">
         {{ (recipeState | async).recipes[id].directions }}
       </div>
     </div>
