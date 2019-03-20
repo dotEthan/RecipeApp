@@ -80,14 +80,14 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 description: "Delicious on burgers, chopped up in salad or just on their own.",
                 ingredients: [{ name: 'Oyster Mushroom' }, { name: 'Seasoning' }],
-                imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
+                imagePath: "https://www.elegantphotoart.com/wp-content/gallery/panoramas/GN8_6820-23LN.jpg",
                 name: "Oyster Mushroom Bacon",
                 directions: 'Slice thin, bake at 350 for 50 minutes, flipping once. Then coat in sauce.',
                 url: 'n/a'
             }, {
                 description: "Delicious on burgers, chopped up in salad or just on their own.",
                 ingredients: [{ name: 'Oyster Mushroom' }, { name: 'Seasoning' }],
-                imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
+                imagePath: "https://cdn.photographylife.com/wp-content/uploads/2016/01/Zabriskie-Point-Panorama-400-MP.jpg",
                 name: "Oyster Mushroom Bacon",
                 directions: 'Slice thin, bake at 350 for 50 minutes, flipping once. Then coat in sauce.',
                 url: 'n/a'

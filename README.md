@@ -23,7 +23,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-Everythign is working fine again. Learning the importance of organizing your data structures before starting work in this project.
+Error in the state Types, not breaking, finishing responsive CSS first. 
 
 ## Where are we?
 
@@ -41,13 +41,16 @@ Everythign is working fine again. Learning the importance of organizing your dat
 * TestMode
 
 ### Working on Now:
-* Redesign - Mobile & recipe overlay
+* Redesign - Mobile & recipe overlay 
+* Mobile menu back-overlay & esc key, close on select
+* Accessibility (hide signin, tab nav, lighthouse)
 
 ### To Come:
 
-* Shopping List, edit in place
+* Recipes Sort (Name, Keyword, Ingredients, Date[modified, created])
 * Upload Recipe Image
 * Implement and maintain TDD
+* Shopping List, edit in place
 * Loading Spinner for all side effects
 * Measurement types for "amount"
 * Multiple "Ingredients" & "Steps" panes
@@ -73,6 +76,7 @@ Everythign is working fine again. Learning the importance of organizing your dat
 * Sass
 * Karma
 * Jasmine
+* Firebase
 
 ## Author
 

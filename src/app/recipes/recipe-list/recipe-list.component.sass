@@ -1,21 +1,36 @@
+.recipe-list-container
+    width: 90%
+    margin: 0 auto
+    
 .recipeRow
     display: flex
     flex-direction: row
     flex-wrap: wrap
     margin: 0 0 20px
     position: relative
+    align-items: center
+    justify-content: space-between
 
-.recipe-item-contain
-    
-    margin: 10px
+    @supports (display:grid)
+        display: grid
+        grid-template-columns: repeat(auto-fill, 100px)
+        grid-gap: 5px
 
+    @media (min-width: 768px)
+
+        @supports (display:grid)
+            display: grid
+            grid-template-columns: repeat(auto-fill, 125px)
+            grid-gap: 10px
+        
+        
 .new-container
     width: 100px
     display: flex
     flex-direction: column
     align-items: center
     margin-bottom: 35px
-
+    margin: 10px
 
     @media (min-width: 768px)
         width: 100px
@@ -37,6 +52,12 @@
     @media (min-width: 768px)
         width: 100px
         height: 100px
+
+.recipe-title
+    text-align: center
+    margin: 10px 0
+    color: #223
+    font-size: 1.2em
 
 .no-recipes
     text-align: center

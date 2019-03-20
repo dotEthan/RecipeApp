@@ -49,12 +49,6 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
             return {
                 ...state
             };
-        // case AuthActions.TOGGLE_TEST_MODE:
-        //     const newMode = !state.testMode;
-        //     return {
-        //         ...state,
-        //         testMode: newMode
-        //     };
         default:
             return state;
     }

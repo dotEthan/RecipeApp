@@ -36,8 +36,15 @@ h1, h2, h3, h4, h5, h6
 
 .attribute
   position: absolute
-  bottom: #{$borderize-margin * 2}
-  right: #{$borderize-margin * 2}
+  bottom: #{$borderize-margin}
+  right: #{$borderize-margin}
+  font-size: .8rem
+
+  @media (min-width: 768px)
+    bottom: #{$borderize-margin * 2}
+    right: #{$borderize-margin * 2}
+    font-size: 1.2rem
+
   a
     color: white
 
@@ -55,13 +62,7 @@ h1, h2, h3, h4, h5, h6
   align-items: center
   overflow: hidden
 
-// Home
-
 // Header 
-
-.navbar-brand
-  font-size: 30px
-  font-family: 'Pacifico', cursive
 
 .navbar-header
   flex-grow: 1
@@ -129,7 +130,7 @@ h1, h2, h3, h4, h5, h6
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
-  width: 35px
+  width: 25px
   height: $iconheight
 
   .line1 
@@ -305,12 +306,24 @@ h1, h2, h3, h4, h5, h6
 // Feature Components
 .borderize
     background: white
-    margin: $borderize-margin 0
+    // margin: $borderize-margin 0
     height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin * 2})
     border-radius: 15px
     width: calc(100vw - #{$borderize-margin * 2})
-    overflow: auto
     max-width: 1366px
+    overflow: auto
+
+.headline-title
+    margin: 25px 0
+
+    @media (min-width: 768px)
+        margin: 50px 0
+
+    h1 
+        font-size: 18px
+
+        @media (min-width: 768px)
+            font-size: 30px
 
 // Recipes
 
@@ -328,12 +341,13 @@ h1, h2, h3, h4, h5, h6
     background-color: rgba(0,0,0,.85)
     padding: 15px
     border-radius: 15px
-    width: 45vw
+    width: 45vw 
     max-height: 85vh
     box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
     overflow-y: auto
+    font-size: .8rem
 
-    @media (max-width: 768px)
+    @media (max-width: 1024px)
       width: 80vw
 
 .recipe-title
