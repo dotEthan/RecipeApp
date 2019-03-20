@@ -23,7 +23,7 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-Error in the state Types, not breaking, finishing responsive CSS first. 
+All Errors fixed. Everything working as expected (for this point in development)
 
 ## Where are we?
 
@@ -47,6 +47,7 @@ Error in the state Types, not breaking, finishing responsive CSS first.
 
 ### To Come:
 
+* Auto Truncating Strings
 * Recipes Sort (Name, Keyword, Ingredients, Date[modified, created])
 * Upload Recipe Image
 * Implement and maintain TDD
