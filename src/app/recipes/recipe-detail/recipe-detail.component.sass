@@ -94,7 +94,7 @@ h5
     justify-content: space-around
 
     @media (min-width: 768px)
-        padding: 25px 0
+        padding: 15px 0
 
     button
         padding: 3px 5px
@@ -120,7 +120,7 @@ h5
         .add-to-list
             background-image: url('/assets/addlist.png')
                 
-            &:before
+            &:after
                 content: '+'
                 position: absolute
                 display: flex
@@ -132,7 +132,7 @@ h5
                 font-style: normal
                 top: 50%
                 left: 50%
-                transform: translate(-50%, -50%) scale(0)
+                transform: translate3d(-50%, -50%,0) scale(0)
                 background: #eeeeff
                 border: 2px solid #1EB136
                 width: 10px
@@ -143,7 +143,7 @@ h5
                 @media (min-width: 768px)
                     width: 25px
                     height: 25px
-                    font-size: 2rem
+                    font-size: 1.7rem
 
         .edit-recipe
             background-image: url('/assets/pencil.png')
@@ -193,8 +193,8 @@ h5
             .yellow-word
                 color: #CEAF0A
 
-            .add-to-list:before
-                transform: translate(-50%, -50%) scale(1)
+            .add-to-list:after
+                transform: translate3d(-50%, -50%, 0) scale(1)
 
             .delete-recipe
                 transform: rotate(180deg) scale(1.2)

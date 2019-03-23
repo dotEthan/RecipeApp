@@ -16,7 +16,7 @@
         </div>
         <hr>
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-md-6">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text"
@@ -24,10 +24,16 @@
                      class="form-control"
                      formControlName="name">
             </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea type="text"
+                        id="description"
+                        class="form-control recipe-description-area"
+                        formControlName="description"
+                        rows="6"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
+          <div class="col-md-6">
             <div class="form-group">
               <label for="imagePath">Image URL</label>
               <input type="text"
@@ -36,17 +42,10 @@
                      formControlName="imagePath"
                      #imagePath>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
             <div class="form-group">
-              <label for="description">Description</label>
-              <textarea type="text"
-                        id="description"
-                        class="form-control"
-                        formControlName="description"
-                        rows="6"></textarea>
+              <label for="imagePath">Recipe Image</label>
+              <img [src]="imagePath.value"
+                   class="img-responsive">
             </div>
           </div>
         </div>
@@ -95,10 +94,6 @@
         </div>
         <div class="row"
              style="margin-bottom: 25px">
-          <div class="col-xs-8 col-xs-offset-2">
-            <img [src]="imagePath.value"
-                 class="img-responsive">
-          </div>
         </div>
       </form>
     </div>

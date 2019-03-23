@@ -41,13 +41,14 @@ All Errors fixed. Everything working as expected (for this point in development)
 * TestMode
 
 ### Working on Now:
-* Redesign - Mobile & recipe overlay 
-* Mobile menu back-overlay & esc key, close on select
-* Accessibility (hide signin, tab nav, lighthouse)
+* Redesign - Edit Recipe & Shopping List
+* Mobile menu & recipe overlay - close on select & esc
+* Accessibility (signin module removal on close, keyboard tab nav, lighthouse)
+* Recipe Directions - Keep Formatting
 
 ### To Come:
 
-* Auto Truncating Strings
+* Auto Truncating recipe Strings
 * Recipes Sort (Name, Keyword, Ingredients, Date[modified, created])
 * Upload Recipe Image
 * Implement and maintain TDD
