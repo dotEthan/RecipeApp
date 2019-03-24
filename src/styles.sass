@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Montserrat:500,600,700,800|Fira+Sans')
 $navbar-height: 75px
 $navbar-height-minus: 77px
-$borderize-margin: 30px
+$borderize-margin: 60px
 $lineheight: 3px
 $spaceheight: 6px
 $lineoneoffset: $lineheight + $spaceheight
@@ -306,15 +306,18 @@ h1, h2, h3, h4, h5, h6
 // Feature Components
 .borderize
     background: white
-    // margin: $borderize-margin 0
-    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin * 2})
+    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin})
     border-radius: 15px
-    width: calc(100vw - #{$borderize-margin * 2})
+    width: calc(100vw - #{$borderize-margin})
     max-width: 1366px
     overflow: auto
 
+    @media (min-width: 768px)
+      width: calc(100vw - #{$borderize-margin * 2})
+
 .headline-title
     margin: 25px 0
+    font-family: pacifico, sans-serif
 
     @media (min-width: 768px)
         margin: 50px 0
@@ -332,15 +335,14 @@ h1, h2, h3, h4, h5, h6
     top: 50%
     left: 50%
     transform: translate(-50%,-50%)
-    // overflow-y: auto
 
 .overlay-contain
     display: block
     background-color: rgba(0,0,0,.9)
     padding: 15px
     border-radius: 15px
-    width: 80vw
-    max-height: 70vh
+    width: 90vw
+    height: 80vh
     box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
     font-size: .7rem
     overflow-y: auto
@@ -354,7 +356,7 @@ h1, h2, h3, h4, h5, h6
       display: flex
       flex-direction: column
       align-items: center
-      justify-content: center
+      justify-content: flex-start
 
 .recipe-title
     text-align: center

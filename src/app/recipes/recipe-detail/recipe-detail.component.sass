@@ -1,5 +1,4 @@
-h4
-    font-size: 2em
+
     
 h5 
     margin: 0
@@ -23,57 +22,69 @@ h5
 
 .recipe-header
     display: flex
-    flex-direction: column
+    flex-direction: row
     align-items: center
     width: 100%
-    height: auto
-
+    height: 100px
 
     @media (min-width: 768px)
-        flex-direction: row
-        height: auto
+        height: 200px
+        // height: auto
 
 .recipe-image-contain
-    width: 50%
+    width: 100px
+    height: 100px
+
+    @media (min-width: 768px)
+        width: 200px
+        height: 200px
+
+.recipe-image-bg
+    width: 100px
+    height: 100px
+    object-fit: cover
+    object-position: center
+    border-radius: 15px
+
+    @media (min-width: 768px)
+        width: 200px
+        height: 200px
+
+.recipe-detail-title
+    padding: 5px 0px 5px 10px
+    max-width: 100%
+    color: #eeeeff
     height: 100%
 
     @media (min-width: 768px)
-        width: 33%
-
-.recipe-image-bg
-    width: 100%
-    height: auto
-    max-height: 20vh
-    object-fit: cover
-    object-position: center
-
-    @media (min-width: 768px)
-        max-height: 20vh
-
-.recipe-image-bg
-    border-radius: 15px
-    height: auto
-
-.recipe-detail-title
-    padding: 15px 0px 15px 15px
-    max-width: 100%
-    color: #eeeeff
-
-    @media (min-width: 768px)
         max-width: 66%
+        padding: 15px 0px 15px 15px
 
 .recipe-name
     height: auto
     margin-bottom: 10px
-    text-align: center
+
+    h4
+        font-size: 1.1rem
+        font-family: pacifico, sans-serif
 
     @media (min-width: 768px)
+        height: 55px
         margin: 0 10px 10px
-        text-align: left
-        height: 45px
-    
+
+        h4
+            font-size: 2.2rem
+
+.recipe-overlay-content
+    width: 100%
+
 .recipe-manage-row
     width: 100%
+
+.recipe-description
+
+    @media (min-width: 768px)
+        height: 145px
 
 .recipe-description-title
     margin: 0 5px 5px
@@ -94,7 +105,7 @@ h5
     justify-content: space-around
 
     @media (min-width: 768px)
-        padding: 15px 0
+        padding: 20px 0
 
     button
         padding: 3px 5px
@@ -127,36 +138,75 @@ h5
                 justify-content: center
                 align-items: center
                 color: #1EB136
-                font-size: .8rem
+                font-size: 2.5em
                 padding: 0 0px 1px 0
                 font-style: normal
                 top: 50%
                 left: 50%
-                transform: translate3d(-50%, -50%,0) scale(0)
+                transform: translate(-30%, -10%) scale(1)
                 background: #eeeeff
                 border: 2px solid #1EB136
-                width: 10px
-                height: 10px
+                width: 18px
+                height: 18px
                 border-radius: 50%
                 transition: all .3s ease-in-out
 
                 @media (min-width: 768px)
+                    top: 50%
                     width: 25px
                     height: 25px
                     font-size: 1.7rem
+                    transform: translate(-50%, -50%) scale(0)
 
         .edit-recipe
-            background-image: url('/assets/pencil.png')
+            width: 7px
+            height: 15px
+            background: #CEAF0A
+            margin-right: 10px
+            transform: rotate(45deg)
+            position: relative
+            transition: all .3s ease-in-out
+
+            @media (min-width: 768px)
+                width: 7px
+                height: 20px
+                background: #eef
+                margin-right: 20px
+
+            &:before
+                content: ''
+                position: absolute
+                top: -6px
+                left: 0
+                width: 7px
+                height: 5px
+                background: #eeeeff
+                border-radius: 4px 4px 0 0
+            
+            &:after
+                content: ''
+                position: absolute
+                bottom: -7px
+                left: 0
+                width: 0
+                height: 0
+                border-left: 4px solid transparent
+                border-right: 4px solid transparent
+                
+                border-top: 6px solid #eef
     
         .delete-recipe
             width: 25px
             height: 25px
-            margin-right: 10px
+            margin-right: 5px
             transition: all .3s ease-in-out
+
+            @media (min-width: 768px)
+                margin-right: 10px
 
             &:before, &:after
                 content: ''
-                background: #eeeeff
+                background: #A41C1C
                 width: 15px
                 height: 3px
                 position: absolute
@@ -167,6 +217,7 @@ h5
                 @media (min-width: 768px)
                     width: 25px
                     height: 5px
+                    background: #eeeeff
 
             &:before                
                 transform: translate(-50%, -50%) rotate(45deg)
@@ -174,33 +225,49 @@ h5
             &:after                
                 transform: translate(-50%, -50%) rotate(-45deg)
                 
+        .green-word
+            color: #1EB136
+
+        .red-word
+            color: #A41C1C
+
+        .yellow-word
+            color: #CEAF0A
 
         .green-word, .red-word, .yellow-word
             transition: all .3s ease-in-out
-
-        &:hover
             
-            .green-word, .yellow-word, .red-word
-                font-weight: 700
+            @media (min-width: 768px)
+                color: #eef
 
-            .green-word
-                color: #1EB136
+        @media (min-width: 768px)
+            &:hover
+                
+                .green-word, .yellow-word, .red-word
+                    font-weight: 700
 
-            .red-word
-                color: #A41C1C
+                .green-word
+                    color: #1EB136
+
+                .red-word
+                    color: #A41C1C
 
 
-            .yellow-word
-                color: #CEAF0A
+                .yellow-word
+                    color: #CEAF0A
 
-            .add-to-list:after
-                transform: translate3d(-50%, -50%, 0) scale(1)
+                .add-to-list:after
+                    transform: translate(-50%, -50%) scale(1)
 
-            .delete-recipe
-                transform: rotate(180deg) scale(1.2)
+                .edit-recipe
+                    background: #CEAF0A
+                    transform: rotate(25deg)
 
-                &:before, &:after
-                    background: #A41C1C
+                .delete-recipe
+                    transform: rotate(180deg) scale(1.2)
+
+                    &:before, &:after
+                        background: #A41C1C
 
 
 .ingredients-contain, .directions-contain
@@ -222,14 +289,14 @@ h5
     flex-wrap: wrap
 
     @media (min-width: 768px)
-        padding: 5px 15px
+        padding: 5px 10px
 
 .ingredient-contain
     width: 33%
     background: transparent
     list-style-type: none
     display: flex
-    padding: 5px
+    padding: 3px 5px
 
 .directions-section-title
     margin-bottom: 10px
@@ -239,3 +306,6 @@ h5
 
     @media (min-width: 768px)
         padding: 0 10px
+
+.ingredient-text 
+    cursor: pointer

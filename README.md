@@ -56,6 +56,7 @@ All Errors fixed. Everything working as expected (for this point in development)
 * Loading Spinner for all side effects
 * Measurement types for "amount"
 * Multiple "Ingredients" & "Steps" panes
+* Multiple Shopping Lists
 * Form Reset on login
 * Remove Recipe Detail Animation
 * Warnings for trying to edit or create recipes anonymously

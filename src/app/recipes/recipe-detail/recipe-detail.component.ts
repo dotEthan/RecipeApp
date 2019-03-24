@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';
+import { Ingredient } from 'src/app/shared/ingredient.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -41,6 +42,10 @@ export class RecipeDetailComponent implements OnInit {
         console.log('adding to list: ', recipeState.recipes[this.id].ingredients);
         this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.id].ingredients));
       });
+  }
+
+  onAddIngredient(ingredient: Ingredient) {
+    this.store.dispatch(new ShoppingListActions.AddIngredient(ingredient));
   }
 
   onEditRecipe() {
