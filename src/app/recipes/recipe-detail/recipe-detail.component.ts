@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-
 import { Store } from '@ngrx/store';
+
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';
@@ -15,8 +15,6 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   styleUrls: ['./recipe-detail.component.sass']
 })
 export class RecipeDetailComponent implements OnInit {
-  // Getting Error about Ingredients on reload only. Fix. 
-
   recipeState: Observable<fromRecipe.State>;
   id: number;
 
@@ -44,12 +42,8 @@ export class RecipeDetailComponent implements OnInit {
       });
   }
 
-  onAddIngredient(ingredient: Ingredient) {
-    this.store.dispatch(new ShoppingListActions.AddIngredient(ingredient));
-  }
-
   onEditRecipe() {
-    console.log('now');
+    // console.log('now');
     this.router.navigate(['edit'], { relativeTo: this.route })
   }
 

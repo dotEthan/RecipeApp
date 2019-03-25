@@ -46,15 +46,8 @@
       <div class="ingredients-contain">
         <div class="recipe-section-title">INGREDIENTS: <span class="help-text">(click to add ingredient to shopping
             list)</span></div>
-        <ul class="ingredients-list">
-          <li class="ingredient-contain"
-              *ngFor='let ingredient of (recipeState | async).recipes[id].ingredients'>
-            <div class="ingredient-text"
-                 (click)="onAddIngredient(ingredient)">
-              - {{ ingredient.name }}
-            </div>
-          </li>
-        </ul>
+        <app-ingredient-list *ngFor='let ingredientsArray of (recipeState | async).recipes[id].ingredients'
+                             [ingredientsArray]='ingredientsArray'></app-ingredient-list>
       </div>
       <div class="directions-contain">
         <div class="directions-section-title">DIRECTIONS:</div>

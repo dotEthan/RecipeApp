@@ -41,7 +41,7 @@ All Errors fixed. Everything working as expected (for this point in development)
 * TestMode
 
 ### Working on Now:
-* Redesign - Edit Recipe & Shopping List
+* Redesign - Edit Recipe & Shopping List - Add to shopping list, save Editing
 * Mobile menu & recipe overlay - close on select & esc
 * Accessibility (signin module removal on close, keyboard tab nav, lighthouse)
 * Recipe Directions - Keep Formatting

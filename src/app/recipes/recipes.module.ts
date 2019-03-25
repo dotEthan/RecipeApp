@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { RecipesComponent } from './recipes.component';
+import { IngredientListComponent } from './recipe-detail/ingredient-list/ingredient-list.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
@@ -14,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { recipeReducer } from './store/recipes.reducer';
 import { RecipeEffects } from './store/recipes.effects';
+import { EditIngredientListComponent } from './recipe-edit/edit-ingredient-list/edit-ingredient-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { RecipeEffects } from './store/recipes.effects';
     RecipeEditComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
-    AddRecipeComponent
+    AddRecipeComponent,
+    IngredientListComponent,
+    EditIngredientListComponent,
   ],
   imports: [
     CommonModule,

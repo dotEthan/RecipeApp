@@ -50,24 +50,20 @@
           </div>
         </div>
         <hr>
+        <!-- <div class="form-group">
+          <label for="ingredientTypeTitle">Ingredient List Type</label>
+          <input type="text"
+                 id="ingredientTypeTitle"
+                 class="form-control"
+                 formControlName="ingredientTypeTitle">
+        </div> -->
         <div class="row">
           <div class="col-xs-12"
                formArrayName="ingredients">
-            <div class="row"
-                 *ngFor="let ingredientsCtrl of getControls(); let i = index"
-                 style="margin-top: 10px;"
-                 [formGroupName]='i'>
-              <div class="col-xs-10">
-                <label for="ingredient">Ingredient</label>
-                <input type="text"
-                       class="form-control"
-                       formControlName="name">
-              </div>
-              <div class="col-xs-2">
-                <button type="button"
-                        class="btn btn-danger"
-                        (click)="onDeleteIngredient(i)">X</button>
-              </div>
+            <div class="test"
+                 *ngFor='let title of titleArray; let i = index'>
+              {{ i + ' - ' + title }}
+              <app-edit-ingredient-list></app-edit-ingredient-list>
             </div>
             <hr>
             <div class="row">
@@ -81,6 +77,7 @@
         </div>
         <hr>
         <div class="row">
+          <!-- *ngFor="let ingredientsCtrl of getControls(); let i = index"> -->
           <div class="col-xs-12">
             <div class="form-group">
               <label for="directions">directions</label>

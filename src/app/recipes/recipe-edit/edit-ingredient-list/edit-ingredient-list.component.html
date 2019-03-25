@@ -1,0 +1,16 @@
+<div class="row"
+     *ngFor="let ingredientsCtrl of getControls(i); let p = index"
+     style="margin-top: 10px;"
+     [formGroupName]='p'>
+    <div class="col-xs-10">
+        <label for="ingredient">Ingredient</label>
+        <input type="text"
+               class="form-control"
+               formControlName="array">
+    </div>
+    <div class="col-xs-2">
+        <button type="button"
+                class="btn btn-danger"
+                (click)="onDeleteIngredient(i)">X</button>
+    </div>
+</div>
