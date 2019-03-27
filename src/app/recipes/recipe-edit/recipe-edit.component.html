@@ -50,27 +50,49 @@
           </div>
         </div>
         <hr>
-        <!-- <div class="form-group">
-          <label for="ingredientTypeTitle">Ingredient List Type</label>
-          <input type="text"
-                 id="ingredientTypeTitle"
-                 class="form-control"
-                 formControlName="ingredientTypeTitle">
-        </div> -->
         <div class="row">
           <div class="col-xs-12"
                formArrayName="ingredients">
             <div class="test"
-                 *ngFor='let title of titleArray; let i = index'>
-              {{ i + ' - ' + title }}
-              <app-edit-ingredient-list></app-edit-ingredient-list>
+                 *ngFor='let title of titleArray; let ingredientTypeIndex = index'
+                 [formGroupName]='ingredientTypeIndex'>
+              <hr>
+              <div class="row">
+                <div class="col-xs-10">
+                  <label for="ingredient{{ingredientTypeIndex}}">Recipe Type</label>
+                  <input type="text"
+                         class="form-control"
+                         value="{{title}}"
+                         id="ingredient{{ingredientTypeIndex}}">
+                </div>
+              </div>
+              <div class="row"
+                   *ngFor="let ingredients of ingredientFormArray[ingredientTypeIndex].value; let ingredientIndex = index"
+                   style="margin-top: 10px;"
+                   [formGroupName]='ingredientIndex'>
+                <div class="col-xs-10">
+                  <label for="ingredient{{ingredientTypeIndex}}{{ingredientIndex}}">Ingredient</label>
+                  <input type="text"
+                         class="form-control"
+                         formControlName="name"
+                         id="ingredient{{ingredientTypeIndex}}{{ingredientIndex}}">
+                </div>
+                <div class="col-xs-2">
+                  <button type="button"
+                          class="btn btn-danger"
+                          (click)="onDeleteIngredient(ingredientTypeIndex)">X</button>
+                </div>
+              </div>
+              <button type="button"
+                      class="btn btn-success"
+                      (click)="onAddIngredient(ingredientTypeIndex)">Add Ingredient</button>
             </div>
             <hr>
             <div class="row">
               <div class="col-xs-12">
                 <button type="button"
                         class="btn btn-success"
-                        (click)="onAddIngredient()">Add Ingredient</button>
+                        (click)="onAddIngredientType()">Add Ingredient Type</button>
               </div>
             </div>
           </div>

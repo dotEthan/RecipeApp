@@ -37,8 +37,8 @@ export class RecipeDetailComponent implements OnInit {
     this.store.select('recipes')
       .pipe(take(1))
       .subscribe((recipeState: fromRecipe.State) => {
-        console.log('adding to list: ', recipeState.recipes[this.id].ingredients);
-        this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.id].ingredients));
+        console.log('adding to list: ', recipeState.recipes[this.id].ingredients[0][1]);
+        this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.id].ingredients[0][1]));
       });
   }
 

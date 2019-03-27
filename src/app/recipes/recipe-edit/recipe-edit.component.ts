@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -8,6 +8,7 @@ import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';
 
 @Component({
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.sass']
@@ -17,10 +18,12 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
   titleArray = [];
+  ingredientFormArray;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private store: Store<fromRecipe.FeatureState>) { }
+    private store: Store<fromRecipe.FeatureState>) {
+  }
 
   ngOnInit() {
     this.route.params
@@ -28,9 +31,12 @@ export class RecipeEditComponent implements OnInit {
         (params: Params) => {
           this.id = +params['id'];
           this.editMode = params['id'] != null;
-          this.initForm();
         }
       );
+    this.initForm();
+    this.ingredientFormArray = (<FormArray>this.recipeForm.get('ingredients')).controls;
+    console.log('initform first: ', (<FormArray>this.recipeForm.get('ingredients')).controls);
+
   }
 
   onSubmit() {
@@ -44,17 +50,25 @@ export class RecipeEditComponent implements OnInit {
   }
 
   getControls(i: number) {
-    console.log(this.recipeForm.get('ingredients'));
-    // console.log((<FormArray>this.recipeForm.get('ingredients')).controls[i].value);
-    return (<FormArray>this.recipeForm.get('ingredients')).controls;
+    console.log('get controls index: ', i);
+    // console.log('get controls: ', (<FormArray>this.recipeForm.get('ingredients')).controls[i]);
+    return (<FormArray>this.recipeForm.get('ingredients')).controls[i].value;
   }
 
-  onAddIngredient() {
+  onAddIngredient(i) {
+    const ingredientArrayObj = (<FormArray>this.recipeForm.get('ingredients')).controls[i]
+    console.log('adding', ingredientArrayObj);
+    ingredientArrayObj.push(new FormGroup({ 'name': new FormControl('', Validators.required) }));
+    // this.initForm();
+    // console.log('adding after: ', this.recipeForm.get('ingredients'));
+    // this.getControls(i);
+  }
+
+  onAddIngredientType() {
     (<FormArray>this.recipeForm.get('ingredients')).push(
-      new FormGroup({
-        'name': new FormControl(null, Validators.required)
-      })
+      new FormArray([new FormGroup({ 'name': new FormControl(null, Validators.required) })])
     );
+    this.titleArray.push('');
   }
 
   onDeleteIngredient(index: number) {
@@ -71,7 +85,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeDescription = '';
     let recipeDirections = '';
     let recipeIngredients = new FormArray([]);
-    let ingredientArray = [];
+    let ingredientsArray = [];
 
     if (this.editMode) {
       this.store.select('recipes')
@@ -83,24 +97,27 @@ export class RecipeEditComponent implements OnInit {
           recipeDescription = recipe.description;
           recipeDirections = recipe.directions;
           if (recipe['ingredients']) {
+            console.log('init form: ', recipe['ingredients'])
             let x = 0;
-            for (ingredientArray of recipe.ingredients) {
-              for (let i = 0; i < ingredientArray.length; i++) {
+            for (ingredientsArray of recipe.ingredients) {
+              let tempIngredientArray = new FormArray([]);
+              for (let i = 0; i < ingredientsArray.length; i++) {
                 if (i === 0) {
-                  this.titleArray.push(ingredientArray[i]);
+                  this.titleArray.push(ingredientsArray[i]);
                   x = x + 1;
                 } else {
-                  for (let ingredient of ingredientArray[i]) {
-                    console.log("recipe Ingredients", recipeIngredients, x);
-                    recipeIngredients[x].push(
+                  for (let ingredient of ingredientsArray[i]) {
+                    tempIngredientArray.push(
                       new FormGroup({
-                        'array': new FormControl(ingredient.name, Validators.required),
+                        'name': new FormControl(ingredient.name, Validators.required),
                       })
                     );
                   }
 
                 }
               }
+              // console.log('init form after: ', recipeIngredients)
+              recipeIngredients.push(tempIngredientArray);
             }
           }
         });
