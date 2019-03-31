@@ -44,16 +44,23 @@
         </div>
       </div>
       <div class="ingredients-contain">
-        <div class="recipe-section-title">INGREDIENTS: <span class="help-text">(click to add ingredient to shopping
-            list)</span></div>
-        <app-ingredient-list *ngFor='let ingredientsArray of (recipeState | async).recipes[id].ingredients'
-                             [ingredientsArray]='ingredientsArray'></app-ingredient-list>
+        <div class="recipe-section-title"
+             *ngIf="(recipeState | async).recipes[id].ingredients[0]; else noIngredients">INGREDIENTS: <span
+                class="help-text">(click to add ingredient to shopping list)</span></div>
+        <ng-template class="recipe-section-title"
+                     #noIngredients>No Ingredients</ng-template>
+        <app-item-list *ngFor='let ingredientsObject of (recipeState | async).recipes[id].ingredients'
+                       [itemsObject]='ingredientsObject'
+                       itemType="ingredient"></app-item-list>
       </div>
-      <div class="directions-contain">
-        <div class="directions-section-title">DIRECTIONS:</div>
-        <div class="directions-text">
-          {{ (recipeState | async).recipes[id].directions }}
-        </div>
+      <div class="ingredients-contain">
+        <div class="recipe-section-title"
+             *ngIf="(recipeState | async).recipes[id].directions[0]; else noDirections">Directions:</div>
+        <ng-template class="recipe-section-title"
+                     #noDirections>No Directions</ng-template>
+        <app-item-list *ngFor='let directionsObject of (recipeState | async).recipes[id].directions'
+                       [itemsObject]='directionsObject'
+                       itemType="directions"></app-item-list>
       </div>
     </div>
   </div>

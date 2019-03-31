@@ -7,9 +7,9 @@ You can register to save your own recipes or use the "Test Mode" button on the m
 
 ### Status
 
-Functionality: 50%  
-Design: 30%  
-So, early days still.
+Functionality: 75%  
+Design: 50%  
+Coming along very well. 
 
 ## Overview and Thoughts
 
@@ -39,29 +39,31 @@ All Errors fixed. Everything working as expected (for this point in development)
 * User Specific Data
 * Mobile Menu
 * TestMode
+* Multiple "Ingredients" & "Directions" panes
 
 ### Working on Now:
-* Redesign - Edit Recipe & Shopping List - Add to shopping list, save Editing
-* Mobile menu & recipe overlay - close on select & esc
-* Accessibility (signin module removal on close, keyboard tab nav, lighthouse)
-* Recipe Directions - Keep Formatting
+* Redesign - Edit Recipe & Shopping List
+* Tooltips for Recipe Detail add to shoppinglist
+* Fill out Test Mode Recipes with proper Recipes
 
 ### To Come:
 
+* Implement and maintain TDD
+* Recipe Directions and Recipe Ingredients - DRY and Refactor code & put HTML into own component
+* Mobile menu & recipe overlay - close on select & esc
+* Accessibility (signin module removal on close, keyboard tab nav, lighthouse)
 * Auto Truncating recipe Strings
 * Recipes Sort (Name, Keyword, Ingredients, Date[modified, created])
 * Upload Recipe Image
-* Implement and maintain TDD
 * Shopping List, edit in place
 * Loading Spinner for all side effects
-* Measurement types for "amount"
-* Multiple "Ingredients" & "Steps" panes
 * Multiple Shopping Lists
 * Form Reset on login
-* Remove Recipe Detail Animation
-* Warnings for trying to edit or create recipes anonymously
+* Warnings for login/register
 * Shopping List Saving
-* Improve UI/UX - Most of the current state was done to help learn each aspect of Angular, updates will be made based on ease of use for the end user. 
+
+### Future thoughts:
+
 * User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
 * Website Parsing - Have some ideas, but more research is needed. 
 * Meal Planning through ingredient tags, Calorie/Nutrient Counting 

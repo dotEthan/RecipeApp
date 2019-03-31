@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { Ingredient } from '../shared/ingredient.model';
+import { NamedItem } from '../shared/namedItem.model';
 import * as ShoppingListActions from './store/shopping-list.actions';
 import * as fromApp from '../../app/store/app-reducer';
 
@@ -12,7 +12,7 @@ import * as fromApp from '../../app/store/app-reducer';
   styleUrls: ['./shopping-list.component.sass']
 })
 export class ShoppingListComponent implements OnInit {
-  shoppingListState: Observable<{ ingredients: Ingredient[] }>;
+  shoppingListState: Observable<{ ingredients: NamedItem[] }>;
 
   constructor(private store: Store<fromApp.AppState>) { }
 

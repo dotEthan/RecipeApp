@@ -1,18 +1,15 @@
 import * as ShoppingListActions from './shopping-list.actions';
 
-import { Ingredient } from '../../shared/ingredient.model';
+import { NamedItem } from '../../shared/namedItem.model';
 
 export interface State {
-    ingredients: Ingredient[];
-    editedIngredient: Ingredient;
+    ingredients: NamedItem[];
+    editedIngredient: NamedItem;
     editedIngredientIndex: number;
 }
 
 const initialState: State = {
-    ingredients: [
-        new Ingredient('apples'),
-        new Ingredient('papyas')
-    ],
+    ingredients: [new NamedItem('apples'), new NamedItem('papayas')],
     editedIngredient: null,
     editedIngredientIndex: -1
 }
@@ -30,16 +27,11 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 ingredients: [...state.ingredients, ...action.payload]
             }
         case ShoppingListActions.UPDATE_INGREDIENT:
-            const ingredient = state.ingredients[state.editedIngredientIndex];
-            const updatedIngredient = {
-                ...ingredient,
-                ...action.payload.ingredient
-            }
-            const ingredients = [...state.ingredients];
-            ingredients[state.editedIngredientIndex] = updatedIngredient;
+            const newIngredients = [...state.ingredients];
+            newIngredients[state.editedIngredientIndex] = action.payload;
             return {
                 ...state,
-                ingredients: ingredients,
+                ingredients: newIngredients,
                 editedIngredient: null,
                 editedIngredientIndex: -1
             }
@@ -53,7 +45,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 editedIngredientIndex: -1
             }
         case ShoppingListActions.START_EDIT:
-            const editedIngredient = { ...state.ingredients[action.payload] };
+            const editedIngredient = state.ingredients[action.payload];
             return {
                 ...state,
                 editedIngredient: editedIngredient,
