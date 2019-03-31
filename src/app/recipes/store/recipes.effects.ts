@@ -24,7 +24,7 @@ export class RecipeEffects {
                 (recipes) => {
                     for (let recipe of recipes) {
                         if (!recipe['ingredients']) {
-                            recipe['ingredients'] = [];
+                            recipe['ingredients'] = [{ title: 'default', item: [] }];
                         }
                     }
                     console.log('reicpes effects recipes = ', recipes);

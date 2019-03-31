@@ -1,0 +1,12 @@
+<div class="ingredient-list">
+    <div class="ingredient-list-title">{{ itemTitle }}</div>
+    <ul class="ingredients-list">
+        <li [className]="itemType === 'ingredient' ? 'ingredient-contain' : 'direction-contain'"
+            *ngFor='let ingredient of items'>
+            <div [className]="itemType === 'ingredient' ? 'ingredient-text' : 'direction-text'"
+                 (click)="itemType === 'ingredient' ? onAddIngredientToList(ingredient) : null">
+                - {{ ingredient.name }}
+            </div>
+        </li>
+    </ul>
+</div>

@@ -2,12 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-
 import { Store } from '@ngrx/store';
+
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';
-import { Ingredient } from 'src/app/shared/ingredient.model';
+import { NamedItem } from 'src/app/shared/namedItem.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,8 +15,6 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   styleUrls: ['./recipe-detail.component.sass']
 })
 export class RecipeDetailComponent implements OnInit {
-  // Getting Error about Ingredients on reload only. Fix. 
-
   recipeState: Observable<fromRecipe.State>;
   id: number;
 
@@ -33,6 +31,7 @@ export class RecipeDetailComponent implements OnInit {
       );
 
     this.recipeState = this.store.select('recipes');
+    // console.log('recipe detail ingredients: ', this.recipeState);
   }
 
   onAddToShoppingList() {
@@ -40,16 +39,14 @@ export class RecipeDetailComponent implements OnInit {
       .pipe(take(1))
       .subscribe((recipeState: fromRecipe.State) => {
         console.log('adding to list: ', recipeState.recipes[this.id].ingredients);
-        this.store.dispatch(new ShoppingListActions.AddIngredients(recipeState.recipes[this.id].ingredients));
+        for (let ingredientType of recipeState.recipes[this.id].ingredients) {
+          this.store.dispatch(new ShoppingListActions.AddIngredients(ingredientType['item']));
+        }
       });
   }
 
-  onAddIngredient(ingredient: Ingredient) {
-    this.store.dispatch(new ShoppingListActions.AddIngredient(ingredient));
-  }
-
   onEditRecipe() {
-    console.log('now');
+    // console.log('now');
     this.router.navigate(['edit'], { relativeTo: this.route })
   }
 

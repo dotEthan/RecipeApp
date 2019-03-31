@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     }
 
     if (window.localStorage.getItem('testMode') === 'true') {
-      console.log('recipes action load tests');
+      // console.log('recipes action load tests');
       this.store.dispatch(new RecipeActions.SetTestRecipes());
       this.authService.testMode.next(true);
     }
