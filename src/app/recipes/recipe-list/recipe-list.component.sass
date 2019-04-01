@@ -1,6 +1,7 @@
 .recipe-list-container
     width: 90%
     margin: 0 auto
+    justify-items: center
     
 .recipeRow
     display: flex
@@ -9,7 +10,7 @@
     margin: 0 0 20px
     position: relative
     align-items: center
-    justify-content: space-between
+    justify-content: space-around
 
     @supports (display:grid)
         display: grid
@@ -22,6 +23,9 @@
             display: grid
             grid-template-columns: repeat(auto-fill, 125px)
             grid-gap: 10px
+
+// .recipe-item-contain
+//     justify-self: center
         
         
 .new-container

@@ -25,30 +25,28 @@ h5
     flex-direction: row
     align-items: center
     width: 100%
-    height: 100px
+    // height: 100px
 
     @media (min-width: 768px)
-        height: 200px
+        min-height: 200px
         // height: auto
 
 .recipe-image-contain
-    width: 100px
-    height: 100px
-
-    @media (min-width: 768px)
-        width: 200px
-        height: 200px
+    width: 33%
+    height: 100%
 
 .recipe-image-bg
-    width: 100px
-    height: 100px
+    width: 100%
+    height: 100%
     object-fit: cover
     object-position: center
     border-radius: 15px
+    max-height: 100px
 
     @media (min-width: 768px)
-        width: 200px
-        height: 200px
+        max-height: 200px
+
+
 
 .recipe-detail-title
     padding: 5px 0px 5px 10px
@@ -153,8 +151,8 @@ h5
 
                 @media (min-width: 768px)
                     top: 50%
-                    width: 25px
-                    height: 25px
+                    width: 22px
+                    height: 22px
                     font-size: 1.7rem
                     transform: translate(-50%, -50%) scale(0)
 
@@ -280,10 +278,11 @@ h5
         padding: 0 25px
         
 .help-text
-    font-size: .8em
+    font-size: .6em
 
-.directions-section-title
+.type-section-title
     margin-bottom: 10px
+    font-size: 1.2em
 
 .directions-text, .ingredients-text
     padding: 0 5px

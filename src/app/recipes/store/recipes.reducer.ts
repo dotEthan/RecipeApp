@@ -54,7 +54,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             testRecipes = [{
                 name: "Double Decker Beyond Burger",
                 description: "Modern Miracle",
-                imagePath: "https://www.seriouseats.com/images/2016/10/20161004-beyond-burger-18.jpg",
+                imagePath: "/assets/image1.jpg",
                 url: 'n/a',
                 ingredients: [
                     {
@@ -87,7 +87,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 name: "Chocolate Chip Mint Ice cream",
                 description: "A tasty treat that melts in your mouth, in your hand, and even on the pavement if you drop it.",
-                imagePath: "https://www.seriouseats.com/images/2015/02/20150223-vegan-ice-cream-vicky-wasik-3.jpg",
+                imagePath: "/assets/image2.jpg",
                 url: "https://lovingitvegan.com/vegan-mint-chocolate-chip-ice-cream/",
                 ingredients: [
                     {
@@ -106,7 +106,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 name: "Crusty Bread",
                 description: "Wonderfully crunchy on the outside, warm and fragrant on the inside.",
-                imagePath: "https://meeshiesmom.files.wordpress.com/2012/07/crusty-bread-iii.jpg",
+                imagePath: "/assets/image3.jpg",
                 url: 'n/a',
                 ingredients: [
                     {
@@ -125,7 +125,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 name: "Oyster Mushroom Bacon",
                 description: "Delicious on burgers, chopped up in salad or just on their own.",
-                imagePath: "https://www.seriouseats.com/recipes/assets_c/2015/02/20150204-mushroom-bacon-update-king-oyster-3-thumb-1500xauto-418829.jpg",
+                imagePath: "/assets/image4.jpg",
                 url: 'n/a',
                 ingredients: [
                     {
@@ -144,7 +144,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 name: "Panorama Test",
                 description: "Testing image behaviour if image is horizontal",
-                imagePath: "https://www.elegantphotoart.com/wp-content/gallery/panoramas/GN8_6820-23LN.jpg",
+                imagePath: "/assets/image5.jpg",
                 url: 'n/a',
                 ingredients: [
                     {
@@ -163,7 +163,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 name: "Vertically Long Test",
                 description: "Testing image behaviour if image is vertical",
-                imagePath: "https://cdn.photographylife.com/wp-content/uploads/2016/01/Zabriskie-Point-Panorama-400-MP.jpg",
+                imagePath: "/assets/image6.jpg",
                 url: 'n/a',
                 ingredients: [
                     {
@@ -182,7 +182,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 name: "Black Bean & Mushroom 'meatballs'",
                 description: "Testing image behaviour if image is vertical",
-                imagePath: "/assets/image4.jpg",
+                imagePath: "/assets/image7.jpg",
                 url: 'n/a',
                 ingredients: [
                     {
@@ -201,7 +201,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
             }, {
                 name: "Instant Pot Timings For Beans",
                 description: "Saved timings so I can remember later.",
-                imagePath: "/assets/image4.jpg",
+                imagePath: "/assets/image8.jpg",
                 url: 'n/a',
                 ingredients: [
                 ],
