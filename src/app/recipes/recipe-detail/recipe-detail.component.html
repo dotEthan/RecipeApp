@@ -1,5 +1,5 @@
 <div class="recipe-overlay"
-     *ngIf="(recipeState | async).recipes.length > 0">
+     appCloseWindow>
   <button type="button"
           class="recipe-close"
           aria-label="Close"
@@ -44,19 +44,19 @@
         </div>
       </div>
       <div class="ingredients-contain">
-        <div class="recipe-section-title"
+        <div class="type-section-title"
              *ngIf="(recipeState | async).recipes[id].ingredients[0]; else noIngredients">INGREDIENTS: <span
                 class="help-text">(click to add ingredient to shopping list)</span></div>
-        <ng-template class="recipe-section-title"
+        <ng-template class="type-section-title"
                      #noIngredients>No Ingredients</ng-template>
         <app-item-list *ngFor='let ingredientsObject of (recipeState | async).recipes[id].ingredients'
                        [itemsObject]='ingredientsObject'
                        itemType="ingredient"></app-item-list>
       </div>
       <div class="ingredients-contain">
-        <div class="recipe-section-title"
-             *ngIf="(recipeState | async).recipes[id].directions[0]; else noDirections">Directions:</div>
-        <ng-template class="recipe-section-title"
+        <div class="type-section-title"
+             *ngIf="(recipeState | async).recipes[id].directions[0]; else noDirections">DIRECTIONS:</div>
+        <ng-template class="type-section-title"
                      #noDirections>No Directions</ng-template>
         <app-item-list *ngFor='let directionsObject of (recipeState | async).recipes[id].directions'
                        [itemsObject]='directionsObject'

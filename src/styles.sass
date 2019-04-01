@@ -17,6 +17,14 @@ body
 h1, h2, h3, h4, h5, h6 
   margin: 0
 
+hr 
+  margin-top: 10px
+  margin-bottom: 10px
+
+  @media (min-width: 768px)  
+    margin-top: 20px
+    margin-bottom: 20px
+
 .fullbackground
   height: calc(100vh - #{$navbar-height-minus})
   display: flex
@@ -287,32 +295,17 @@ h1, h2, h3, h4, h5, h6
     align-items: center
     z-index: 1000
 
-.auth__modal--white
-    background: white
-    width: 350px
-    height: 400px
-    position: relative
-    border-radius: 15px
-    box-shadow: 2px 3px 10px 1px rgba(0,0,0,.3)
-
-.auth__title
-    margin-bottom: 50px
-
-.auth__warning
-    color: red
-    font-size: 0.7em
-    margin-top: 5px
-
 // Feature Components
 .borderize
     background: white
-    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin})
-    border-radius: 15px
+    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin/2})
     width: calc(100vw - #{$borderize-margin})
+    border-radius: 15px
     max-width: 1366px
     overflow: auto
 
-    @media (min-width: 768px)
+    @media (min-width: 1024px)
+      height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin})
       width: calc(100vw - #{$borderize-margin * 2})
 
 .headline-title
@@ -341,28 +334,25 @@ h1, h2, h3, h4, h5, h6
     background-color: rgba(0,0,0,.9)
     padding: 15px
     border-radius: 15px
-    width: 90vw
-    height: 80vh
+    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin/2} - 5px)
+    width: calc(100vw - #{$borderize-margin} - 5px)
     box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
-    font-size: .7rem
+    font-size: .85rem
     overflow-y: auto
     position: relative
 
-    @media (min-width: 1024px)
-      width: 45vw 
-
     @media (min-width: 768px)
-      font-size: 1rem
+      font-size: 1.2rem
       display: flex
       flex-direction: column
       align-items: center
       justify-content: flex-start
 
-.recipe-title
-    text-align: center
-    margin: 10px 0
-    color: #223
-    font-size: 1.2em
+    @media (min-width: 1024px)
+      width: 60vw 
+
+    @media (min-width: 1300px)
+      width: 45vw 
 
 // Shopping List
 

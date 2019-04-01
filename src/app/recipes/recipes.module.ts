@@ -16,6 +16,7 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { recipeReducer } from './store/recipes.reducer';
 import { RecipeEffects } from './store/recipes.effects';
 import { EditIngredientListComponent } from './recipe-edit/edit-ingredient-list/edit-ingredient-list.component';
+import { CloseWindowDirective } from './recipe-detail/close-window.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EditIngredientListComponent } from './recipe-edit/edit-ingredient-list/
     AddRecipeComponent,
     ItemListComponent,
     EditIngredientListComponent,
+    CloseWindowDirective,
   ],
   imports: [
     CommonModule,

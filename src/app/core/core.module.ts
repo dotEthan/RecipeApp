@@ -11,6 +11,7 @@ import { SigninComponent } from '../core/auth-modal/auth-over/signin/signin.comp
 import { AuthInterceptor } from './auth-modal/auth-interceptor';
 import { AuthOverComponent } from './auth-modal/auth-over/auth-over.component';
 import { HttpErrorInterceptor } from '../shared/error.interceptor';
+import { MenuCloseDirective } from './header/menu-close.directive';
 
 
 
@@ -20,7 +21,8 @@ import { HttpErrorInterceptor } from '../shared/error.interceptor';
         HomeComponent,
         AuthModalComponent,
         SigninComponent,
-        AuthOverComponent
+        AuthOverComponent,
+        MenuCloseDirective
     ],
     imports: [
         SharedModule,

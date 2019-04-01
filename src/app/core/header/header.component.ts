@@ -9,6 +9,7 @@ import * as fromAuth from '../../core/auth-modal/store/auth.reducers';
 import * as AuthActions from '../auth-modal/store/auth.actions';
 import * as RecipeActions from '../../recipes/store/recipes.actions';
 
+
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -52,13 +53,20 @@ export class HeaderComponent implements OnInit {
         this.store.dispatch(new AuthActions.Logout());
     }
 
-    menuClick(e) {
+    onMenuClick(e) {
+        console.log(this.headermenu);
+        console.log(e.currentTarget);
         this.headermenu.nativeElement.classList.toggle('active');
         e.currentTarget.children[0].classList.toggle('active');
         const childLength = e.currentTarget.children[0].children.length;
         for (let i = 0; i < childLength; i++) {
             e.currentTarget.children[0].children[i].classList.remove('stopped');
         }
+    }
+
+    onEscape() {
+        console.log('now');
+        this.headermenu.nativeElement.classList.remove('active');
     }
 
     testModeOff() {

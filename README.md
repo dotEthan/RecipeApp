@@ -40,17 +40,18 @@ All Errors fixed. Everything working as expected (for this point in development)
 * Mobile Menu
 * TestMode
 * Multiple "Ingredients" & "Directions" panes
+* Mobile menu & recipe overlay - close on select & esc
 
 ### Working on Now:
 * Redesign - Edit Recipe & Shopping List
 * Tooltips for Recipe Detail add to shoppinglist
 * Fill out Test Mode Recipes with proper Recipes
+* Recipe Detail darkened background for click close
 
 ### To Come:
 
 * Implement and maintain TDD
 * Recipe Directions and Recipe Ingredients - DRY and Refactor code & put HTML into own component
-* Mobile menu & recipe overlay - close on select & esc
 * Accessibility (signin module removal on close, keyboard tab nav, lighthouse)
 * Auto Truncating recipe Strings
 * Recipes Sort (Name, Keyword, Ingredients, Date[modified, created])
