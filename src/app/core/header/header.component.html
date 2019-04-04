@@ -1,13 +1,14 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid nav__container"
          appMenuClose>
-        <div class="navbar-header">
+        <div class="navbar-brand-contain">
             <a routerLink="/"
                class="navbar-brand"
                (click)="onSelect()">Recipeasy</a>
         </div>
         <div class="beyond-burger"
-             (click)="onMenuClick($event)">
+             (click)="onMenuClick()"
+             #beyondburger>
             <div class="burger-container">
                 <div class="line1 stopped"></div>
                 <div class="line2 stopped"></div>
@@ -29,13 +30,13 @@
                 </ng-template>
             </ul>
             <ul class="nav
-                       navbar-nav
-                       rightward">
+                               navbar-nav
+                               rightward">
                 <ng-template [ngIf]="!(authState | async).authenticated && !testMode">
                     <li><a style="cursor:pointer"
-                           (click)="onClick('register')">Register</a></li>
+                           (click)="onModalOpen('register')">Register</a></li>
                     <li><a style="cursor:pointer"
-                           (click)="onClick('signin')">Sign In</a></li>
+                           (click)="onModalOpen('signin')">Sign In</a></li>
                 </ng-template>
                 <ng-template [ngIf]="(authState | async).authenticated">
                     <li><a (click)="authLogout()"

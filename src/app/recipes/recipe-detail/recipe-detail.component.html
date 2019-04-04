@@ -1,66 +1,69 @@
-<div class="recipe-overlay"
-     appCloseWindow>
-  <button type="button"
-          class="recipe-close"
-          aria-label="Close"
-          (click)="onClose()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <div class="overlay-contain">
-    <div class="recipe-header">
-      <div class="recipe-image-contain">
-        <img [src]="(recipeState | async).recipes[id].imagePath"
-             alt=" {{ (recipeState | async).recipes[id].name }}"
-             class="recipe-image-bg">
-      </div>
-      <div class="recipe-detail-title">
-        <div class="recipe-name">
-          <h4>{{ (recipeState | async).recipes[id].name }}</h4>
+<div class="overlay-shadow"
+     (click)="onOverlayShadowClick($event)">
+  <div class="recipe-overlay"
+       appCloseWindow>
+    <button type="button"
+            class="recipe-close"
+            aria-label="Close"
+            (click)="onClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="overlay-contain">
+      <div class="recipe-header">
+        <div class="recipe-image-contain">
+          <img [src]="(recipeState | async).recipes[id].imagePath"
+               alt=" {{ (recipeState | async).recipes[id].name }}"
+               class="recipe-image-bg">
         </div>
-        <div class="recipe-description">
-          <h5 class="recipe-description-title">Description:</h5>
-          <p class="recipe-description-text">{{ (recipeState | async).recipes[id].description }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="recipe-overlay-content">
-      <div class="recipe-manage-row">
-        <div class="recipe-manage-buttons">
-          <button class="manage-btn-1"
-                  (click)="onAddToShoppingList()"><i class="add-to-list"></i>
-            <div>Add <span class="green-word">Ingredients</span>
-              <br />
-              to List</div>
-          </button>
-          <button class="manage-btn-2"
-                  (click)="onEditRecipe()">
-            <div class="edit-recipe"></div>
-            <span class="yellow-word">Edit</span>&nbsp;Recipe
-          </button>
-          <button class="manage-btn-3"
-                  (click)="onDeleteRecipe()">
-            <div class="delete-recipe"></div><span class="red-word">Delete</span>&nbsp;Recipe
-          </button>
+        <div class="recipe-detail-title">
+          <div class="recipe-name">
+            <h4>{{ (recipeState | async).recipes[id].name }}</h4>
+          </div>
+          <div class="recipe-description">
+            <h5 class="recipe-description-title">Description:</h5>
+            <p class="recipe-description-text">{{ (recipeState | async).recipes[id].description }}</p>
+          </div>
         </div>
       </div>
-      <div class="ingredients-contain">
-        <div class="type-section-title"
-             *ngIf="(recipeState | async).recipes[id].ingredients[0]; else noIngredients">INGREDIENTS: <span
-                class="help-text">(click to add ingredient to shopping list)</span></div>
-        <ng-template class="type-section-title"
-                     #noIngredients>No Ingredients</ng-template>
-        <app-item-list *ngFor='let ingredientsObject of (recipeState | async).recipes[id].ingredients'
-                       [itemsObject]='ingredientsObject'
-                       itemType="ingredient"></app-item-list>
-      </div>
-      <div class="ingredients-contain">
-        <div class="type-section-title"
-             *ngIf="(recipeState | async).recipes[id].directions[0]; else noDirections">DIRECTIONS:</div>
-        <ng-template class="type-section-title"
-                     #noDirections>No Directions</ng-template>
-        <app-item-list *ngFor='let directionsObject of (recipeState | async).recipes[id].directions'
-                       [itemsObject]='directionsObject'
-                       itemType="directions"></app-item-list>
+      <div class="recipe-overlay-content">
+        <div class="recipe-manage-row">
+          <div class="recipe-manage-buttons">
+            <button class="manage-btn-1"
+                    (click)="onAddToShoppingList()"><i class="add-to-list"></i>
+              <div>Add <span class="green-word">Ingredients</span>
+                <br />
+                to List</div>
+            </button>
+            <button class="manage-btn-2"
+                    (click)="onEditRecipe()">
+              <div class="edit-recipe"></div>
+              <span class="yellow-word">Edit</span>&nbsp;Recipe
+            </button>
+            <button class="manage-btn-3"
+                    (click)="onDeleteRecipe()">
+              <div class="delete-recipe"></div><span class="red-word">Delete</span>&nbsp;Recipe
+            </button>
+          </div>
+        </div>
+        <div class="ingredients-contain">
+          <div class="type-section-title"
+               *ngIf="(recipeState | async).recipes[id].ingredients[0]; else noIngredients">INGREDIENTS: <span
+                  class="help-text">(click to add ingredient to shopping list)</span></div>
+          <ng-template class="type-section-title"
+                       #noIngredients>No Ingredients</ng-template>
+          <app-item-list *ngFor='let ingredientsObject of (recipeState | async).recipes[id].ingredients'
+                         [itemsObject]='ingredientsObject'
+                         itemType="ingredient"></app-item-list>
+        </div>
+        <div class="ingredients-contain">
+          <div class="type-section-title"
+               *ngIf="(recipeState | async).recipes[id].directions[0]; else noDirections">DIRECTIONS:</div>
+          <ng-template class="type-section-title"
+                       #noDirections>No Directions</ng-template>
+          <app-item-list *ngFor='let directionsObject of (recipeState | async).recipes[id].directions'
+                         [itemsObject]='directionsObject'
+                         itemType="directions"></app-item-list>
+        </div>
       </div>
     </div>
   </div>

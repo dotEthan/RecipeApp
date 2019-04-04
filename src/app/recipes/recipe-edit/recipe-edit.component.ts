@@ -109,6 +109,12 @@ export class RecipeEditComponent implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
+  onOverlayShadowClick(e) {
+    if (e.target === e.currentTarget) {
+      this.router.navigate(['/recipes']);
+    }
+  }
+
   private initForm() {
     let recipeName = '';
     let recipeImagePath = '';

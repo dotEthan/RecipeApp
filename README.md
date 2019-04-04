@@ -44,9 +44,8 @@ All Errors fixed. Everything working as expected (for this point in development)
 
 ### Working on Now:
 * Redesign - Edit Recipe & Shopping List
-* Tooltips for Recipe Detail add to shoppinglist
+* Tooltips for "Recipe Detail" add "to shoppinglist"
 * Fill out Test Mode Recipes with proper Recipes
-* Recipe Detail darkened background for click close
 
 ### To Come:
 

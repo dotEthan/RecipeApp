@@ -58,4 +58,10 @@ export class RecipeDetailComponent implements OnInit {
   onClose() {
     this.router.navigate(['/recipes']);
   }
+
+  onOverlayShadowClick(e) {
+    if (e.target === e.currentTarget) {
+      this.router.navigate(['/recipes']);
+    }
+  }
 }

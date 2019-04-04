@@ -18,4 +18,9 @@ export class AuthModalComponent implements OnInit {
     );
   }
 
+  onOverlayShadowClick() {
+    console.log('now');
+    this.authService.modalOpen.next('false');
+  }
+
 }

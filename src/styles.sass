@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Montserrat:500,600,700,800|Fira+Sans')
 $navbar-height: 75px
 $navbar-height-minus: 77px
-$borderize-margin: 60px
+$borderize-margin: 25px
 $lineheight: 3px
 $spaceheight: 6px
 $lineoneoffset: $lineheight + $spaceheight
@@ -16,14 +16,6 @@ body
 
 h1, h2, h3, h4, h5, h6 
   margin: 0
-
-hr 
-  margin-top: 10px
-  margin-bottom: 10px
-
-  @media (min-width: 768px)  
-    margin-top: 20px
-    margin-bottom: 20px
 
 .fullbackground
   height: calc(100vh - #{$navbar-height-minus})
@@ -93,6 +85,7 @@ hr
   transition: all .5s ease-in-out
   width: 40vw
   z-index: 1
+  box-shadow: -2px 2px 2px -1px #666
 
   &.active
     left: 60vw
@@ -114,6 +107,7 @@ hr
     padding: 0
     border: none
     width: auto
+    box-shadow: none
 
 // Burger Button
 .beyond-burger
@@ -275,12 +269,12 @@ hr
     &.over
         pointer-events: auto
 
-.auth
-    height: calc(100vh - #{$navbar-height-minus})
-    position: relative
-    width: 100%
-    background-color: rgba(0,0,0,.5)
-    z-index: 1000
+// .auth
+//     height: calc(100vh - #{$navbar-height-minus})
+//     position: relative
+//     width: 100%
+//     background-color: rgba(0,0,0,.5)
+//     z-index: 1000
 
 .auth__modal
     position: absolute
@@ -295,17 +289,32 @@ hr
     align-items: center
     z-index: 1000
 
+.auth__modal--white
+    background: white
+    width: 350px
+    height: 400px
+    position: relative
+    border-radius: 15px
+    box-shadow: 2px 3px 10px 1px rgba(0,0,0,.3)
+
+.auth__title
+    margin-bottom: 50px
+
+.auth__warning
+    color: red
+    font-size: 0.7em
+    margin-top: 5px
+
 // Feature Components
 .borderize
     background: white
-    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin/2})
+    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin})
+    border-radius: 10px
     width: calc(100vw - #{$borderize-margin})
-    border-radius: 15px
     max-width: 1366px
     overflow: auto
 
-    @media (min-width: 1024px)
-      height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin})
+    @media (min-width: 768px)
       width: calc(100vw - #{$borderize-margin * 2})
 
 .headline-title
@@ -323,6 +332,15 @@ hr
 
 // Recipes
 
+.overlay-shadow
+  position: absolute
+  top: 0
+  left: 0
+  width: 100vw
+  height: calc(100vh - #{$navbar-height-minus})
+  background-color: rgba(0,0,0,.6)
+  z-index: 10
+
 .recipe-overlay
     position: absolute
     top: 50%
@@ -334,25 +352,32 @@ hr
     background-color: rgba(0,0,0,.9)
     padding: 15px
     border-radius: 15px
-    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin/2} - 5px)
-    width: calc(100vw - #{$borderize-margin} - 5px)
+    width: calc(100vw - #{$borderize-margin} - 10px)
+    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin} - 10px)
     box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
-    font-size: .85rem
+    font-size: .8rem
     overflow-y: auto
     position: relative
 
     @media (min-width: 768px)
-      font-size: 1.2rem
+      font-size: 1rem
       display: flex
       flex-direction: column
       align-items: center
       justify-content: flex-start
+      width: calc(100vw - #{$borderize-margin * 2} - 10px)
 
     @media (min-width: 1024px)
       width: 60vw 
 
-    @media (min-width: 1300px)
+    @media (min-width: 1280px)
       width: 45vw 
+
+.recipe-title
+    text-align: center
+    margin: 10px 0
+    color: #223
+    font-size: 1.2em
 
 // Shopping List
 

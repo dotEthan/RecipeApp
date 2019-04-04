@@ -16,7 +16,8 @@ import * as RecipeActions from '../../recipes/store/recipes.actions';
     styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
-    @ViewChild('headermenu') headermenu: ElementRef;
+    @ViewChild('headermenu') headerMenu: ElementRef;
+    @ViewChild('beyondburger') beyondBurger: ElementRef;
     authState: Observable<fromAuth.State>;
     testMode: boolean;
 
@@ -40,33 +41,27 @@ export class HeaderComponent implements OnInit {
         this.store.dispatch(new RecipeActions.FetchRecipes());
     }
 
-    onClick(type: string) {
+    onModalOpen(type: string) {
         this.authService.authType.next(type);
         this.authService.modalOpen.next('true');
     }
 
     onSelect() {
         this.authService.modalOpen.next('false');
+        if (this.headerMenu.nativeElement.classList.contains('active')) this.onMenuClick();
     }
 
     authLogout() {
         this.store.dispatch(new AuthActions.Logout());
     }
 
-    onMenuClick(e) {
-        console.log(this.headermenu);
-        console.log(e.currentTarget);
-        this.headermenu.nativeElement.classList.toggle('active');
-        e.currentTarget.children[0].classList.toggle('active');
-        const childLength = e.currentTarget.children[0].children.length;
+    onMenuClick() {
+        this.headerMenu.nativeElement.classList.toggle('active');
+        this.beyondBurger.nativeElement.children[0].classList.toggle('active');
+        const childLength = this.beyondBurger.nativeElement.children[0].children.length;
         for (let i = 0; i < childLength; i++) {
-            e.currentTarget.children[0].children[i].classList.remove('stopped');
+            this.beyondBurger.nativeElement.children[0].children[i].classList.remove('stopped');
         }
-    }
-
-    onEscape() {
-        console.log('now');
-        this.headermenu.nativeElement.classList.remove('active');
     }
 
     testModeOff() {

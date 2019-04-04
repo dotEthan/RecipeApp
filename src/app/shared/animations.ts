@@ -34,10 +34,8 @@ const animationRL = [
 
 export const slideInAnimation =
     trigger('routeAnimations', [
-        transition('HomePage => RecipePage', animationRL),
-        transition('RecipePage => HomePage', animationLR),
-        transition('HomePage => ShoppingListPage', animationRL),
-        transition('ShoppingListPage => HomePage', animationLR),
-        transition('RecipePage => ShoppingListPage', animationRL),
-        transition('ShoppingListPage => RecipePage', animationLR),
+        transition('HomePage => *', animationRL),
+        transition('* => HomePage', animationLR),
+        transition('* => ShoppingListPage', animationRL),
+        transition('ShoppingListPage => *', animationLR),
     ]);
