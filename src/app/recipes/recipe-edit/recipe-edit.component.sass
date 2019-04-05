@@ -2,16 +2,108 @@ input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched
     border: 1px solid red
 
+.form-contain
+    padding: 15px
+    width: 100%
+
 .recipe-edit-container
     overflow: auto
 
 label
-    color: #ccc
+    color: #eef
+    margin-left: 5px
 
 .form-control
     font-size: 1rem
     padding: 5px 5px
 
+.recipe-image
+    border-radius: 5px
+
+    @media (min-width: 768px)
+        border-radius: 10px
+
 .recipe-description-area
     max-width: 100%
     max-height: 200px
+
+.section-title    
+    margin-bottom: 10px
+    font-size: 1.2em
+    color: #eef
+    font-weight: 500
+    margin-left: 0
+
+.item-type-contain
+    width: 100%
+
+.item-type-row
+    display: flex
+    width: 100%
+    margin-bottom: 10px
+
+    @media (min-width: 768px)
+        width: 33%
+
+.item-type-input
+    margin-left: 5px
+    width: 80%
+
+.item-list
+    display: flex
+    flex-wrap: wrap
+    width: 100%
+
+.item-each
+    width: 100%
+    padding: 5px
+
+    @media (min-width: 768px)
+        width: 33%
+
+.item-input-row
+    display: flex
+
+.item-input
+    width: 80%
+
+.btn-clear
+    background: transparent
+    color: #eeeeff
+
+    &:hover
+        background: rgba(255,255,255,.2)
+
+.btn-delete
+    background: transparent
+    color: #eeeeff
+    border: none
+    width: 35px
+    padding: 0
+    position: relative
+    transform: rotate(45deg)
+
+    &:before
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        width: 3px
+        height: 20px
+        background: #eeeeff
+
+    &:after
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        width: 20px
+        height: 3px
+        background: #eeeeff
+
+
+    &:hover
+        &:before, &:after
+            background: #A41C1C

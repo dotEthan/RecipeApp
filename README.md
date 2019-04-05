@@ -49,6 +49,7 @@ All Errors fixed. Everything working as expected (for this point in development)
 
 ### To Come:
 
+* warn if closing without saving
 * Implement and maintain TDD
 * Recipe Directions and Recipe Ingredients - DRY and Refactor code & put HTML into own component
 * Accessibility (signin module removal on close, keyboard tab nav, lighthouse)
