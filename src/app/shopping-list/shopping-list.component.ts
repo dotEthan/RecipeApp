@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { NamedItem } from '../shared/namedItem.model';
 import * as ShoppingListActions from './store/shopping-list.actions';
+import * as fromShoppingList from './store/shopping-list.reducers';
 import * as fromApp from '../../app/store/app-reducer';
 
 @Component({
@@ -12,12 +13,13 @@ import * as fromApp from '../../app/store/app-reducer';
   styleUrls: ['./shopping-list.component.sass']
 })
 export class ShoppingListComponent implements OnInit {
-  shoppingListState: Observable<{ ingredients: NamedItem[] }>;
+  shoppingListState: Observable<fromShoppingList.FeatureState>;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromShoppingList.FeatureState>) { }
 
   ngOnInit() {
-    this.shoppingListState = this.store.select('shoppingList');
+    this.shoppingListState = this.store.pipe(select('shoppingLists'));
+    console.log(this.shoppingListState)
   }
 
   onEditItem(i: number) {
