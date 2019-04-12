@@ -18,11 +18,14 @@ import { AuthService } from './core/auth-modal/auth.service';
   ]
 })
 export class AppComponent implements OnInit {
+  // modalOpen: boolean;
 
   constructor(private store: Store<fromApp.AppState>,
     private authService: AuthService) { }
 
   ngOnInit() {
+    // this.modalOpen = this.authService.modalOpen
+
     if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",

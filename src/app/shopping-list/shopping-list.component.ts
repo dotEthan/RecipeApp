@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import { NamedItem } from '../shared/namedItem.model';
+// import { NamedItem } from '../shared/namedItem.model';
+import * as fromShoppingList from './store/shopping-list.reducers';
 import * as ShoppingListActions from './store/shopping-list.actions';
-import * as fromApp from '../../app/store/app-reducer';
+import { ShoppingListService } from './shopping-list.service';
+// import * as fromApp from '../../app/store/app-reducer';
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,16 +14,24 @@ import * as fromApp from '../../app/store/app-reducer';
   styleUrls: ['./shopping-list.component.sass']
 })
 export class ShoppingListComponent implements OnInit {
-  shoppingListState: Observable<{ ingredients: NamedItem[] }>;
+  shoppingListState: Observable<fromShoppingList.FeatureState>;
+  defaultListIndex: number;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromShoppingList.FeatureState>,
+    private ShoppingListService: ShoppingListService) { }
 
   ngOnInit() {
-    this.shoppingListState = this.store.select('shoppingList');
+    this.shoppingListState = this.store.pipe(select('shoppingLists'));
+
+    this.store.select('shoppingLists').subscribe(state => {
+      this.defaultListIndex = state.defaultListIndex;
+    });
+    // this.ShoppingListService.defaultListId.subscribe(index => {
+    //   this.defaultListIndex = index;
+    // })
   }
 
-  onEditItem(i: number) {
-    this.store.dispatch(new ShoppingListActions.StartEdit(i));
+  onAddNewList() {
+    this.store.dispatch(new ShoppingListActions.CreateList());
   }
-
 }

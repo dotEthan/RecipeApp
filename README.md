@@ -41,14 +41,17 @@ All Errors fixed. Everything working as expected (for this point in development)
 * TestMode
 * Multiple "Ingredients" & "Directions" panes
 * Mobile menu & recipe overlay - close on select & esc
+* Multiple Shopping Lists
+* Shopping List, edit in place
 
 ### Working on Now:
 * Redesign - Edit Recipe & Shopping List
 * Tooltips for "Recipe Detail" add "to shoppinglist"
-* Fill out Test Mode Recipes with proper Recipes
+* Shopping List - Edit Full Form
 
 ### To Come:
 
+* Fill out Test Mode Recipes with proper Recipes
 * warn if closing without saving
 * Implement and maintain TDD
 * Recipe Directions and Recipe Ingredients - DRY and Refactor code & put HTML into own component
@@ -56,15 +59,15 @@ All Errors fixed. Everything working as expected (for this point in development)
 * Auto Truncating recipe Strings
 * Recipes Sort (Name, Keyword, Ingredients, Date[modified, created])
 * Upload Recipe Image
-* Shopping List, edit in place
 * Loading Spinner for all side effects
-* Multiple Shopping Lists
 * Form Reset on login
 * Warnings for login/register
 * Shopping List Saving
 
 ### Future thoughts:
 
+* Shopping List/Ingredients quantities field
+* Shopping List Price Field
 * User Dashboard - More an excuse to build a cool dashboard in a SPA, looking forward to it.
 * Website Parsing - Have some ideas, but more research is needed. 
 * Meal Planning through ingredient tags, Calorie/Nutrient Counting 

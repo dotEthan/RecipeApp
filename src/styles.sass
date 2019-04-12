@@ -342,52 +342,52 @@ h1, h2, h3, h4, h5, h6
   z-index: 10
 
 .recipe-overlay
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%,-50%)
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
 
 .overlay-contain
-    display: block
-    background-color: rgba(0,0,0,.9)
-    padding: 15px
-    border-radius: 15px
-    width: calc(100vw - #{$borderize-margin} - 10px)
-    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin} - 10px)
-    box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
-    font-size: .8rem
-    overflow-y: auto
-    position: relative
+  display: block
+  background-color: rgba(0,0,0,.9)
+  padding: 15px
+  border-radius: 15px
+  width: calc(100vw - #{$borderize-margin} - 10px)
+  height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin} - 10px)
+  box-shadow: 1px 3px 5px 1px rgba(0,0,0,.25)
+  font-size: .8rem
+  overflow-y: auto
+  position: relative
 
-    @media (min-width: 768px)
-      font-size: 1rem
-      display: flex
-      flex-direction: column
-      align-items: center
-      justify-content: flex-start
-      width: calc(100vw - #{$borderize-margin * 2} - 10px)
+  @media (min-width: 768px)
+    font-size: 1rem
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: flex-start
+    width: calc(100vw - #{$borderize-margin * 2} - 10px)
 
-    @media (min-width: 1024px)
-      width: 60vw 
-      height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin} - 50px)
+  @media (min-width: 1024px)
+    width: 60vw 
+    height: calc(100vh - #{$navbar-height-minus} - #{$borderize-margin} - 50px)
 
-    @media (min-width: 1280px)
-      width: 45vw 
+  @media (min-width: 1280px)
+    width: 45vw 
 
 .recipe-title
-    text-align: center
-    margin: 10px 0
-    color: #223
-    font-size: 1.2em
+  text-align: center
+  margin: 10px 0
+  color: #223
+  font-size: 1.2em
 
 // Shopping List
 
 .sl__container
-    background: white
-    padding: 25px
-    height: 80vh
-    overflow: auto
-    border-radius: 15px
-    max-width: 500px
-    @media (min-width: 768px)
-        height: 50vh
+  background: white
+  padding: 25px
+  height: 80vh
+  overflow: auto
+  border-radius: 15px
+  max-width: 500px
+  @media (min-width: 768px)
+    height: 50vh

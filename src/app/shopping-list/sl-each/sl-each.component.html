@@ -1,0 +1,42 @@
+<div class="sl-contain">
+    <div class="sl-not-default-header"
+         [ngClass]="{'sl-default-header':listIndex === defaultList}"
+         (click)="onMakeDefault()">
+        Make Default
+    </div>
+    <div class="sl-main">
+        <div class="sl-type-title">
+            {{shoppingList.title}}
+        </div>
+        <ul class="sl-list">
+            <li class="sl-list-item"
+                *ngFor="let ingredient of shoppingList.ingredients; let p = index">
+                <app-ingredient-input [inputValue]="ingredient.name"
+                                      [ngClass]="(editingListIndex === listIndex) && (editingIngredientIndex === p) ? 'sl-ingredient-input' : 'sl-ingredient-input-hidden'">
+                </app-ingredient-input>
+                <div
+                     [ngClass]="(editingListIndex !== listIndex) || (editingIngredientIndex !== p) ? 'sl-ingredient' : 'sl-ingredient-hidden'">
+                    <div class="sl-ingredient-name">{{ingredient.name}}</div>
+                    <div class="ingredient-alter">
+                        <div class="ingredient-edit"
+                             (click)="onEditItem(p)">
+                            <div class="edit-icon"></div>
+                        </div>
+                        <div class="ingredient-delete"
+                             (click)="onDeleteItem(p)"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="sl-list-item">
+                <div class="ingredient-add"
+                     (click)="onAddItem()">+ Add Item</div>
+            </li>
+        </ul>
+    </div>
+    <div class="sl-footer">
+        <div class="list-edit"
+             (click)="onEditList()">Edit</div>
+        <div class="list-edit"
+             (click)="onDeleteList()">Delete</div>
+    </div>
+</div>

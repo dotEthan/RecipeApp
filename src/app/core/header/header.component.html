@@ -4,10 +4,10 @@
         <div class="navbar-brand-contain">
             <a routerLink="/"
                class="navbar-brand"
-               (click)="onSelect()">Recipeasy</a>
+               (click)="onPageChange()">Recipeasy</a>
         </div>
         <div class="beyond-burger"
-             (click)="onMenuClick()"
+             (click)="onMobileMenuClick()"
              #beyondburger>
             <div class="burger-container">
                 <div class="line1 stopped"></div>
@@ -20,18 +20,16 @@
             <ul class="nav navbar-nav">
                 <ng-template [ngIf]="(authState | async).authenticated || testMode">
                     <li routerLinkActive="active"><a routerLink="/recipes"
-                           (click)="onSelect()">Recipes</a></li>
+                           (click)="onPageChange()">Recipes</a></li>
                     <li routerLinkActive="active"><a routerLink="/shopping-list"
-                           (click)="onSelect()">Shopping List</a></li>
+                           (click)="onPageChange()">Shopping List</a></li>
                 </ng-template>
                 <ng-template [ngIf]="testMode">
                     <li (click)="testModeOff()"
                         class="test-text-contain"><span class="test-text">Test Mode Off</span></li>
                 </ng-template>
             </ul>
-            <ul class="nav
-                               navbar-nav
-                               rightward">
+            <ul class="nav navbar-nav rightward">
                 <ng-template [ngIf]="!(authState | async).authenticated && !testMode">
                     <li><a style="cursor:pointer"
                            (click)="onModalOpen('register')">Register</a></li>

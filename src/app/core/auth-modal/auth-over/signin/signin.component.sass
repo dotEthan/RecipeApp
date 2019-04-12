@@ -1,5 +1,5 @@
 .auth__title
-    margin: 25px 0
+    margin: 25px 0 25px
 
     h1
         font-size: 1.5em
@@ -9,8 +9,12 @@
 
 .auth__warning
     color: red
-    font-size: 0.7em
-    margin-top: 5px
+    font-size: 0.9em
+    margin: 25px auto
+    text-align: center
+    border: 1px solid red
+    width: 75%
+    padding: 5px
 
 .signin-label
     font-size: 1em
@@ -18,11 +22,21 @@
 input.ng-invalid.ng-touched
     border: 1px solid red
 
+    &+.email-warning
+        display: block
+
 .form-control
     height: 2em
 
     @media (min-width: 768px)
         height: 3em
+
+.email-warning
+    display: none
+    margin-top: 5px
+    color: red
+    font-size: .8em
+
 
 .btn
     padding: 3px 6px

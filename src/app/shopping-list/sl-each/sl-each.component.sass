@@ -1,0 +1,135 @@
+.sl-contain
+    width: 250px
+    height: 100%
+    border: 1px solid #cccccc
+    border-radius: 5px
+    margin: 0 5px
+    min-height: 200px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    overflow: hidden
+
+.sl-not-default-header
+    background: #666
+    color: #eeeeff
+    padding: 15px 0
+    text-align: center
+    cursor: pointer
+
+.sl-default-header
+    background: #ddd
+    color: #ccc
+    cursor: auto
+
+.sl-main
+    padding: 15px
+    max-height: 50vh
+    height: 100%
+    overflow-y: scroll
+
+.sl-type-title
+    display: flex
+    justify-content: center
+    text-align: center
+    font-weight: bold
+    font-size: 1.3em
+    margin-bottom: 10px
+
+.sl-list
+    padding: 0px
+    
+.sl-list-item
+    padding: 5px
+    list-style-type: none
+
+.sl-ingredient
+    display: flex
+    justify-content: space-between
+
+.sl-ingredient-hidden
+    display: none
+
+.sl-ingredient-input-hidden
+    display: none
+
+.sl-ingredient-name
+    width: 100%
+
+.ingredient-alter
+    display: flex
+    justify-content: center
+    width: 50px
+    height: 25px
+
+.ingredient-delete, .ingredient-edit
+    width: 25px
+    height: 25px
+    position: relative
+    cursor: pointer
+
+.ingredient-add
+    cursor: pointer
+
+.edit-icon
+    width: 4px
+    height: 12px
+    background: #CEAF0A
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-75%, -50%) rotate(45deg)
+    transition: all .3s ease-in-out
+
+    &:before
+        content: ''
+        position: absolute
+        top: -5px
+        left: 0
+        width: 4px
+        height: 4px
+        background: #0c0c0c
+        border-radius: 4px 4px 0 0
+    
+    &:after
+        content: ''
+        position: absolute
+        bottom: -5px
+        left: 0
+        width: 0
+        height: 0
+        border-left: 2px solid transparent
+        border-right: 2px solid transparent
+        border-top: 4px solid #0c0c0c
+
+.ingredient-delete
+
+    &:before, &:after
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%) rotate(45deg)
+        background: #A41C1C
+
+    &:before
+        width: 2px
+        height: 15px
+    
+    &:after
+        width: 15px
+        height: 2px
+
+.sl-footer
+    display: flex
+
+.list-edit
+    background: #0c0c0c
+    color: #eeeeff
+    width: 50%
+    text-align: center
+    padding: 15px 0
+    cursor: pointer
+
+    &:hover
+        background: #666
