@@ -26,7 +26,7 @@ export class ItemListComponent implements OnInit {
 
     onAddIngredientToList(ingredient: NamedItem) {
         // console.log(ingredient);
-        this.store.dispatch(new ShoppingListActions.AddIngredient(ingredient));
+        this.store.dispatch(new ShoppingListActions.AddIngredient({ item: ingredient, listIndex: -1 }));
     }
 
 

@@ -22,8 +22,9 @@ export class SigninComponent implements OnInit, OnDestroy {
     this.errSub$ = authService.errorMsg;
   }
 
+  //Grab #f form reference, use AuthService to reset at a variety of points. 
   ngOnInit() {
-
+    console.log('now');
     this.typeSub = this.authService.authType.subscribe(
       (type: string) => {
         this.thisType = type;
@@ -54,6 +55,9 @@ export class SigninComponent implements OnInit, OnDestroy {
           case 'auth/email-already-in-use':
             this.error = 'Email already in use, use another or sign in below';
             break;
+          case 'auth/network-request-failed':
+            this.error = 'Network Request Failed. Connection not possible at this time.';
+            break;
           default:
             this.error = 'Unknown Error. Code: ' + msg;
         }
@@ -62,6 +66,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+
     this.typeSub.unsubscribe();
   }
 

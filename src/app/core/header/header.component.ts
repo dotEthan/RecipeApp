@@ -46,16 +46,16 @@ export class HeaderComponent implements OnInit {
         this.authService.modalOpen.next('true');
     }
 
-    onSelect() {
+    onPageChange() {
         this.authService.modalOpen.next('false');
-        if (this.headerMenu.nativeElement.classList.contains('active')) this.onMenuClick();
+        if (this.headerMenu.nativeElement.classList.contains('active')) this.onMobileMenuClick();
     }
 
     authLogout() {
         this.store.dispatch(new AuthActions.Logout());
     }
 
-    onMenuClick() {
+    onMobileMenuClick() {
         this.headerMenu.nativeElement.classList.toggle('active');
         this.beyondBurger.nativeElement.children[0].classList.toggle('active');
         const childLength = this.beyondBurger.nativeElement.children[0].children.length;

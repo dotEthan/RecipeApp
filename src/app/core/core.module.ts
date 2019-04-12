@@ -11,7 +11,7 @@ import { SigninComponent } from '../core/auth-modal/auth-over/signin/signin.comp
 import { AuthInterceptor } from './auth-modal/auth-interceptor';
 import { AuthOverComponent } from './auth-modal/auth-over/auth-over.component';
 import { HttpErrorInterceptor } from '../shared/error.interceptor';
-import { MenuCloseDirective } from './header/menu-close.directive';
+import { KeyBoardInputDirective } from './header/menu-close.directive';
 
 
 
@@ -22,7 +22,7 @@ import { MenuCloseDirective } from './header/menu-close.directive';
         AuthModalComponent,
         SigninComponent,
         AuthOverComponent,
-        MenuCloseDirective
+        KeyBoardInputDirective
     ],
     imports: [
         SharedModule,
