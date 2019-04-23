@@ -1,0 +1,8 @@
+<div class="sl-button-contain">
+  <button class="sl-button"
+          (click)="onSlButtonClick()"
+          [disabled]="isDisabled">{{shoppingListTitle}}
+    <div *ngIf="isDefault"
+         class="sl-button-isdefault">(Default)</div>
+  </button>
+</div>

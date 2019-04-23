@@ -1,16 +1,18 @@
+.all-lists-contain
+    margin-right: 0
+    margin-left: 0
+    
 .shopping-lists-contain
     display: flex
+    flex-wrap: wrap
     width: 90%
     margin: 0 auto
     justify-content: flex-start
-    padding: 25px
+    padding: 0 25px
     overflow: hidden
-    // position: absolute
-    // top: 0
-    // right: 0
 
 .sl-new-list
-    min-width: 250px
+    width: 25%
     border: 1px solid #cccccc
     padding: 15px
     border-radius: 5px
@@ -18,6 +20,10 @@
     position: relative
     min-height: 200px
     order: -1
+
+.sl-list
+    width: 25%
+    margin: 0 5px
 
 .sl-type-title
     display: flex
@@ -58,8 +64,13 @@
         &:before, &:after
             background: #666
 
-.sl-list
-    order: 1
+.viewable-lists
+    display: flex
+    width: 100%
 
-.sl-default-list
-    order: 0
+.full-shopping-lists
+    display: flex
+    flex-wrap: wrap
+    width: 100%
+    justify-content: space-around
+    margin-top: 50px

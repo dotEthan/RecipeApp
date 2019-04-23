@@ -1,27 +1,38 @@
 <div class="sl-contain">
-    <div class="sl-not-default-header"
-         [ngClass]="{'sl-default-header':listIndex === defaultList}"
-         (click)="onMakeDefault()">
-        Make Default
+    <div class="sl-full-header">
+        <div class="sl-not-default-header"
+             (click)="onMakeDefault()"
+             *ngIf="listIndex!==defaultListIndex; else isDefault">
+            Make Default
+        </div>
+        <ng-template #isDefault>
+            <div class="sl-default-header">
+                Default
+            </div>
+        </ng-template>
+        <div class="sl-list-close"
+             (click)="onViewableListClose()"></div>
     </div>
-    <div class="sl-main">
+    <div class="sl-main"
+         *ngIf="editingListIndex !== listIndex || editingIngredientIndex !== -1; else listForm">
         <div class="sl-type-title">
-            {{shoppingList.title}}
+            {{viewableListObject.title}}
         </div>
         <ul class="sl-list">
             <li class="sl-list-item"
-                *ngFor="let ingredient of shoppingList.ingredients; let p = index">
+                *ngFor="let ingredient of viewableListObject.ingredients; let p = index">
                 <app-ingredient-input [inputValue]="ingredient.name"
-                                      [ngClass]="(editingListIndex === listIndex) && (editingIngredientIndex === p) ? 'sl-ingredient-input' : 'sl-ingredient-input-hidden'">
+                                      [ngClass]="(editingListIndex === listIndex) && (editingIngredientIndex === p) ? 'sl-ingredient-input' : 'sl-ingredient-input-hidden'"
+                                      (savedIngredient)="onSingleIngredientSave($event)">
                 </app-ingredient-input>
                 <div
                      [ngClass]="(editingListIndex !== listIndex) || (editingIngredientIndex !== p) ? 'sl-ingredient' : 'sl-ingredient-hidden'">
-                    <div class="sl-ingredient-name">{{ingredient.name}}</div>
+                    <div class="sl-ingredient-name hyphenate">{{ingredient.name}}</div>
                     <div class="ingredient-alter">
-                        <div class="ingredient-edit"
+                        <!-- <div class="ingredient-edit"
                              (click)="onEditItem(p)">
                             <div class="edit-icon"></div>
-                        </div>
+                        </div> -->
                         <div class="ingredient-delete"
                              (click)="onDeleteItem(p)"></div>
                     </div>
@@ -33,10 +44,41 @@
             </li>
         </ul>
     </div>
+    <ng-template #listForm>
+        <form class="sl-main"
+              [formGroup]="shoppingListForm"
+              (ngSubmit)="onSaveList()">
+            <label for="listTitle"></label>
+            <input type="text"
+                   class="ingredient-inplace"
+                   id="listTitle"
+                   formControlName="title">
+            <ul class="sl-list">
+                <li class="sl-list-item"
+                    *ngFor="let ingredient of viewableListObject.ingredients; let p = index"
+                    formArrayName="ingredients">
+                    <div [formGroupName]="p">
+                        <input type="text"
+                               class="ingredient-inplace"
+                               formControlName="name">
+                    </div>
+                </li>
+                <li class="sl-list-item">
+                    <div class="ingredient-add"
+                         (click)="onAddItem()">+ Add Item</div>
+                </li>
+            </ul>
+        </form>
+    </ng-template>
     <div class="sl-footer">
         <div class="list-edit"
-             (click)="onEditList()">Edit</div>
+             *ngIf="editingListIndex !== listIndex; else editForm"
+             (click)="onEditList()">Edit<br>List</div>
+        <ng-template #editForm>
+            <div class="list-edit"
+                 (click)="onSaveList()">Save<br>List</div>
+        </ng-template>
         <div class="list-edit"
-             (click)="onDeleteList()">Delete</div>
+             (click)="onDeleteList()">Delete<br>List</div>
     </div>
 </div>

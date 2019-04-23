@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,6 @@ import * as fromRecipe from '../store/recipes.reducer';
 import * as RecipeActions from '../store/recipes.actions';
 
 @Component({
-  // changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.sass']
@@ -135,7 +134,7 @@ export class RecipeEditComponent implements OnInit {
           recipeImagePath = recipe.imagePath;
           recipeDescription = recipe.description;
 
-          // DRY these two and put HTML into own component
+          // DRY these two
           if (recipe['directions']) {
             recipe['directions'].forEach((directionType, i) => {
               directionArray = new FormArray([]);

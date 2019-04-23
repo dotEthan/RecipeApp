@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './shared/animations';
 import { Store } from '@ngrx/store';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import * as fromApp from './store/app-reducer';
 import * as AuthActions from './core/auth-modal/store/auth.actions';
@@ -14,17 +15,28 @@ import { AuthService } from './core/auth-modal/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
   animations: [
-    slideInAnimation
-  ]
+    slideInAnimation,
+    trigger('modalOpen', [
+      state('false', style({
+        transform: 'scale(0)'
+      })),
+      state('true', style({
+        transform: 'scale(1)'
+      })),
+      transition('true <=> false', animate(200))
+    ])
+  ],
 })
 export class AppComponent implements OnInit {
-  // modalOpen: boolean;
+  modalOpen: boolean;
 
   constructor(private store: Store<fromApp.AppState>,
     private authService: AuthService) { }
 
   ngOnInit() {
-    // this.modalOpen = this.authService.modalOpen
+    this.authService.modalOpen.subscribe(shouldOpen => {
+      this.modalOpen = shouldOpen;
+    })
 
     if (!firebase.apps.length) {
       firebase.initializeApp({

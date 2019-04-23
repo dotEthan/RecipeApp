@@ -1,15 +1,20 @@
 import { Action } from '@ngrx/store';
+
 import { NamedItem } from '../../shared/namedItem.model';
+import { ShoppingList } from '../shoping-list.model';
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';
-export const UPDATE_INGREDIENT = 'UPDATE_INGREDIENT';
-export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
-export const START_EDIT = 'START_EDIT';
-export const STOP_EDIT = 'STOP_EDIT';
 export const CREATE_LIST = 'CREATE_LIST';
+export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const DELETE_LIST = 'DELETE_LIST';
+export const SET_SHOPPING_LISTS = 'SET_SHOPPING_LISTS';
+export const START_EDIT_INGREDIENT = 'START_EDIT_INGREDIENT';
+export const START_EDIT_LIST = 'START_EDIT_LIST';
+export const STOP_EDIT = 'STOP_EDIT';
 export const SWITCH_DEFAULT = 'SWITCH_DEFAULT';
+export const UPDATE_INGREDIENT = 'UPDATE_INGREDIENT';
+export const UPDATE_LIST = 'UPDATE_LIST';
 
 export class AddIngredient implements Action {
     readonly type = ADD_INGREDIENT;
@@ -23,10 +28,8 @@ export class AddIngredients implements Action {
     constructor(public payload: NamedItem[]) { }
 }
 
-export class UpdateIngredient implements Action {
-    readonly type = UPDATE_INGREDIENT;
-
-    constructor(public payload: NamedItem) { }
+export class CreateList implements Action {
+    readonly type = CREATE_LIST;
 }
 
 export class DeleteIngredient implements Action {
@@ -35,24 +38,32 @@ export class DeleteIngredient implements Action {
     constructor(public payload: { listIndex: number, index: number }) { }
 }
 
-export class StartEdit implements Action {
-    readonly type = START_EDIT;
-
-    constructor(public payload: { listIndex: number, index: number }) { }
-}
-
-export class StopEdit implements Action {
-    readonly type = STOP_EDIT;
-}
-
-export class CreateList implements Action {
-    readonly type = CREATE_LIST;
-}
-
 export class DeleteList implements Action {
     readonly type = DELETE_LIST;
 
     constructor(public payload: number) { }
+}
+
+export class SetShoppingLists implements Action {
+    readonly type = SET_SHOPPING_LISTS;
+
+    constructor(public payload: {}[]) { }
+}
+
+export class StartEditIngredient implements Action {
+    readonly type = START_EDIT_INGREDIENT;
+
+    constructor(public payload: { listIndex: number, index: number }) { }
+}
+
+export class StartEditList implements Action {
+    readonly type = START_EDIT_LIST;
+
+    constructor(public payload: number) { }
+}
+
+export class StopEdit implements Action {
+    readonly type = STOP_EDIT;
 }
 
 export class SwitchDefault implements Action {
@@ -61,13 +72,28 @@ export class SwitchDefault implements Action {
     constructor(public payload: number) { }
 }
 
+export class UpdateIngredient implements Action {
+    readonly type = UPDATE_INGREDIENT;
+
+    constructor(public payload: NamedItem) { }
+}
+
+export class UpdateList implements Action {
+    readonly type = UPDATE_LIST;
+
+    constructor(public payload: { listIndex: number, updatedList: { title: string, ingredients: NamedItem[], default: boolean } }) { }
+}
+
 export type ShoppingListActionsTypes =
     AddIngredient |
     AddIngredients |
-    UpdateIngredient |
-    DeleteIngredient |
-    StartEdit |
-    StopEdit |
     CreateList |
+    DeleteIngredient |
     DeleteList |
-    SwitchDefault;
+    SetShoppingLists |
+    StartEditIngredient |
+    StartEditList |
+    StopEdit |
+    SwitchDefault |
+    UpdateIngredient |
+    UpdateList;

@@ -4,7 +4,8 @@
            [value]="inputValue"
            #f>
     <div class="save-icon"
-         (click)="saveIngredient(f.value)">
+         (click)="saveIngredient(f.value)"
+         *ngIf="editingIngredientIndex !== -1">
         <div class="labels"></div>
     </div>
 </div>

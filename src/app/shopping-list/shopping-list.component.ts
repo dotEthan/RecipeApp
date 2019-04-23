@@ -15,23 +15,33 @@ import { ShoppingListService } from './shopping-list.service';
 })
 export class ShoppingListComponent implements OnInit {
   shoppingListState: Observable<fromShoppingList.FeatureState>;
+  viewableListsIndexArray: number[];
   defaultListIndex: number;
+  shoppingListLength: number;
+
 
   constructor(private store: Store<fromShoppingList.FeatureState>,
-    private ShoppingListService: ShoppingListService) { }
+    private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
+
     this.shoppingListState = this.store.pipe(select('shoppingLists'));
 
     this.store.select('shoppingLists').subscribe(state => {
       this.defaultListIndex = state.defaultListIndex;
+      this.shoppingListLength = state.shoppingLists.length;
     });
-    // this.ShoppingListService.defaultListId.subscribe(index => {
-    //   this.defaultListIndex = index;
-    // })
+
+    this.shoppingListService.viewableListsIndexArray.subscribe((indexArray) => {
+      this.viewableListsIndexArray = indexArray;
+    });
+
   }
 
   onAddNewList() {
     this.store.dispatch(new ShoppingListActions.CreateList());
+    const newViewableList = [...this.viewableListsIndexArray];
+    if (newViewableList.length < 3) newViewableList.push(this.shoppingListLength - 1);
+    this.shoppingListService.viewableListsIndexArray.next(newViewableList);
   }
 }

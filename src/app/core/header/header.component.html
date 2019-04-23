@@ -19,7 +19,8 @@
              #headermenu>
             <ul class="nav navbar-nav">
                 <ng-template [ngIf]="(authState | async).authenticated || testMode">
-                    <li routerLinkActive="active"><a routerLink="/recipes"
+                    <li routerLinkActive="active"
+                        class="nav-recipes"><a routerLink="/recipes"
                            (click)="onPageChange()">Recipes</a></li>
                     <li routerLinkActive="active"><a routerLink="/shopping-list"
                            (click)="onPageChange()">Shopping List</a></li>
@@ -33,7 +34,7 @@
                 <ng-template [ngIf]="!(authState | async).authenticated && !testMode">
                     <li><a style="cursor:pointer"
                            (click)="onModalOpen('register')">Register</a></li>
-                    <li><a style="cursor:pointer"
+                    <li class="sign-in-button"><a style="cursor:pointer"
                            (click)="onModalOpen('signin')">Sign In</a></li>
                 </ng-template>
                 <ng-template [ngIf]="(authState | async).authenticated">

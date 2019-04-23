@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -6,21 +6,12 @@ import { AuthService } from './auth.service';
   templateUrl: './auth-modal.component.html',
   styleUrls: ['./auth-modal.component.sass']
 })
-export class AuthModalComponent implements OnInit {
-  modalOpen = 'false'
+export class AuthModalComponent {
+  modalOpen = false
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    this.authService.modalOpen.subscribe(
-      (shouldOpen: string) => {
-        this.modalOpen = shouldOpen;
-      }
-    );
-  }
-
   onOverlayShadowClick() {
-    console.log('now');
-    this.authService.modalOpen.next('false');
+    this.authService.modalOpen.next(false);
   }
 
 }

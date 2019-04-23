@@ -43,11 +43,11 @@ export class HeaderComponent implements OnInit {
 
     onModalOpen(type: string) {
         this.authService.authType.next(type);
-        this.authService.modalOpen.next('true');
+        this.authService.modalOpen.next(true);
     }
 
     onPageChange() {
-        this.authService.modalOpen.next('false');
+        this.authService.modalOpen.next(false);
         if (this.headerMenu.nativeElement.classList.contains('active')) this.onMobileMenuClick();
     }
 

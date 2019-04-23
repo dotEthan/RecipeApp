@@ -2,7 +2,7 @@
 <div class="container-fluid fullbackground">
   <div class="attribute"><a href="https://nick-karvounis.com/"
        target="_blank">Photo by Nick Karvounis on Unsplash</a></div>
-  <app-auth-modal></app-auth-modal>
+  <app-auth-modal *ngIf='modalOpen'></app-auth-modal>
   <div class="router-contain"
        [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>

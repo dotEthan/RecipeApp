@@ -51,6 +51,7 @@ All Errors fixed. Everything working as expected (for this point in development)
 
 ### To Come:
 
+* Reminder - Refactor Header & sl-each
 * Fill out Test Mode Recipes with proper Recipes
 * warn if closing without saving
 * Implement and maintain TDD

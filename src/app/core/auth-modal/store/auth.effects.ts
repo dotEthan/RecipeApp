@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 import { AuthService } from '../auth.service';
 import * as fromApp from '../../../store/app-reducer'
 import * as RecipeActions from '../../../recipes/store/recipes.actions';
+import * as ShoppingListActions from '../../../shopping-list/store/shopping-list.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -46,7 +47,7 @@ export class AuthEffects {
             }),
             tap(() => {
                 this.store.dispatch(new RecipeActions.FetchRecipes());
-                this.authService.modalOpen.next('false');
+                this.authService.modalOpen.next(false);
                 this.authService.loggedIn.next(true);
             }));
 
@@ -82,7 +83,7 @@ export class AuthEffects {
             }),
             tap(() => {
                 this.store.dispatch(new RecipeActions.FetchRecipes());
-                this.authService.modalOpen.next('false');
+                this.authService.modalOpen.next(false);
                 this.authService.loggedIn.next(true);
             }));
     // Using?
@@ -109,13 +110,15 @@ export class AuthEffects {
     authLogout = this.actions$
         .pipe(ofType(AuthActions.LOGOUT),
             tap(() => {
-                const emptyRecipe = [];
+                const emptyRecipe: [] = [];
+                const emptyShoppingList: {}[] = [];
 
                 window.localStorage.removeItem('token');
                 window.localStorage.removeItem('uid');
                 window.localStorage.removeItem('testMode');
                 this.authService.loggedIn.next(false);
                 this.store.dispatch(new RecipeActions.SetRecipes(emptyRecipe));
+                this.store.dispatch(new ShoppingListActions.SetShoppingLists(emptyShoppingList));
                 this.router.navigate(['/']);
             }));
 

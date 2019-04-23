@@ -1,7 +1,6 @@
 import * as ShoppingListActions from './shopping-list.actions';
 import { NamedItem } from '../../shared/namedItem.model';
 import * as fromApp from '../../store/app-reducer';
-import { StateObservable } from '@ngrx/store';
 
 export interface FeatureState extends fromApp.AppState {
     shoppingLists: State
@@ -9,13 +8,13 @@ export interface FeatureState extends fromApp.AppState {
 
 export interface State {
     shoppingLists: { title: string, ingredients: NamedItem[], default: boolean }[];
-    editedListIndex: number
-    editedIngredientIndex: number
-    defaultListIndex: number
+    editedListIndex: number;
+    editedIngredientIndex: number;
+    defaultListIndex: number;
 }
 
 const initialState: State = {
-    shoppingLists: [{ title: 'Default', ingredients: [new NamedItem('apples'), new NamedItem('papayas')], default: true }, { title: 'Camping', ingredients: [new NamedItem('Tent'), new NamedItem('Soda'), new NamedItem('Burgers'), new NamedItem('Buns'), new NamedItem('Marshmallows')], default: false }],
+    shoppingLists: [],
     editedListIndex: -1,
     editedIngredientIndex: -1,
     defaultListIndex: 0
@@ -36,6 +35,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 ...state,
                 shoppingLists: newShoppingLists
             }
+
         case ShoppingListActions.ADD_INGREDIENTS:
             const newIngredientsArrayIngredients = [...state.shoppingLists[state.defaultListIndex].ingredients, ...action.payload];
             const newShoppingListIngredients = { ...state.shoppingLists[state.defaultListIndex], ingredients: newIngredientsArrayIngredients };
@@ -45,17 +45,15 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 ...state,
                 shoppingLists: newShoppingListsIngredients
             }
-        case ShoppingListActions.UPDATE_INGREDIENT:
-            const updatedIngredient = action.payload;
-            const updatedIngredientsArray = [...state.shoppingLists[state.editedListIndex].ingredients];
-            updatedIngredientsArray[state.editedIngredientIndex] = updatedIngredient;
-            const updatedShoppingList = { ...state.shoppingLists[state.editedListIndex], ingredients: updatedIngredientsArray };
-            const updatedShoppingLists = [...state.shoppingLists];
-            updatedShoppingLists[state.editedListIndex] = updatedShoppingList;
+
+        case ShoppingListActions.CREATE_LIST:
+            const newList = { title: '', ingredients: [], default: false };
+            const newLists = [...state.shoppingLists, newList];
             return {
                 ...state,
-                shoppingLists: updatedShoppingLists
+                shoppingLists: newLists
             }
+
         case ShoppingListActions.DELETE_INGREDIENT:
             const newDeleteList = [];
             const oldItemArray = [...state.shoppingLists[action.payload.listIndex].ingredients];
@@ -67,33 +65,11 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                     newDeleteList.push(list);
                 }
             });
-
             return {
                 ...state,
                 shoppingLists: newDeleteList
             }
-        case ShoppingListActions.START_EDIT:
-            let properIngredientIndex = action.payload.index
-            if (properIngredientIndex === -1) properIngredientIndex = state.shoppingLists[action.payload.listIndex].ingredients.length - 1;
-            console.log(properIngredientIndex);
-            return {
-                ...state,
-                editedListIndex: action.payload.listIndex,
-                editedIngredientIndex: properIngredientIndex
-            }
-        case ShoppingListActions.STOP_EDIT:
-            return {
-                ...state,
-                editedListIndex: -1,
-                editedIngredientIndex: -1
-            }
-        case ShoppingListActions.CREATE_LIST:
-            const newList = { title: '', ingredients: [], default: false };
-            const newLists = [...state.shoppingLists, newList];
-            return {
-                ...state,
-                shoppingLists: newLists
-            }
+
         case ShoppingListActions.DELETE_LIST:
             const oldDeleteLists = [...state.shoppingLists]
             oldDeleteLists.splice(action.payload, 1);
@@ -101,10 +77,62 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 ...state,
                 shoppingLists: oldDeleteLists
             }
+
+        case ShoppingListActions.SET_SHOPPING_LISTS:
+
+            return {
+                ...state,
+                shoppingLists: action.payload
+            }
+
+        case ShoppingListActions.START_EDIT_INGREDIENT:
+            let properIngredientIndex = action.payload.index
+            if (properIngredientIndex === -1) properIngredientIndex = state.shoppingLists[action.payload.listIndex].ingredients.length - 1;
+            return {
+                ...state,
+                editedListIndex: action.payload.listIndex,
+                editedIngredientIndex: properIngredientIndex
+            }
+
+        case ShoppingListActions.START_EDIT_LIST:
+
+            return {
+                ...state,
+                editedListIndex: action.payload
+            }
+
+        case ShoppingListActions.STOP_EDIT:
+            return {
+                ...state,
+                editedListIndex: -1,
+                editedIngredientIndex: -1
+            }
+
         case ShoppingListActions.SWITCH_DEFAULT:
             return {
                 ...state,
                 defaultListIndex: action.payload
+            }
+
+        case ShoppingListActions.UPDATE_INGREDIENT:
+            const updatedIngredient = action.payload;
+            const updatedIngredientsArray = [...state.shoppingLists[state.editedListIndex].ingredients];
+            updatedIngredientsArray[state.editedIngredientIndex] = updatedIngredient;
+            const updatedShoppingList = { ...state.shoppingLists[state.editedListIndex], ingredients: updatedIngredientsArray };
+            const updatedShoppingLists = [...state.shoppingLists];
+            updatedShoppingLists[state.editedListIndex] = updatedShoppingList;
+            return {
+                ...state,
+                shoppingLists: updatedShoppingLists
+            }
+
+        case ShoppingListActions.UPDATE_LIST:
+            let updatedListSL = [...state.shoppingLists];
+            updatedListSL[action.payload.listIndex] = action.payload.updatedList;
+            console.log(action.payload);
+            return {
+                ...state,
+                shoppingLists: updatedListSL
             }
         default:
             return state;
