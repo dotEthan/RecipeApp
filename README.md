@@ -43,16 +43,17 @@ All Errors fixed. Everything working as expected (for this point in development)
 * Mobile menu & recipe overlay - close on select & esc
 * Multiple Shopping Lists
 * Shopping List, edit in place
+* Shopping List - Edit Full Form
 
 ### Working on Now:
 * Redesign - Edit Recipe & Shopping List
 * Tooltips for "Recipe Detail" add "to shoppinglist"
-* Shopping List - Edit Full Form
+* Shopping List Saving
+* Fill out Test Mode Recipes with proper Recipes
 
 ### To Come:
 
 * Reminder - Refactor Header & sl-each
-* Fill out Test Mode Recipes with proper Recipes
 * warn if closing without saving
 * Implement and maintain TDD
 * Recipe Directions and Recipe Ingredients - DRY and Refactor code & put HTML into own component
@@ -63,7 +64,6 @@ All Errors fixed. Everything working as expected (for this point in development)
 * Loading Spinner for all side effects
 * Form Reset on login
 * Warnings for login/register
-* Shopping List Saving
 
 ### Future thoughts:
 

@@ -2,41 +2,35 @@ import { Action } from '@ngrx/store';
 
 export const TRY_SIGNUP = 'TRY_SIGNUP';
 export const TRY_SIGNIN = 'TRY_SIGNIN';
-export const SIGNUP = 'SIGNUP';
 export const SIGNIN = 'SIGNIN';
 export const LOGOUT = 'LOGOUT';
-export const SET_TOKEN = 'SET_TOKEN';
 export const AUTO_LOGIN = 'AUTO_LOGIN';
 export const TOGGLE_TEST_MODE = 'TOGGLE_TEST_MODE';
 
 export class TrySignup implements Action {
     readonly type = TRY_SIGNUP;
 
-    constructor(public payload: { username: string, password: string }) { }
+    constructor(public payload: { username: string, password: string }) {
+        console.log('auth signin actions');
+    }
 }
 
 export class TrySignin implements Action {
     readonly type = TRY_SIGNIN;
 
-    constructor(public payload: { username: string, password: string }) { }
-}
-
-export class Signup implements Action {
-    readonly type = SIGNUP;
+    constructor(public payload: { username: string, password: string }) {
+        console.log('auth signin actions');
+    }
 }
 
 export class Signin implements Action {
     readonly type = SIGNIN;
+
+    constructor(public payload: { token: string, uid: string }) { }
 }
 
 export class Logout implements Action {
     readonly type = LOGOUT;
-}
-
-export class SetToken implements Action {
-    readonly type = SET_TOKEN;
-
-    constructor(public payload: string) { }
 }
 
 export class AutoLogin implements Action {
@@ -48,4 +42,4 @@ export class toggleTestMode implements Action {
 }
 
 
-export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup | TrySignin | AutoLogin | toggleTestMode;
+export type AuthActions = Signin | Logout | TrySignup | TrySignin | AutoLogin | toggleTestMode;

@@ -1,19 +1,26 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { map, switchMap, mergeMap, tap, take, catchError } from 'rxjs/operators';
+import { map, switchMap, mergeMap, tap, catchError } from 'rxjs/operators';
 import { from, pipe, throwError, empty } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import * as AuthActions from './auth.actions';
-import * as firebase from 'firebase';
 import { AuthService } from '../auth.service';
+import * as firebase from 'firebase';
 import * as fromApp from '../../../store/app-reducer'
 import * as RecipeActions from '../../../recipes/store/recipes.actions';
 import * as ShoppingListActions from '../../../shopping-list/store/shopping-list.actions';
 
 @Injectable()
 export class AuthEffects {
+
+    constructor(private actions$: Actions,
+        private router: Router,
+        private authService: AuthService,
+        private store: Store<fromApp.AppState>) {
+
+    }
 
     @Effect()
     authSignup = this.actions$
@@ -23,32 +30,20 @@ export class AuthEffects {
             }),
             switchMap((authData: { username: string, password: string }) => {
                 return from(firebase.auth().createUserWithEmailAndPassword(authData.username, authData.password))
-                    .pipe(
-                        catchError((err) => {
-                            this.authService.errorMsg.next(err.code);
-                            return empty();
-                        }));
+                    .pipe(catchError((err) => {
+                        this.authService.errorMsg.next(err.code);
+                        return empty();
+                    }));
             }),
             switchMap(() => {
                 return from(firebase.auth().currentUser.getIdToken());
             }),
             mergeMap((token: string) => {
-                window.localStorage.setItem('token', token);
-                window.localStorage.setItem('uid', firebase.auth().currentUser.uid);
+                const uid = firebase.auth().currentUser.uid;
+                this.authService.loginSuccess({ token: token, uid: uid });
                 return [
-                    {
-                        type: AuthActions.SIGNUP
-                    },
-                    {
-                        type: AuthActions.SET_TOKEN,
-                        payload: token
-                    }
+                    new AuthActions.Signin({ token: token, uid: uid })
                 ];
-            }),
-            tap(() => {
-                this.store.dispatch(new RecipeActions.FetchRecipes());
-                this.authService.modalOpen.next(false);
-                this.authService.loggedIn.next(true);
             }));
 
     @Effect()
@@ -59,51 +54,40 @@ export class AuthEffects {
             }),
             switchMap((authData: { username: string, password: string }) => {
                 return from(firebase.auth().signInWithEmailAndPassword(authData.username, authData.password))
-                    .pipe(
-                        catchError((err) => {
-                            this.authService.errorMsg.next(err.code);
-                            return empty();
-                        }));
+                    .pipe(catchError((err) => {
+                        console.log(err);
+                        this.authService.errorMsg.next(err.code);
+                        return empty();
+                    }));
             }),
             switchMap(() => {
                 return from(firebase.auth().currentUser.getIdToken());
             }),
             mergeMap((token: string) => {
-                window.localStorage.setItem('token', token);
-                window.localStorage.setItem('uid', firebase.auth().currentUser.uid);
+                const uid = firebase.auth().currentUser.uid;
+                this.authService.loginSuccess({ token: token, uid: uid });
                 return [
-                    {
-                        type: AuthActions.SIGNIN
-                    },
-                    {
-                        type: AuthActions.SET_TOKEN,
-                        payload: token
-                    }
+                    new AuthActions.Signin({ token: token, uid: uid }),
+                    new RecipeActions.FetchRecipes,
+                    new ShoppingListActions.FetchShoppingLists
                 ];
-            }),
-            tap(() => {
-                this.store.dispatch(new RecipeActions.FetchRecipes());
-                this.authService.modalOpen.next(false);
-                this.authService.loggedIn.next(true);
             }));
+
     // Using?
     @Effect()
     autoLogin = this.actions$
         .pipe(ofType(AuthActions.AUTO_LOGIN),
             mergeMap(() => {
+                console.log('in');
+                const token = window.localStorage.getItem('token');
+                const uid = window.localStorage.getItem('uid');
+                console.log('UID: ', uid);
+                this.authService.loginSuccess({ token: token, uid: uid });
                 return [
-                    {
-                        type: AuthActions.SIGNIN
-                    },
-                    {
-                        type: AuthActions.SET_TOKEN,
-                        payload: window.localStorage.getItem('token')
-                    }
+                    new AuthActions.Signin({ token: token, uid: uid }),
+                    new RecipeActions.FetchRecipes,
+                    new ShoppingListActions.FetchShoppingLists
                 ]
-            }),
-            tap(() => {
-                this.store.dispatch(new RecipeActions.FetchRecipes());
-                this.authService.loggedIn.next(true);
             }));
 
     @Effect({ dispatch: false }) // No final state changes
@@ -117,15 +101,9 @@ export class AuthEffects {
                 window.localStorage.removeItem('uid');
                 window.localStorage.removeItem('testMode');
                 this.authService.loggedIn.next(false);
+                this.authService.testMode.next(false);
                 this.store.dispatch(new RecipeActions.SetRecipes(emptyRecipe));
                 this.store.dispatch(new ShoppingListActions.SetShoppingLists(emptyShoppingList));
                 this.router.navigate(['/']);
             }));
-
-    constructor(private actions$: Actions,
-        private router: Router,
-        private authService: AuthService,
-        private store: Store<fromApp.AppState>) {
-
-    }
 }

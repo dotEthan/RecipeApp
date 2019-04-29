@@ -5,7 +5,7 @@ export interface FeatureState extends fromApp.AppState {
     token: string;
     authenticated: boolean;
     uid: string;
-    loggedIn: boolean;
+    // loggedIn: boolean;
     // testMode: boolean;
 }
 
@@ -27,23 +27,18 @@ const initialState: State = {
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
     switch (action.type) {
-        case AuthActions.SIGNUP:
         case AuthActions.SIGNIN:
             return {
                 ...state,
                 authenticated: true,
-                loggedIn: true,
+                token: action.payload.token,
+                uid: action.payload.uid
             };
         case AuthActions.LOGOUT:
             return {
                 ...state,
                 token: null,
                 authenticated: false,
-            };
-        case AuthActions.SET_TOKEN:
-            return {
-                ...state,
-                token: action.payload
             };
         case AuthActions.AUTO_LOGIN:
             return {

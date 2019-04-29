@@ -8,6 +8,7 @@ import * as fromApp from '../../store/app-reducer';
 import * as fromAuth from '../../core/auth-modal/store/auth.reducers';
 import * as AuthActions from '../auth-modal/store/auth.actions';
 import * as RecipeActions from '../../recipes/store/recipes.actions';
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 
 
 @Component({
@@ -65,6 +66,7 @@ export class HeaderComponent implements OnInit {
     }
 
     testModeOff() {
+        // this.store.dispatch(new ShoppingListActions.StoreShoppingLists());
         this.store.dispatch(new AuthActions.Logout());
         this.authService.testMode.next(false);
         this.router.navigate(['']);

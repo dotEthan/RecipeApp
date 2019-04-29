@@ -12,4 +12,10 @@ export class AuthService {
     testMode = new BehaviorSubject(false);
     loggedIn = new BehaviorSubject(false);
 
+    loginSuccess(userData: { token: string, uid: string }) {
+        window.localStorage.setItem('token', userData.token);
+        window.localStorage.setItem('uid', userData.uid);
+        this.modalOpen.next(false);
+        this.loggedIn.next(true);
+    }
 }

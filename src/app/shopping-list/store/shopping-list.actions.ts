@@ -8,10 +8,12 @@ export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';
 export const CREATE_LIST = 'CREATE_LIST';
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const DELETE_LIST = 'DELETE_LIST';
+export const FETCH_SHOPPING_LISTS = 'FETCH_SHOPPING_LISTS';
 export const SET_SHOPPING_LISTS = 'SET_SHOPPING_LISTS';
 export const START_EDIT_INGREDIENT = 'START_EDIT_INGREDIENT';
 export const START_EDIT_LIST = 'START_EDIT_LIST';
 export const STOP_EDIT = 'STOP_EDIT';
+export const STORE_SHOPPING_LISTS = 'STORE_SHOPPING_LISTS';
 export const SWITCH_DEFAULT = 'SWITCH_DEFAULT';
 export const UPDATE_INGREDIENT = 'UPDATE_INGREDIENT';
 export const UPDATE_LIST = 'UPDATE_LIST';
@@ -44,6 +46,13 @@ export class DeleteList implements Action {
     constructor(public payload: number) { }
 }
 
+export class FetchShoppingLists implements Action {
+    readonly type = FETCH_SHOPPING_LISTS;
+    constructor() {
+        console.log('Shopping List actions');
+    }
+}
+
 export class SetShoppingLists implements Action {
     readonly type = SET_SHOPPING_LISTS;
 
@@ -64,6 +73,10 @@ export class StartEditList implements Action {
 
 export class StopEdit implements Action {
     readonly type = STOP_EDIT;
+}
+
+export class StoreShoppingLists implements Action {
+    readonly type = STORE_SHOPPING_LISTS;
 }
 
 export class SwitchDefault implements Action {
@@ -90,10 +103,12 @@ export type ShoppingListActionsTypes =
     CreateList |
     DeleteIngredient |
     DeleteList |
+    FetchShoppingLists |
     SetShoppingLists |
     StartEditIngredient |
     StartEditList |
     StopEdit |
+    StoreShoppingLists |
     SwitchDefault |
     UpdateIngredient |
     UpdateList;

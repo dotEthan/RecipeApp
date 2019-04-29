@@ -17,22 +17,21 @@ export class RecipeEffects {
         .pipe(ofType(RecipesActions.FETCH_RECIPES),
             switchMap((action: RecipesActions.FetchRecipes) => {
                 let uid = window.localStorage.getItem('uid');
-                console.log('reicpes effects earlier = ', uid);
+                // console.log('reicpes effects earlier = ', uid);
                 return this.httpClient.get<Recipe[]>('https://angular-testing-a4072.firebaseio.com/' + uid + '/recipes.json')
             }),
-            map(
-                (recipes) => {
-                    for (let recipe of recipes) {
-                        if (!recipe['ingredients']) {
-                            recipe['ingredients'] = [{ title: 'default', item: [] }];
-                        }
+            map((recipes) => {
+                for (let recipe of recipes) {
+                    if (!recipe['ingredients']) {
+                        recipe['ingredients'] = [{ title: 'default', item: [] }];
                     }
-                    console.log('reicpes effects recipes = ', recipes);
-                    return {
-                        type: RecipesActions.SET_RECIPES,
-                        payload: recipes
-                    };
                 }
+                // console.log('reicpes effects recipes = ', recipes);
+                return {
+                    type: RecipesActions.SET_RECIPES,
+                    payload: recipes
+                };
+            }
             ));
 
     @Effect({ dispatch: false })

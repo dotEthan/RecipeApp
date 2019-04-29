@@ -31,6 +31,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
                 recipes: oldRecipes
             }
         case (RecipeActions.SET_RECIPES):
+            console.log('set recipes', action.payload);
             return {
                 ...state,
                 recipes: [...action.payload]

@@ -3,7 +3,7 @@
         <div class="col-xs-12">
             <div class="titleback">
                 <h1 class="app-title">Welcome to Recipeasy</h1>
-                <button *ngIf='!loggedIn'
+                <button *ngIf="!testMode && !loggedIn"
                         (click)='toggleTestMode()'
                         class="testmode-btn"
                         [class.testmode-on]="testMode">Toggle Test Mode</button>

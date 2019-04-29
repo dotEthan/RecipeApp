@@ -27,23 +27,23 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             if (properListIndex === -1) {
                 properListIndex = state.defaultListIndex;
             }
-            const newIngredientsArray = [...state.shoppingLists[properListIndex].ingredients, action.payload.item];
-            const newShoppingList = { ...state.shoppingLists[properListIndex], ingredients: newIngredientsArray };
-            const newShoppingLists = [...state.shoppingLists];
-            newShoppingLists[properListIndex] = (newShoppingList);
+            const newIngredientIngredientsArray = [...state.shoppingLists[properListIndex].ingredients, action.payload.item];
+            const newIngredientShoppingList = { ...state.shoppingLists[properListIndex], ingredients: newIngredientIngredientsArray };
+            const newIngredientShoppingLists = [...state.shoppingLists];
+            newIngredientShoppingLists[properListIndex] = (newIngredientShoppingList);
             return {
                 ...state,
-                shoppingLists: newShoppingLists
+                shoppingLists: newIngredientShoppingLists
             }
 
         case ShoppingListActions.ADD_INGREDIENTS:
-            const newIngredientsArrayIngredients = [...state.shoppingLists[state.defaultListIndex].ingredients, ...action.payload];
-            const newShoppingListIngredients = { ...state.shoppingLists[state.defaultListIndex], ingredients: newIngredientsArrayIngredients };
-            const newShoppingListsIngredients = [...state.shoppingLists];
-            newShoppingListsIngredients[state.defaultListIndex] = (newShoppingListIngredients);
+            const newIngredientsIngredientsArray = [...state.shoppingLists[state.defaultListIndex].ingredients, ...action.payload];
+            const newIngredientsShoppingList = { ...state.shoppingLists[state.defaultListIndex], ingredients: newIngredientsIngredientsArray };
+            const newIngredientsShoppingLists = [...state.shoppingLists];
+            newIngredientsShoppingLists[state.defaultListIndex] = (newIngredientsShoppingList);
             return {
                 ...state,
-                shoppingLists: newShoppingListsIngredients
+                shoppingLists: newIngredientsShoppingLists
             }
 
         case ShoppingListActions.CREATE_LIST:
@@ -79,7 +79,8 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             }
 
         case ShoppingListActions.SET_SHOPPING_LISTS:
-
+            console.log('set Shopping Lists', action.payload);
+            // debugger;
             return {
                 ...state,
                 shoppingLists: action.payload

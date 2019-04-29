@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
     this.authService.modalOpen.subscribe(shouldOpen => {
       this.modalOpen = shouldOpen;
     })
-
     if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",
@@ -46,13 +45,11 @@ export class AppComponent implements OnInit {
     }
 
     if (window.localStorage.getItem('token')) {
+      if (window.localStorage.getItem('testMode')) {
+        window.localStorage.setItem('testMode', 'true');
+        this.authService.testMode.next(true);
+      }
       this.store.dispatch(new AuthActions.AutoLogin());
-    }
-
-    if (window.localStorage.getItem('testMode') === 'true') {
-      // console.log('recipes action load tests');
-      this.store.dispatch(new RecipeActions.SetTestRecipes());
-      this.authService.testMode.next(true);
     }
   }
 
