@@ -7,9 +7,9 @@ You can register to save your own recipes or use the "Test Mode" button on the m
 
 ### Status
 
-Functionality: 75%  
-Design: 50%  
-Coming along very well. 
+Functionality: 80%  
+Design: 75%  
+Coming along very well.
 
 ## Overview and Thoughts
 
@@ -44,12 +44,12 @@ All Errors fixed. Everything working as expected (for this point in development)
 * Multiple Shopping Lists
 * Shopping List, edit in place
 * Shopping List - Edit Full Form
+* Fill out Test Mode Recipes with proper Recipes
+* Shopping List Saving
 
 ### Working on Now:
 * Redesign - Edit Recipe & Shopping List
 * Tooltips for "Recipe Detail" add "to shoppinglist"
-* Shopping List Saving
-* Fill out Test Mode Recipes with proper Recipes
 
 ### To Come:
 
