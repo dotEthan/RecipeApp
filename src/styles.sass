@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Montserrat:500,600,700,800|Fira+Sans')
-$navbar-height: 75px
-$navbar-height-minus: 77px
-$borderize-margin: 25px
-$lineheight: 3px
-$spaceheight: 6px
-$lineoneoffset: $lineheight + $spaceheight
-$iconheight: ($lineheight * 3) + ($spaceheight *2)
+@import "./variables"
 
 *
   box-sizing: border-box
@@ -23,6 +17,7 @@ h1, h2, h3, h4, h5, h6
   align-items: center
   justify-content: center
   background: url('assets/main.jpg') no-repeat center top 
+  // background: --main-bg-color
   background-size: cover
 
   &:before

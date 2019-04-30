@@ -32,7 +32,7 @@ export class SlButtonComponent implements OnInit {
   onSlButtonClick() {
     const updatedViewableList = [...this.viewableList];
 
-    if (this.viewableList.length > 2) {
+    if (this.viewableList.length > 3) {
       updatedViewableList.pop();
       updatedViewableList.push(this.listIndex);
     } else {

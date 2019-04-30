@@ -5,23 +5,18 @@ export interface FeatureState extends fromApp.AppState {
     token: string;
     authenticated: boolean;
     uid: string;
-    // loggedIn: boolean;
-    // testMode: boolean;
 }
 
 export interface State {
     token: string;
     authenticated: boolean;
     uid: string;
-    // loggedIn: boolean;
-    // testMode: boolean;
 }
 
 const initialState: State = {
     token: null,
     authenticated: false,
     uid: null,
-    // loggedIn: false,
     // testMode: false,
 }
 

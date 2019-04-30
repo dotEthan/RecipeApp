@@ -1,3 +1,67 @@
+@import "../../variables"
+
+.headline
+    display: flex
+    position: relative
+
+.headline-title
+    width: 100%
+
+.sl-new-list
+    display: flex
+    justify-content: space-around
+    align-items: center
+    position: absolute
+    right: 100px
+    top: 32px
+    width: 200px
+    height: 60px
+    background: $colorLightest
+    border: 2px solid $colorLighter
+    padding: 10px
+    border-radius: 5px
+    margin: 0 5px
+    position: relative
+    cursor: pointer
+    
+    &:hover
+        border: 2px solid $colorDarker
+
+        .sl-type-title
+            color: $colorDarker
+
+        .sl-add-sign
+            &:before, &:after
+                background: $colorDarker
+
+.sl-type-title
+    font-weight: bold
+    font-size: 1em
+    color: $colorDarkest
+
+.sl-add-sign
+    width: 25px
+    height: 25px
+    position: relative
+
+    &:before, &:after
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        background: $colorDarkest
+
+    &:after
+        width: 25px
+        height: 4px
+        border-radius: 2px
+
+    &:before
+        width: 4px
+        height: 25px
+        border-radius: 2px
+    
 .all-lists-contain
     margin-right: 0
     margin-left: 0
@@ -11,58 +75,9 @@
     padding: 0 25px
     overflow: hidden
 
-.sl-new-list
-    width: 25%
-    border: 1px solid #cccccc
-    padding: 15px
-    border-radius: 5px
-    margin: 0 5px
-    position: relative
-    min-height: 200px
-    order: -1
-
 .sl-list
     width: 25%
     margin: 0 5px
-
-.sl-type-title
-    display: flex
-    justify-content: center
-    text-align: center
-    font-weight: bold
-    font-size: 1.3em
-    margin-bottom: 10px
-
-.sl-add-sign
-    cursor: pointer
-    width: 75px
-    height: 75px
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-
-    &:before, &:after
-        content: ''
-        position: absolute
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
-        background: #ccc
-
-    &:after
-        width: 50px
-        height: 4px
-        border-radius: 2px
-
-    &:before
-        width: 4px
-        height: 50px
-        border-radius: 2px
-    
-    &:hover
-        &:before, &:after
-            background: #666
 
 .viewable-lists
     display: flex

@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
       });
     }
 
+    // Time Limited?
     if (window.localStorage.getItem('token')) {
       if (window.localStorage.getItem('testMode')) {
         window.localStorage.setItem('testMode', 'true');

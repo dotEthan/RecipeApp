@@ -1,3 +1,5 @@
+@import "../../../variables"
+    
 .sl-contain
     width: 100%
     height: 100%
@@ -15,8 +17,8 @@
     min-height: 40px
 
 .sl-not-default-header, .sl-default-header
-    background: #666
-    color: #eeeeff
+    background: $colorMiddle
+    color: $colorLightest
     display: flex
     align-items: center
     justify-content: center
@@ -24,30 +26,31 @@
     width: 75%
 
     &:hover
-        background: #777
+        background: $colorLighter
+        color: $colorDarkest
 
 .sl-default-header
-    background: #ddd
-    color: #0c0c0c
+    background: $colorLighter
+    color: $colorDarkest
     cursor: auto
 
     &:hover
-        background: #ddd
+        background: $colorLighter
 
 .sl-list-close
     position: relative
-    background: #0c0c0c
-    border-left: 1px solid #0c0c0c
+    background: $colorDarkest
+    border-left: 1px solid $colorDarkest
     width: 25%
     height: 100%
     cursor: pointer
     transition: all .2s 
 
     &:hover
-        background: #555
+        background: $colorDarker
 
 
-    &:before
+    &:before, &:after
         position: absolute
         top: 50%
         left: 50%
@@ -58,14 +61,8 @@
         background: #eeeeff
 
     &:after
-        position: absolute
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%) rotate(45deg)
-        content: ''
         height: 3px 
         width: 15px
-        background: #eeeeff
 
 .sl-main
     padding: 5px
@@ -119,37 +116,6 @@
 .ingredient-add
     cursor: pointer
 
-.edit-icon
-    width: 4px
-    height: 12px
-    background: #CEAF0A
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-75%, -50%) rotate(45deg)
-    transition: all .3s ease-in-out
-
-    &:before
-        content: ''
-        position: absolute
-        top: -5px
-        left: 0
-        width: 4px
-        height: 4px
-        background: #0c0c0c
-        border-radius: 4px 4px 0 0
-    
-    &:after
-        content: ''
-        position: absolute
-        bottom: -5px
-        left: 0
-        width: 0
-        height: 0
-        border-left: 2px solid transparent
-        border-right: 2px solid transparent
-        border-top: 4px solid #0c0c0c
-
 .ingredient-delete
 
     &:before, &:after
@@ -172,8 +138,8 @@
     display: flex
 
 .list-edit
-    background: #0c0c0c
-    color: #eeeeff
+    background: $colorDarkest
+    color: $colorLightest
     width: 50%
     text-align: center
     padding: 15px 0

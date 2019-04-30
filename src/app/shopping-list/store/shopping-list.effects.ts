@@ -27,7 +27,7 @@ export class ShoppingListEffects {
             }),
             map((shoppingLists) => {
                 const newVisibleShoppingLists = [];
-                const arrayLength = (shoppingLists.length >= 2) ? 2 : shoppingLists.length;
+                const arrayLength = (shoppingLists.length >= 3) ? 3 : shoppingLists.length;
 
                 for (let i = 0; i <= arrayLength; i++) {
                     newVisibleShoppingLists.push(i);

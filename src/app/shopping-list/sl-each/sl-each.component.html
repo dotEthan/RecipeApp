@@ -73,12 +73,12 @@
     <div class="sl-footer">
         <div class="list-edit"
              *ngIf="editingListIndex !== listIndex; else editForm"
-             (click)="onEditList()">Edit<br>List</div>
+             (click)="onEditList()">Edit</div>
         <ng-template #editForm>
             <div class="list-edit"
-                 (click)="onSaveList()">Save<br>List</div>
+                 (click)="onSaveList()">Save</div>
         </ng-template>
         <div class="list-edit"
-             (click)="onDeleteList()">Delete<br>List</div>
+             (click)="onDeleteList()">Delete</div>
     </div>
 </div>

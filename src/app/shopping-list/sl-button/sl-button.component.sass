@@ -1,20 +1,22 @@
+@import "../../../variables"
+
 .sl-button-contain
     margin-bottom: 15px
 
 .sl-button
-    background: transparent 
-    border: 1px solid #666
+    background: $colorLightest
+    border: 2px solid $colorLighter
     padding: 25px 50px
     height: 75px
     
     &:hover
-        background: #ddd
+        border: 2px solid $colorDarker
 
     &:disabled
         color: #cccccc
         
         &:hover
-            background: transparent
+            border: 2px solid $colorLighter
     
 .sl-button-isdefault
     font-size: .6em

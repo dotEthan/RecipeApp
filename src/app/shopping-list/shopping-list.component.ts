@@ -41,7 +41,7 @@ export class ShoppingListComponent implements OnInit {
   onAddNewList() {
     this.store.dispatch(new ShoppingListActions.CreateList());
     const newViewableList = [...this.viewableListsIndexArray];
-    if (newViewableList.length < 3) newViewableList.push(this.shoppingListLength - 1);
+    if (newViewableList.length < 4) newViewableList.push(this.shoppingListLength - 1);
     this.shoppingListService.viewableListsIndexArray.next(newViewableList);
   }
 }

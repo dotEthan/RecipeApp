@@ -1,7 +1,17 @@
 <div class="container-fluid borderize">
   <div class="row borderize-contain">
-    <div class="text-center headline-title">
-      <h1>Shopping Lists</h1>
+    <div class="headline">
+      <div class="text-center headline-title">
+        <h1>Shopping Lists</h1>
+      </div>
+      <div class="sl-new-list"
+           (click)="onAddNewList()">
+        <div class="sl-add-sign">
+        </div>
+        <div class="sl-type-title">
+          Add New List
+        </div>
+      </div>
     </div>
     <div class="row all-lists-contain">
       <div class="col-xs-12">
@@ -9,14 +19,6 @@
         <!-- <hr> -->
         <div class="shopping-lists-contain">
           <div class="viewable-lists">
-            <div class="sl-new-list">
-              <div class="sl-type-title">
-                Add New List
-              </div>
-              <div class="sl-add-sign"
-                   (click)="onAddNewList()">
-              </div>
-            </div>
             <app-sl-each *ngFor="let listIndex of viewableListsIndexArray; let i = index"
                          [listIndex]="listIndex"
                          class="sl-list"
