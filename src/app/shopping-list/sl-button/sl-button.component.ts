@@ -26,7 +26,7 @@ export class SlButtonComponent implements OnInit {
       this.viewableList = listIndexArray;
       (this.viewableList.includes(this.listIndex)) ? this.isDisabled = true : this.isDisabled = false;
     });
-    console.log(this.isDefault);
+
   }
 
   onSlButtonClick() {

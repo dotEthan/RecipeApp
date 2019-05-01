@@ -12,7 +12,7 @@
     justify-content: space-around
     align-items: center
     position: absolute
-    right: 100px
+    right: 20px
     top: 32px
     width: 200px
     height: 60px
@@ -23,6 +23,13 @@
     margin: 0 5px
     position: relative
     cursor: pointer
+
+    @media (min-width: 768px)
+        right: 100px
+        top: 32px
+        width: 200px
+        height: 60px
+
     
     &:hover
         border: 2px solid $colorDarker
@@ -76,8 +83,11 @@
     overflow: hidden
 
 .sl-list
-    width: 25%
+    width: 100%
     margin: 0 5px
+
+    @media (min-width: 768px)
+        width: 25%
 
 .viewable-lists
     display: flex

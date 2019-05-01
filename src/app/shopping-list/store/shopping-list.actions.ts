@@ -48,9 +48,7 @@ export class DeleteList implements Action {
 
 export class FetchShoppingLists implements Action {
     readonly type = FETCH_SHOPPING_LISTS;
-    constructor() {
-        console.log('Shopping List actions');
-    }
+    constructor() { }
 }
 
 export class SetShoppingLists implements Action {

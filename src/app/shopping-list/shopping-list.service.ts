@@ -7,5 +7,5 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ShoppingListService {
     defaultListId = new BehaviorSubject(0);
-    viewableListsIndexArray = new BehaviorSubject([]);
+    viewableListsIndexArray = new BehaviorSubject([0]);
 }

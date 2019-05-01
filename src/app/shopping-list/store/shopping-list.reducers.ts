@@ -14,7 +14,7 @@ export interface State {
 }
 
 const initialState: State = {
-    shoppingLists: [],
+    shoppingLists: [{ title: '', ingredients: [new NamedItem('')], default: true }],
     editedListIndex: -1,
     editedIngredientIndex: -1,
     defaultListIndex: 0
@@ -79,8 +79,6 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             }
 
         case ShoppingListActions.SET_SHOPPING_LISTS:
-            console.log('set Shopping Lists', action.payload);
-            // debugger;
             return {
                 ...state,
                 shoppingLists: action.payload
@@ -130,7 +128,6 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         case ShoppingListActions.UPDATE_LIST:
             let updatedListSL = [...state.shoppingLists];
             updatedListSL[action.payload.listIndex] = action.payload.updatedList;
-            console.log(action.payload);
             return {
                 ...state,
                 shoppingLists: updatedListSL

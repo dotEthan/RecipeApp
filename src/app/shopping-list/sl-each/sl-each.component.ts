@@ -39,7 +39,7 @@ export class SlEachComponent implements OnInit {
 
         this.shoppingListService.viewableListsIndexArray.subscribe((listArray) => {
             this.viewableListArray = listArray;
-        })
+        });
 
         this.initForm();
     }

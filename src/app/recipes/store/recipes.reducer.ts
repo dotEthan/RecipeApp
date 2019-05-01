@@ -12,7 +12,16 @@ export interface State {
 }
 
 const initialState: State = {
-    recipes: []
+    recipes: [{
+        name: '',
+        description: '',
+        imagePath: '',
+        ingredients: [{ title: '', item: [new NamedItem('')] }],
+        directions: [{ title: '', item: [new NamedItem('')] }],
+        url: '',
+        keyword: '',
+        tags: ['']
+    }]
 };
 
 export function recipeReducer(state = initialState, action: RecipeActions.RecipesActions) {
@@ -31,7 +40,6 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
                 recipes: oldRecipes
             }
         case (RecipeActions.SET_RECIPES):
-            console.log('set recipes', action.payload);
             return {
                 ...state,
                 recipes: [...action.payload]

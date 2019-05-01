@@ -4,11 +4,14 @@ import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './shared/animations';
 import { Store } from '@ngrx/store';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Observable, fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import * as fromApp from './store/app-reducer';
 import * as AuthActions from './core/auth-modal/store/auth.actions';
 import * as RecipeActions from './recipes/store/recipes.actions';
 import { AuthService } from './core/auth-modal/auth.service';
+import { WindowResizeService } from './shared/window-resize.service';
 
 @Component({
   selector: 'app-root',
@@ -28,15 +31,26 @@ import { AuthService } from './core/auth-modal/auth.service';
   ],
 })
 export class AppComponent implements OnInit {
+  resizeObservable$: Observable<Event>;
+  resizeSubscription$: Subscription;
   modalOpen: boolean;
 
   constructor(private store: Store<fromApp.AppState>,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private windowResizeService: WindowResizeService) { }
 
   ngOnInit() {
-    this.authService.modalOpen.subscribe(shouldOpen => {
-      this.modalOpen = shouldOpen;
-    })
+    this.windowResizeService.windowWidth.next(window.innerWidth);
+    this.windowResizeService.windowHeight.next(window.innerHeight);
+
+    this.resizeObservable$ = fromEvent(window, 'resize');
+    this.resizeSubscription$ = this.resizeObservable$
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.windowResizeService.windowHeight.next(event.target['innerHeight']);
+        this.windowResizeService.windowWidth.next(event.target['innerWidth']);
+      });
+
     if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyDqrQ1nMg4RIeVIf1yH_10Tn1D1SMFbUm0",
@@ -52,6 +66,10 @@ export class AppComponent implements OnInit {
       }
       this.store.dispatch(new AuthActions.AutoLogin());
     }
+
+    this.authService.modalOpen.subscribe(shouldOpen => {
+      this.modalOpen = shouldOpen;
+    })
   }
 
   prepareRoute(outlet: RouterOutlet) {

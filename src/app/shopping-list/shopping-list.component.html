@@ -26,7 +26,7 @@
             </app-sl-each>
           </div>
           <div class="full-shopping-lists">
-            <app-sl-button *ngFor="let shoppingList of (shoppingListState | async).shoppingLists; let i = index"
+            <app-sl-button *ngFor="let shoppingList of (shoppingListState$ | async).shoppingLists; let i = index"
                            [shoppingListTitle]="shoppingList.title"
                            [listIndex]="i"
                            [isDefault]="defaultListIndex===i">

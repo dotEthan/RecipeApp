@@ -78,10 +78,8 @@ export class AuthEffects {
     autoLogin = this.actions$
         .pipe(ofType(AuthActions.AUTO_LOGIN),
             mergeMap(() => {
-                console.log('in');
                 const token = window.localStorage.getItem('token');
                 const uid = window.localStorage.getItem('uid');
-                console.log('UID: ', uid);
                 this.authService.loginSuccess({ token: token, uid: uid });
                 return [
                     new AuthActions.Signin({ token: token, uid: uid }),
