@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import * as fromShoppingList from '../store/shopping-list.reducers';
 import * as ShoppingListActions from '../store/shopping-list.actions';
 import { ShoppingListService } from '../shopping-list.service';
-// import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
   selector: 'app-sl-button',
@@ -22,24 +21,16 @@ export class SlButtonComponent implements OnInit {
     private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
-    this.shoppingListService.viewableListsIndexArray.subscribe((listIndexArray) => {
-      this.viewableList = listIndexArray;
+    this.store.select('shoppingLists').subscribe(state => {
+      this.viewableList = state.viewableListIndexes;
+      console.log("buttons", this.viewableList);
       (this.viewableList.includes(this.listIndex)) ? this.isDisabled = true : this.isDisabled = false;
     });
 
   }
 
-  onSlButtonClick() {
-    const updatedViewableList = [...this.viewableList];
-
-    if (this.viewableList.length > 3) {
-      updatedViewableList.pop();
-      updatedViewableList.push(this.listIndex);
-    } else {
-      updatedViewableList.push(this.listIndex);
-    }
-
-    this.shoppingListService.viewableListsIndexArray.next(updatedViewableList);
+  onSlButtonClick(listIndex) {
+    this.store.dispatch(new ShoppingListActions.UpdateViewableList(listIndex));
   }
 
 }

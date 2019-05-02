@@ -5,6 +5,7 @@ import { ShoppingList } from '../shoping-list.model';
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';
+export const ADD_VIEWABLE_LIST = 'ADD_VIEWABLE_LIST';
 export const CREATE_LIST = 'CREATE_LIST';
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const DELETE_LIST = 'DELETE_LIST';
@@ -17,6 +18,8 @@ export const STORE_SHOPPING_LISTS = 'STORE_SHOPPING_LISTS';
 export const SWITCH_DEFAULT = 'SWITCH_DEFAULT';
 export const UPDATE_INGREDIENT = 'UPDATE_INGREDIENT';
 export const UPDATE_LIST = 'UPDATE_LIST';
+export const UPDATE_SCREEN_RES = 'UPDATE_SCREEN_RES';
+export const UPDATE_VIEWABLE_LIST = 'UPDATE_VIEWABLE_LIST';
 
 export class AddIngredient implements Action {
     readonly type = ADD_INGREDIENT;
@@ -28,6 +31,12 @@ export class AddIngredients implements Action {
     readonly type = ADD_INGREDIENTS;
 
     constructor(public payload: NamedItem[]) { }
+}
+
+export class AddViewableList implements Action {
+    readonly type = ADD_VIEWABLE_LIST;
+
+    // constructor(public payload: number) { }
 }
 
 export class CreateList implements Action {
@@ -95,9 +104,22 @@ export class UpdateList implements Action {
     constructor(public payload: { listIndex: number, updatedList: { title: string, ingredients: NamedItem[], default: boolean } }) { }
 }
 
+export class UpdateScreenRes implements Action {
+    readonly type = UPDATE_SCREEN_RES;
+
+    constructor(public payload: number) { }
+}
+
+export class UpdateViewableList implements Action {
+    readonly type = UPDATE_VIEWABLE_LIST;
+
+    constructor(public payload: number) { }
+}
+
 export type ShoppingListActionsTypes =
     AddIngredient |
     AddIngredients |
+    AddViewableList |
     CreateList |
     DeleteIngredient |
     DeleteList |
@@ -109,4 +131,6 @@ export type ShoppingListActionsTypes =
     StoreShoppingLists |
     SwitchDefault |
     UpdateIngredient |
-    UpdateList;
+    UpdateList |
+    UpdateScreenRes |
+    UpdateViewableList;

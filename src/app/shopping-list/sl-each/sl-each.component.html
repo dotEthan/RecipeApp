@@ -1,25 +1,13 @@
 <div class="sl-contain">
-    <div class="sl-full-header">
-        <div class="sl-not-default-header"
-             (click)="onMakeDefault()"
-             *ngIf="listIndex!==defaultListIndex; else isDefault">
-            Make Default
-        </div>
-        <ng-template #isDefault>
-            <div class="sl-default-header">
-                Default
-            </div>
-        </ng-template>
-        <div class="sl-list-close"
-             (click)="onViewableListClose()"></div>
-    </div>
     <div class="sl-main"
          *ngIf="editingListIndex !== listIndex || editingIngredientIndex !== -1; else listForm">
-        <div class="sl-type-title">
-            {{viewableListObject.title}}
+        <div class="sl-full-header">
+            <div class="sl-type-title">
+                {{viewableListObject.title}}
+            </div>
         </div>
-        <ul class="sl-list">
-            <li class="sl-list-item"
+        <ul class="sl-ingredient-list">
+            <li class="sl-ingredient-list-item"
                 *ngFor="let ingredient of viewableListObject.ingredients; let p = index">
                 <app-ingredient-input [inputValue]="ingredient.name"
                                       [ngClass]="(editingListIndex === listIndex) && (editingIngredientIndex === p) ? 'sl-ingredient-input' : 'sl-ingredient-input-hidden'"
@@ -27,7 +15,7 @@
                 </app-ingredient-input>
                 <div
                      [ngClass]="(editingListIndex !== listIndex) || (editingIngredientIndex !== p) ? 'sl-ingredient' : 'sl-ingredient-hidden'">
-                    <div class="sl-ingredient-name hyphenate">{{ingredient.name}}</div>
+                    <div class="sl-ingredient-name">{{ingredient.name}}</div>
                     <div class="ingredient-alter">
                         <!-- <div class="ingredient-edit"
                              (click)="onEditItem(p)">
@@ -71,6 +59,10 @@
         </form>
     </ng-template>
     <div class="sl-footer">
+        <div class="list-edit-default"
+             (click)="onMakeDefault()">
+            Default
+        </div>
         <div class="list-edit"
              *ngIf="editingListIndex !== listIndex; else editForm"
              (click)="onEditList()">Edit</div>
@@ -78,6 +70,8 @@
             <div class="list-edit"
                  (click)="onSaveList()">Save</div>
         </ng-template>
+        <div class="list-edit"
+             (click)="onViewableListClose()">_</div>
         <div class="list-edit"
              (click)="onDeleteList()">Delete</div>
     </div>

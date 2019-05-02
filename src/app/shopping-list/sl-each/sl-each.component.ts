@@ -55,19 +55,9 @@ export class SlEachComponent implements OnInit {
     }
 
     onDeleteList() {
-        const newViewableListArray = [];
-        const currentViewableArrayLength = this.viewableListArray.length;
-
-        for (let i = 0; i < currentViewableArrayLength; i++) {
-            if (this.listIndex > this.viewableListArray[i]) {
-                newViewableListArray.push(this.viewableListArray[i])
-            } else if (this.listIndex < this.viewableListArray[i]) {
-                newViewableListArray.push(this.viewableListArray[i] - 1)
-            }
-        }
-
-        this.shoppingListService.viewableListsIndexArray.next(newViewableListArray);
+        console.log(this.listIndex);
         this.store.dispatch(new ShoppingListActions.DeleteList(this.listIndex));
+        this.store.dispatch(new ShoppingListActions.UpdateViewableList((-this.listIndex) - 1));
     }
 
     onEditItem(index: number) {
@@ -99,10 +89,7 @@ export class SlEachComponent implements OnInit {
     }
 
     onViewableListClose() {
-        const viewableListArrayIndex = this.viewableListArray.findIndex(item => item === this.listIndex);
-        const newViewableListIndexArrray = this.viewableListArray;
-        newViewableListIndexArrray.splice(viewableListArrayIndex, 1);
-        this.shoppingListService.viewableListsIndexArray.next(newViewableListIndexArrray);
+        this.store.dispatch(new ShoppingListActions.UpdateViewableList((-this.listIndex) - 1));
     }
 
     private initForm() {

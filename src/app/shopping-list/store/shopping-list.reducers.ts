@@ -1,6 +1,7 @@
 import * as ShoppingListActions from './shopping-list.actions';
 import { NamedItem } from '../../shared/namedItem.model';
 import * as fromApp from '../../store/app-reducer';
+import { ShoppingList } from '../shoping-list.model';
 
 export interface FeatureState extends fromApp.AppState {
     shoppingLists: State
@@ -11,13 +12,17 @@ export interface State {
     editedListIndex: number;
     editedIngredientIndex: number;
     defaultListIndex: number;
+    viewableListIndexes: number[];
+    wantedViewableListLength: number;
 }
 
 const initialState: State = {
     shoppingLists: [{ title: '', ingredients: [new NamedItem('')], default: true }],
     editedListIndex: -1,
     editedIngredientIndex: -1,
-    defaultListIndex: 0
+    defaultListIndex: 0,
+    viewableListIndexes: [0],
+    wantedViewableListLength: 1,
 }
 
 export function shoppingListReducer(state = initialState, action: ShoppingListActions.ShoppingListActionsTypes) {
@@ -46,8 +51,28 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 shoppingLists: newIngredientsShoppingLists
             }
 
+        case ShoppingListActions.ADD_VIEWABLE_LIST:
+            let newAddListIndexes: number[] = [...state.viewableListIndexes];
+            const stateViewableIndexesLength = state.viewableListIndexes.length;
+
+            if (state.wantedViewableListLength === 1) {
+                newAddListIndexes = [state.shoppingLists.length - 1];
+            } else {
+                if (stateViewableIndexesLength === state.wantedViewableListLength) {
+                    newAddListIndexes.splice(-1, 1)
+                    newAddListIndexes.push(state.shoppingLists.length - 1);
+                } else {
+                    newAddListIndexes.push(state.shoppingLists.length - 1);
+                }
+            }
+
+            return {
+                ...state,
+                viewableListIndexes: newAddListIndexes
+            }
+
         case ShoppingListActions.CREATE_LIST:
-            const newList = { title: '', ingredients: [], default: false };
+            const newList = { title: 'List', ingredients: [new NamedItem('ingredient')], default: false };
             const newLists = [...state.shoppingLists, newList];
             return {
                 ...state,
@@ -73,6 +98,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         case ShoppingListActions.DELETE_LIST:
             const oldDeleteLists = [...state.shoppingLists]
             oldDeleteLists.splice(action.payload, 1);
+            console.log(oldDeleteLists);
             return {
                 ...state,
                 shoppingLists: oldDeleteLists
@@ -131,6 +157,55 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             return {
                 ...state,
                 shoppingLists: updatedListSL
+            }
+
+        case ShoppingListActions.UPDATE_SCREEN_RES:
+            let newWantedLength: number;
+
+            if (action.payload < 768) newWantedLength = 1;
+            if (action.payload > 768 && action.payload < 1024) newWantedLength = 2;
+            if (action.payload > 1024) newWantedLength = 4;
+
+            return {
+                ...state,
+                wantedViewableListLength: newWantedLength
+            }
+
+        case ShoppingListActions.UPDATE_VIEWABLE_LIST:
+            let newViewableListIndexes: number[] = [...state.viewableListIndexes];
+
+            if (action.payload < 0) {
+                const realIndex = Math.abs(action.payload + 1);
+                const indexToRemove = state.viewableListIndexes.indexOf(realIndex);
+
+                const oldIndexArray = state.viewableListIndexes.reduce((acc, nextIndex, i) => {
+
+                    if (i < indexToRemove) {
+                        acc.push(nextIndex);
+                    }
+
+                    if (i > indexToRemove) {
+                        acc.push(nextIndex - 1);
+                    }
+
+                    return acc;
+
+                }, []);
+                console.log(oldIndexArray);
+                newViewableListIndexes = [...oldIndexArray];
+
+            } else if (state.viewableListIndexes.indexOf(action.payload) === -1) {
+                if (state.viewableListIndexes.length === state.wantedViewableListLength) {
+                    newViewableListIndexes.splice(-1, 1)
+                    newViewableListIndexes.push(action.payload);
+                } else {
+                    newViewableListIndexes.push(action.payload);
+                }
+            }
+
+            return {
+                ...state,
+                viewableListIndexes: newViewableListIndexes
             }
         default:
             return state;

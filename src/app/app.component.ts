@@ -10,6 +10,7 @@ import { debounceTime } from 'rxjs/operators';
 import * as fromApp from './store/app-reducer';
 import * as AuthActions from './core/auth-modal/store/auth.actions';
 import * as RecipeActions from './recipes/store/recipes.actions';
+import * as ShoppingListActions from './shopping-list/store/shopping-list.actions';
 import { AuthService } from './core/auth-modal/auth.service';
 import { WindowResizeService } from './shared/window-resize.service';
 
@@ -40,15 +41,17 @@ export class AppComponent implements OnInit {
     private windowResizeService: WindowResizeService) { }
 
   ngOnInit() {
-    this.windowResizeService.windowWidth.next(window.innerWidth);
-    this.windowResizeService.windowHeight.next(window.innerHeight);
+    this.store.dispatch(new ShoppingListActions.UpdateScreenRes(window.innerWidth));
+    // this.windowResizeService.windowWidth.next(window.innerWidth);
+    // this.windowResizeService.windowHeight.next(window.innerHeight);
 
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$
       .pipe(debounceTime(100))
       .subscribe((event) => {
-        this.windowResizeService.windowHeight.next(event.target['innerHeight']);
-        this.windowResizeService.windowWidth.next(event.target['innerWidth']);
+        this.store.dispatch(new ShoppingListActions.UpdateScreenRes(event.target['innerWidth']));
+        // this.windowResizeService.windowHeight.next(event.target['innerHeight']);
+        // this.windowResizeService.windowWidth.next(event.target['innerWidth']);
       });
 
     if (!firebase.apps.length) {
