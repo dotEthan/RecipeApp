@@ -42,16 +42,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new ShoppingListActions.UpdateScreenRes(window.innerWidth));
-    // this.windowResizeService.windowWidth.next(window.innerWidth);
-    // this.windowResizeService.windowHeight.next(window.innerHeight);
 
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$
       .pipe(debounceTime(100))
       .subscribe((event) => {
         this.store.dispatch(new ShoppingListActions.UpdateScreenRes(event.target['innerWidth']));
-        // this.windowResizeService.windowHeight.next(event.target['innerHeight']);
-        // this.windowResizeService.windowWidth.next(event.target['innerWidth']);
       });
 
     if (!firebase.apps.length) {
@@ -63,6 +59,7 @@ export class AppComponent implements OnInit {
 
     // Time Limited?
     if (window.localStorage.getItem('token')) {
+      console.log('autoing');
       if (window.localStorage.getItem('testMode')) {
         window.localStorage.setItem('testMode', 'true');
         this.authService.testMode.next(true);

@@ -53,6 +53,7 @@ All Errors fixed. Everything working as expected (for this point in development)
 
 ### To Come:
 
+* ShoppingList Entry Animation
 * Reminder - Refactor Header & sl-each
 * warn if closing without saving
 * Implement and maintain TDD

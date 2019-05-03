@@ -95,6 +95,11 @@ export class AuthEffects {
                 const emptyRecipe: [] = [];
                 const emptyShoppingList: {}[] = [];
 
+                firebase.auth().signOut().then(() => { })
+                    .catch((err) => {
+                        console.log("sign out error: ", err);
+                    });
+
                 window.localStorage.removeItem('token');
                 window.localStorage.removeItem('uid');
                 window.localStorage.removeItem('testMode');
