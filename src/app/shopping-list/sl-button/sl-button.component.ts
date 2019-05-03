@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromShoppingList from '../store/shopping-list.reducers';
@@ -10,7 +10,7 @@ import { ShoppingListService } from '../shopping-list.service';
   templateUrl: './sl-button.component.html',
   styleUrls: ['./sl-button.component.sass']
 })
-export class SlButtonComponent implements OnInit {
+export class SlButtonComponent implements OnInit, OnChanges {
   @Input() shoppingListTitle: any;
   @Input() listIndex: number;
   @Input() isDefault: boolean;
@@ -23,14 +23,20 @@ export class SlButtonComponent implements OnInit {
   ngOnInit() {
     this.store.select('shoppingLists').subscribe(state => {
       this.viewableList = state.viewableListIndexes;
-      console.log("buttons", this.viewableList);
       (this.viewableList.includes(this.listIndex)) ? this.isDisabled = true : this.isDisabled = false;
-    });
+      // console.log("button disabled?", this.listIndex, ' - ', (this.viewableList.indexOf(this.listIndex)));
 
+      console.log("viewable: ", this.viewableList);
+      // console.log('is button ', this.listIndex, " disabled?: ", this.isDisabled);
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('changes', changes);
   }
 
   onSlButtonClick(listIndex) {
-    this.store.dispatch(new ShoppingListActions.UpdateViewableList(listIndex));
+    this.store.dispatch(new ShoppingListActions.MinmaxViewableList(listIndex));
   }
 
 }

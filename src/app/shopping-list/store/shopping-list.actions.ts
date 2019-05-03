@@ -19,7 +19,7 @@ export const SWITCH_DEFAULT = 'SWITCH_DEFAULT';
 export const UPDATE_INGREDIENT = 'UPDATE_INGREDIENT';
 export const UPDATE_LIST = 'UPDATE_LIST';
 export const UPDATE_SCREEN_RES = 'UPDATE_SCREEN_RES';
-export const UPDATE_VIEWABLE_LIST = 'UPDATE_VIEWABLE_LIST';
+export const MINMAX_VIEWABLE_LIST = 'MINMAX_VIEWABLE_LIST';
 
 export class AddIngredient implements Action {
     readonly type = ADD_INGREDIENT;
@@ -110,8 +110,8 @@ export class UpdateScreenRes implements Action {
     constructor(public payload: number) { }
 }
 
-export class UpdateViewableList implements Action {
-    readonly type = UPDATE_VIEWABLE_LIST;
+export class MinmaxViewableList implements Action {
+    readonly type = MINMAX_VIEWABLE_LIST;
 
     constructor(public payload: number) { }
 }
@@ -133,4 +133,4 @@ export type ShoppingListActionsTypes =
     UpdateIngredient |
     UpdateList |
     UpdateScreenRes |
-    UpdateViewableList;
+    MinmaxViewableList;

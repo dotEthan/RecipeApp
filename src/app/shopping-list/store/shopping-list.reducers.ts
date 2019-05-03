@@ -2,6 +2,7 @@ import * as ShoppingListActions from './shopping-list.actions';
 import { NamedItem } from '../../shared/namedItem.model';
 import * as fromApp from '../../store/app-reducer';
 import { ShoppingList } from '../shoping-list.model';
+import { debug } from 'util';
 
 export interface FeatureState extends fromApp.AppState {
     shoppingLists: State
@@ -98,10 +99,17 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         case ShoppingListActions.DELETE_LIST:
             const oldDeleteLists = [...state.shoppingLists]
             oldDeleteLists.splice(action.payload, 1);
-            console.log(oldDeleteLists);
+            const indexToRemove = state.viewableListIndexes.indexOf(action.payload);
+
+            const oldViewableList = [...state.viewableListIndexes];
+            oldViewableList.splice(indexToRemove, 1);
+
+            const nonDeletedViewableListIndexes = oldViewableList.map((thisIndex) => (thisIndex > action.payload) ? thisIndex - 1 : thisIndex);
+
             return {
                 ...state,
-                shoppingLists: oldDeleteLists
+                shoppingLists: oldDeleteLists,
+                viewableListIndexes: nonDeletedViewableListIndexes
             }
 
         case ShoppingListActions.SET_SHOPPING_LISTS:
@@ -171,7 +179,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 wantedViewableListLength: newWantedLength
             }
 
-        case ShoppingListActions.UPDATE_VIEWABLE_LIST:
+        case ShoppingListActions.MINMAX_VIEWABLE_LIST:
             let newViewableListIndexes: number[] = [...state.viewableListIndexes];
 
             if (action.payload < 0) {
@@ -180,18 +188,14 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
                 const oldIndexArray = state.viewableListIndexes.reduce((acc, nextIndex, i) => {
 
-                    if (i < indexToRemove) {
+                    if (i !== indexToRemove) {
                         acc.push(nextIndex);
-                    }
-
-                    if (i > indexToRemove) {
-                        acc.push(nextIndex - 1);
                     }
 
                     return acc;
 
                 }, []);
-                console.log(oldIndexArray);
+
                 newViewableListIndexes = [...oldIndexArray];
 
             } else if (state.viewableListIndexes.indexOf(action.payload) === -1) {

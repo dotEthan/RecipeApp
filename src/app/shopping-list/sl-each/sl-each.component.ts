@@ -55,9 +55,7 @@ export class SlEachComponent implements OnInit {
     }
 
     onDeleteList() {
-        console.log(this.listIndex);
         this.store.dispatch(new ShoppingListActions.DeleteList(this.listIndex));
-        this.store.dispatch(new ShoppingListActions.UpdateViewableList((-this.listIndex) - 1));
     }
 
     onEditItem(index: number) {
@@ -89,7 +87,7 @@ export class SlEachComponent implements OnInit {
     }
 
     onViewableListClose() {
-        this.store.dispatch(new ShoppingListActions.UpdateViewableList((-this.listIndex) - 1));
+        this.store.dispatch(new ShoppingListActions.MinmaxViewableList((-this.listIndex) - 1));
     }
 
     private initForm() {
