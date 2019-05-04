@@ -57,19 +57,20 @@ export class AppComponent implements OnInit {
       });
     }
 
-    // Time Limited?
-    if (window.localStorage.getItem('token')) {
-      console.log('autoing');
-      if (window.localStorage.getItem('testMode')) {
-        window.localStorage.setItem('testMode', 'true');
-        this.authService.testMode.next(true);
-      }
-      this.store.dispatch(new AuthActions.AutoLogin());
-    }
+    // firebase.auth().onAuthStateChanged(async (user) => {
+    //   console.log("state changed");
+    //   if (user) {
+    //     (localStorage.getItem('testMode')) ? this.authService.testMode.next(true) : this.authService.testMode.next(false);
+    //     const userToken = await firebase.auth().currentUser.getIdToken();
+    //     this.authService.signinActions({ token: userToken, uid: user.uid });
+    //   } else {
+    //     this.authService.logoutActions();
+    //   }
+    // });
 
     this.authService.modalOpen.subscribe(shouldOpen => {
       this.modalOpen = shouldOpen;
-    })
+    });
   }
 
   prepareRoute(outlet: RouterOutlet) {
@@ -79,4 +80,5 @@ export class AppComponent implements OnInit {
   getState(outlet) {
     return outlet.activatedRouteData.state;
   }
+
 }

@@ -10,17 +10,13 @@ export const TOGGLE_TEST_MODE = 'TOGGLE_TEST_MODE';
 export class TrySignup implements Action {
     readonly type = TRY_SIGNUP;
 
-    constructor(public payload: { username: string, password: string }) {
-        console.log('auth signin actions');
-    }
+    constructor(public payload: { username: string, password: string }) { }
 }
 
 export class TrySignin implements Action {
     readonly type = TRY_SIGNIN;
 
-    constructor(public payload: { username: string, password: string }) {
-        console.log('auth signin actions');
-    }
+    constructor(public payload: { username: string, password: string }) { }
 }
 
 export class Signin implements Action {

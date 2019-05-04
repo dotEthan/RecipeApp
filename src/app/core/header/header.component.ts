@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit {
     onModalOpen(type: string) {
         this.authService.authType.next(type);
         this.authService.modalOpen.next(true);
+        this.authService.errorMsg.next({ code: '', message: '' });
     }
 
     onPageChange() {
