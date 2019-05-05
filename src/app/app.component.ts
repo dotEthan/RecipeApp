@@ -57,16 +57,17 @@ export class AppComponent implements OnInit {
       });
     }
 
-    // firebase.auth().onAuthStateChanged(async (user) => {
-    //   console.log("state changed");
-    //   if (user) {
-    //     (localStorage.getItem('testMode')) ? this.authService.testMode.next(true) : this.authService.testMode.next(false);
-    //     const userToken = await firebase.auth().currentUser.getIdToken();
-    //     this.authService.signinActions({ token: userToken, uid: user.uid });
-    //   } else {
-    //     this.authService.logoutActions();
-    //   }
-    // });
+    firebase.auth().onAuthStateChanged(async (user) => {
+      // console.log("state changed");
+      if (user) {
+        console.log('state: ', user);
+        (localStorage.getItem('testMode')) ? this.authService.testMode.next(true) : this.authService.testMode.next(false);
+        const userToken = await firebase.auth().currentUser.getIdToken();
+        this.authService.signinActions({ token: userToken, uid: user.uid });
+      } else {
+        this.authService.logoutActions();
+      }
+    });
 
     this.authService.modalOpen.subscribe(shouldOpen => {
       this.modalOpen = shouldOpen;

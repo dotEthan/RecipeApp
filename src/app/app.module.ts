@@ -21,6 +21,8 @@ import { reducers } from './store/app-reducer';
 import { AuthEffects } from './core/auth-modal/store/auth.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipesModule } from './recipes/recipes.module';
+import { RecipeEffects } from './recipes/store/recipes.effects';
+import { ShoppingListEffects } from './shopping-list/store/shopping-list.effects';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { RecipesModule } from './recipes/recipes.module';
     RecipesModule,
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects, ShoppingListEffects]),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserAnimationsModule,

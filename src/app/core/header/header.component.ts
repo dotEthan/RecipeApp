@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
     onSave() {
         this.store.dispatch(new RecipeActions.StoreRecipes());
+        this.store.dispatch(new ShoppingListActions.StoreShoppingLists());
     }
 
     onFetch() {

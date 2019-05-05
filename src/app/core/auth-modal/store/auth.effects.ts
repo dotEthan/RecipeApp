@@ -31,19 +31,15 @@ export class AuthEffects {
                 return action.payload;
             }),
             switchMap((authData: { username: string, password: string }) => {
-                console.log('auth signup actions', authData);
-                return from(firebase.auth().createUserWithEmailAndPassword(authData.username, authData.password))
-                    .pipe(catchError((err) => {
+                // console.log('auth signup actions', authData);
+                return from(firebase.auth().createUserWithEmailAndPassword(authData.username, authData.password)
+                    .catch((err) => {
                         this.authService.errorMsg.next(err.code);
                         return empty();
                     }));
             }),
-            mergeMap(() => {
-                console.log('registered');
-                return [
-                    new RecipeActions.StoreRecipes(),
-                    new ShoppingListActions.StoreShoppingLists()
-                ]
+            tap(() => {
+                this.store.dispatch(new AuthActions.SetIsRegistration(true));
             })
         );
 
@@ -64,19 +60,19 @@ export class AuthEffects {
             }));
 
     // Using?
-    @Effect()
-    autoLogin = this.actions$
-        .pipe(ofType(AuthActions.AUTO_LOGIN),
-            mergeMap(() => {
-                const token = window.localStorage.getItem('token');
-                const uid = window.localStorage.getItem('uid');
-                this.authService.signinActions({ token: token, uid: uid });
-                return [
-                    new AuthActions.Signin({ token: token, uid: uid }),
-                    new RecipeActions.FetchRecipes,
-                    new ShoppingListActions.FetchShoppingLists
-                ]
-            }));
+    // @Effect()
+    // autoLogin = this.actions$
+    //     .pipe(ofType(AuthActions.AUTO_LOGIN),
+    //         mergeMap(() => {
+    //             const token = window.localStorage.getItem('token');
+    //             const uid = window.localStorage.getItem('uid');
+    //             this.authService.signinActions({ token: token, uid: uid });
+    //             return [
+    //                 new AuthActions.Signin({ token: token, uid: uid }),
+    //                 new RecipeActions.FetchRecipes,
+    //                 new ShoppingListActions.FetchShoppingLists
+    //             ]
+    //         }));
 
     @Effect({ dispatch: false }) // No final state changes
     authLogout = this.actions$

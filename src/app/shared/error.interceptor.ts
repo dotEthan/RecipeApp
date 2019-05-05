@@ -39,7 +39,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         switch (error.status) {
                             case 401:
                                 errorMessage = `Error Code: ${error.status} You must Register or Signin before loading recipes.`
-                                this.store.dispatch(new AuthActions.Logout());
                                 break;
                             case 0:
                                 errorMessage = `Error Code: ${error.status} The Recipes you requested do not exist.`

@@ -33,7 +33,7 @@ export class SigninComponent implements OnInit, OnDestroy {
 
     this.errSub$.subscribe(
       (err: { code: string, message: string }) => {
-        console.log('signing Component Error Handling: ', err);
+        // console.log('signing Component Error Handling: ', err);
         switch (err.code) {
           case '':
             this.error = '';
