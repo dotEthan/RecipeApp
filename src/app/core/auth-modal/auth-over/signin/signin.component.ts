@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
 
@@ -13,6 +13,7 @@ import * as AuthActions from '../../store/auth.actions';
   styleUrls: ['./signin.component.sass']
 })
 export class SigninComponent implements OnInit, OnDestroy {
+  form: FormGroup;
   thisType: string;
   error: string;
   typeSub: Subscription;
@@ -24,7 +25,6 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   //Grab #f form reference, use AuthService to reset at a variety of points. 
   ngOnInit() {
-    console.log('now');
     this.typeSub = this.authService.authType.subscribe(
       (type: string) => {
         this.thisType = type;
@@ -32,8 +32,9 @@ export class SigninComponent implements OnInit, OnDestroy {
     );
 
     this.errSub$.subscribe(
-      (msg: string) => {
-        switch (msg) {
+      (err: { code: string, message: string }) => {
+        // console.log('signing Component Error Handling: ', err);
+        switch (err.code) {
           case '':
             this.error = '';
             break;
@@ -41,7 +42,7 @@ export class SigninComponent implements OnInit, OnDestroy {
             this.error = 'User Email Not Found';
             break;
           case 'auth/wrong-password':
-            this.error = 'Incorrect Password';
+            this.error = 'Password Incorrect';
             break;
           case 'auth/invalid-email':
             this.error = 'Please Enter a Valid Email Address';
@@ -59,7 +60,7 @@ export class SigninComponent implements OnInit, OnDestroy {
             this.error = 'Network Request Failed. Connection not possible at this time.';
             break;
           default:
-            this.error = 'Unknown Error. Code: ' + msg;
+            this.error = 'Unknown Error. Code: ' + err.message;
         }
       }
     );
@@ -78,5 +79,6 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   onSwitchTypeHandler(type: string) {
     this.authService.authType.next(type);
+    this.authService.errorMsg.next({ code: '', message: '' });
   }
 }

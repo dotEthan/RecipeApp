@@ -20,6 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     return next.handle(copiedReq);
                 }),
                 catchError(err => {
+                    console.log('auth interceptor');
                     console.log(err);
                     return throwError(err);
                 }));

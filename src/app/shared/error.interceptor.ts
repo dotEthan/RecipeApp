@@ -16,6 +16,7 @@ import { AuthService } from '../core/auth-modal/auth.service';
 import * as AuthActions from '../core/auth-modal/store/auth.actions';
 import * as fromAuth from '../core/auth-modal/store/auth.reducers';
 
+// Rebuild or just get rid of?
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
@@ -28,7 +29,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 retry(1),
                 catchError((error: HttpErrorResponse) => {
                     let errorMessage = '';
-                    console.log(error.status);
+                    console.log('interception', error.status);
                     if (error.error instanceof ErrorEvent) {
                         console.log('client');
                         // client-side error
@@ -38,7 +39,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         switch (error.status) {
                             case 401:
                                 errorMessage = `Error Code: ${error.status} You must Register or Signin before loading recipes.`
-                                this.store.dispatch(new AuthActions.Logout());
                                 break;
                             case 0:
                                 errorMessage = `Error Code: ${error.status} The Recipes you requested do not exist.`

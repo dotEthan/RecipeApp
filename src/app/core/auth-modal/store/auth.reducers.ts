@@ -11,13 +11,14 @@ export interface State {
     token: string;
     authenticated: boolean;
     uid: string;
+    registration: boolean;
 }
 
 const initialState: State = {
     token: null,
     authenticated: false,
     uid: null,
-    // testMode: false,
+    registration: false
 }
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
@@ -35,10 +36,11 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
                 token: null,
                 authenticated: false,
             };
-        case AuthActions.AUTO_LOGIN:
+        case AuthActions.SET_IS_REGISTRATION:
             return {
-                ...state
-            };
+                ...state,
+                registration: action.payload
+            }
         default:
             return state;
     }

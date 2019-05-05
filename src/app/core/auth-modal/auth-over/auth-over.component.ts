@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AuthService } from '../auth.service';
 
@@ -9,7 +9,6 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./auth-over.component.sass']
 })
 export class AuthOverComponent {
-  // @Input() modalOpen: boolean
 
   constructor(private authService: AuthService) { }
 
