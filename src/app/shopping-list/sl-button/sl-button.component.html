@@ -1,7 +1,7 @@
 <div class="sl-button-contain">
   <button class="sl-button"
           (click)="onSlButtonClick(listIndex)"
-          [disabled]="isDisabled">{{shoppingListTitle}}
+          [disabled]="isDisabled">{{shoppingListTitle}} <br /> {{listIndex}}
     <div *ngIf="isDefault"
          class="sl-button-isdefault">(Default)</div>
   </button>

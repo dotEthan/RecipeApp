@@ -54,18 +54,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
         case ShoppingListActions.ADD_VIEWABLE_LIST:
             let newAddListIndexes: number[] = [...state.viewableListIndexes];
-            const stateViewableIndexesLength = state.viewableListIndexes.length;
-
-            if (state.wantedViewableListLength === 1) {
-                newAddListIndexes = [state.shoppingLists.length - 1];
-            } else {
-                if (stateViewableIndexesLength === state.wantedViewableListLength) {
-                    newAddListIndexes.splice(-1, 1)
-                    newAddListIndexes.push(state.shoppingLists.length - 1);
-                } else {
-                    newAddListIndexes.push(state.shoppingLists.length - 1);
-                }
-            }
+            newAddListIndexes.splice(action.payload, 1, state.shoppingLists.length - 1)
 
             return {
                 ...state,
@@ -73,7 +62,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             }
 
         case ShoppingListActions.CREATE_LIST:
-            const newList = { title: 'List', ingredients: [new NamedItem('ingredient')], default: false };
+            const newList = { default: false, ingredients: [new NamedItem('Default Ingredient')], title: 'Default Title' };
             const newLists = [...state.shoppingLists, newList];
             return {
                 ...state,
@@ -98,18 +87,39 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
         case ShoppingListActions.DELETE_LIST:
             const oldDeleteLists = [...state.shoppingLists]
-            oldDeleteLists.splice(action.payload, 1);
             const indexToRemove = state.viewableListIndexes.indexOf(action.payload);
-
             const oldViewableList = [...state.viewableListIndexes];
-            oldViewableList.splice(indexToRemove, 1);
 
+            oldDeleteLists.splice(action.payload, 1);
+            oldViewableList.splice(indexToRemove, 1, -1);
             const nonDeletedViewableListIndexes = oldViewableList.map((thisIndex) => (thisIndex > action.payload) ? thisIndex - 1 : thisIndex);
-
+            console.log(oldDeleteLists);
+            console.log(nonDeletedViewableListIndexes);
             return {
                 ...state,
                 shoppingLists: oldDeleteLists,
                 viewableListIndexes: nonDeletedViewableListIndexes
+            }
+
+        case ShoppingListActions.MAXIMIZE_VIEWABLE_LIST:
+            let newMaxedViewableListIndexes: number[] = [...state.viewableListIndexes];
+            const firstOpenIndexMax = newMaxedViewableListIndexes.indexOf(-1);
+
+            newMaxedViewableListIndexes.splice(firstOpenIndexMax, 1, action.payload);
+
+            return {
+                ...state,
+                viewableListIndexes: newMaxedViewableListIndexes
+            }
+
+        case ShoppingListActions.MINIMIZE_VIEWABLE_LIST:
+            let newMinedViewableListIndexes: number[] = [...state.viewableListIndexes];
+
+            newMinedViewableListIndexes.splice(action.payload, 1, -1);
+
+            return {
+                ...state,
+                viewableListIndexes: newMinedViewableListIndexes
             }
 
         case ShoppingListActions.SET_SHOPPING_LISTS:
@@ -179,38 +189,19 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 wantedViewableListLength: newWantedLength
             }
 
-        case ShoppingListActions.MINMAX_VIEWABLE_LIST:
-            let newViewableListIndexes: number[] = [...state.viewableListIndexes];
+        case ShoppingListActions.UPDATE_VIEWABLE_LIST:
+            const newViewableListIndexesArray = [];
+            const currentIndexArray = [...state.viewableListIndexes];
 
-            if (action.payload < 0) {
-                const realIndex = Math.abs(action.payload + 1);
-                const indexToRemove = state.viewableListIndexes.indexOf(realIndex);
-
-                const oldIndexArray = state.viewableListIndexes.reduce((acc, nextIndex, i) => {
-
-                    if (i !== indexToRemove) {
-                        acc.push(nextIndex);
-                    }
-
-                    return acc;
-
-                }, []);
-
-                newViewableListIndexes = [...oldIndexArray];
-
-            } else if (state.viewableListIndexes.indexOf(action.payload) === -1) {
-                if (state.viewableListIndexes.length === state.wantedViewableListLength) {
-                    newViewableListIndexes.splice(-1, 1)
-                    newViewableListIndexes.push(action.payload);
-                } else {
-                    newViewableListIndexes.push(action.payload);
-                }
+            for (let i = 0; i < state.wantedViewableListLength; i++) {
+                (currentIndexArray[i] !== undefined) ? newViewableListIndexesArray.push(currentIndexArray[i]) : newViewableListIndexesArray.push(-1)
             }
 
             return {
                 ...state,
-                viewableListIndexes: newViewableListIndexes
+                viewableListIndexes: newViewableListIndexesArray
             }
+
         default:
             return state;
     }

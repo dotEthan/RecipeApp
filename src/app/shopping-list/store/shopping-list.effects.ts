@@ -3,12 +3,13 @@ import * as firebase from 'firebase';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { switchMap, map, withLatestFrom, catchError } from 'rxjs/operators';
+import { switchMap, map, mergeMap, withLatestFrom, catchError } from 'rxjs/operators';
 
 import * as fromShoppingList from './shopping-list.reducers';
 import { NamedItem } from '../../shared/namedItem.model';
 import * as ShoppingListActions from './shopping-list.actions';
 import { ShoppingListService } from '../shopping-list.service';
+import { EmptyError, empty } from 'rxjs';
 
 @Injectable()
 export class ShoppingListEffects {
@@ -22,18 +23,20 @@ export class ShoppingListEffects {
     shoppingListFetch = this.actions$
         .pipe(ofType(ShoppingListActions.FETCH_SHOPPING_LISTS),
             switchMap((action: ShoppingListActions.FetchShoppingLists) => {
+                console.log('signing in');
                 let uid = window.localStorage.getItem('uid');
-                return this.httpClient.get<{ title: string, ingredients: NamedItem[], default: boolean }[]>('https://angular-testing-a4072.firebaseio.com/' + uid + '/shoppinglists.json');
+                return this.httpClient.get<{ title: string, ingredients: NamedItem[], default: boolean }[]>('https://angular-testing-a4072.firebaseio.com/' + uid + '/shoppinglists.json')
+                    .pipe(catchError((error) => {
+                        console.log('error Fetching: ', error);
+                        return empty();
+                    }));
             }),
-            map((shoppingLists) => {
-                const newVisibleShoppingLists = [];
-                const arrayLength = (shoppingLists.length >= 3) ? 3 : shoppingLists.length;
-
-                for (let i = 0; i <= arrayLength; i++) {
-                    newVisibleShoppingLists.push(i);
-                }
-                this.shoppingListService.viewableListsIndexArray.next(newVisibleShoppingLists);
-                return new ShoppingListActions.SetShoppingLists(shoppingLists);
+            withLatestFrom(this.store.select('shoppingLists')),
+            mergeMap(([shoppingLists, state]) => {
+                return [
+                    new ShoppingListActions.UpdateViewableList(),
+                    new ShoppingListActions.SetShoppingLists(shoppingLists)
+                ]
             }
             ));
 

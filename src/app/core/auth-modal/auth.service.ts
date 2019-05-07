@@ -46,6 +46,7 @@ export class AuthService {
             this.store.dispatch(new ShoppingListActions.StoreShoppingLists());
             this.store.dispatch(new AuthActions.SetIsRegistration(false));
         } else {
+            // console.log('signing in');
             this.store.dispatch(new RecipeActions.FetchRecipes());
             this.store.dispatch(new ShoppingListActions.FetchShoppingLists());
         }

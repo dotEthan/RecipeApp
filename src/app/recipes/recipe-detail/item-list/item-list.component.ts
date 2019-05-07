@@ -21,11 +21,9 @@ export class ItemListComponent implements OnInit {
     ngOnInit() {
         this.itemTitle = this.itemsObject['title'];
         this.items = this.itemsObject['item'];
-        console.log(this.itemType);
     }
 
     onAddIngredientToList(ingredient: NamedItem) {
-        // console.log(ingredient);
         this.store.dispatch(new ShoppingListActions.AddIngredient({ item: ingredient, listIndex: -1 }));
     }
 

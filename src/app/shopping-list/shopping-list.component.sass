@@ -7,39 +7,39 @@
 .headline-title
     width: 100%
 
-.sl-new-list
-    display: flex
-    justify-content: space-around
-    align-items: center
-    position: absolute
-    right: 20px
-    top: 32px
-    width: 200px
-    height: 60px
-    background: $colorLightest
-    border: 2px solid $colorLighter
-    padding: 10px
-    border-radius: 5px
-    margin: 0 5px
-    position: relative
-    cursor: pointer
+// .sl-new-list
+//     display: flex
+//     justify-content: space-around
+//     align-items: center
+//     position: absolute
+//     right: 20px
+//     top: 32px
+//     width: 200px
+//     height: 60px
+//     background: $colorLightest
+//     border: 2px solid $colorLighter
+//     padding: 10px
+//     border-radius: 5px
+//     margin: 0 5px
+//     position: relative
+//     cursor: pointer
 
-    @media (min-width: 768px)
-        right: 100px
-        top: 32px
-        width: 200px
-        height: 60px
+//     @media (min-width: 768px)
+//         right: 100px
+//         top: 32px
+//         width: 200px
+//         height: 60px
 
     
-    &:hover
-        border: 2px solid $colorDarker
+//     &:hover
+//         border: 2px solid $colorDarker
 
-        .sl-type-title
-            color: $colorDarker
+//         .sl-type-title
+//             color: $colorDarker
 
-        .sl-add-sign
-            &:before, &:after
-                background: $colorDarker
+//         .sl-add-sign
+//             &:before, &:after
+//                 background: $colorDarker
 
 .sl-type-title
     font-weight: bold
@@ -96,7 +96,7 @@
 
 .viewable-lists
     display: flex
-    justify-content: space-around
+    // justify-content: space-around
     width: 100%
 
 .full-shopping-lists
@@ -117,3 +117,26 @@
     @media (min-width: 800px)
         width: 17%
         margin: 0 1%
+
+.sl-button-contain
+    margin-bottom: 15px
+    width: 100%
+
+.sl-button
+    background: $colorLightest
+    border: 2px solid $colorLighter
+    padding: 25px 5%
+    height: 75px
+    width: 100%
+    
+    &:hover
+        border: 2px solid $colorDarker
+
+    &:disabled
+        color: #cccccc
+        
+        &:hover
+            border: 2px solid $colorLighter
+    
+.sl-button-isdefault
+    font-size: .6em

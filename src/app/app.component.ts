@@ -35,12 +35,15 @@ export class AppComponent implements OnInit {
   resizeObservable$: Observable<Event>;
   resizeSubscription$: Subscription;
   modalOpen: boolean;
+  viewableList: number[];
 
   constructor(private store: Store<fromApp.AppState>,
     private authService: AuthService,
     private windowResizeService: WindowResizeService) { }
 
   ngOnInit() {
+    // console.log('now');
+    this.store.select('shoppingLists').subscribe(state => this.viewableList = state.viewableListIndexes)
     this.store.dispatch(new ShoppingListActions.UpdateScreenRes(window.innerWidth));
 
     this.resizeObservable$ = fromEvent(window, 'resize');
@@ -48,6 +51,7 @@ export class AppComponent implements OnInit {
       .pipe(debounceTime(100))
       .subscribe((event) => {
         this.store.dispatch(new ShoppingListActions.UpdateScreenRes(event.target['innerWidth']));
+        this.store.dispatch(new ShoppingListActions.UpdateViewableList());
       });
 
     if (!firebase.apps.length) {
@@ -60,11 +64,12 @@ export class AppComponent implements OnInit {
     firebase.auth().onAuthStateChanged(async (user) => {
       // console.log("state changed");
       if (user) {
-        console.log('state: ', user);
+        // console.log('User: ', user);
         (localStorage.getItem('testMode')) ? this.authService.testMode.next(true) : this.authService.testMode.next(false);
         const userToken = await firebase.auth().currentUser.getIdToken();
         this.authService.signinActions({ token: userToken, uid: user.uid });
       } else {
+        // console.log('no user');
         this.authService.logoutActions();
       }
     });
