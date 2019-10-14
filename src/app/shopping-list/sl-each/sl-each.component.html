@@ -6,7 +6,7 @@
                  *ngIf="editingListIndex !== listIndex || editingIngredientIndex !== -1; else listForm">
                 <div class="sl-full-header">
                     <div class="sl-type-title">
-                        {{viewableListObject.title}}
+                        {{ viewableListObject.title }}
                     </div>
                 </div>
                 <ul class="sl-ingredient-list">
@@ -18,15 +18,9 @@
                         </app-ingredient-input>
                         <div
                              [ngClass]="(editingListIndex !== listIndex) || (editingIngredientIndex !== p) ? 'sl-ingredient' : 'sl-ingredient-hidden'">
-                            <div class="sl-ingredient-name">{{ingredient.name}}</div>
-                            <div class="ingredient-alter">
-                                <!-- <div class="ingredient-edit"
-                                     (click)="onEditItem(p)">
-                                    <div class="edit-icon"></div>
-                                </div> -->
-                                <div class="ingredient-delete"
-                                     (click)="onDeleteItem(p)"></div>
-                            </div>
+                            <div class="sl-ingredient-name">{{ ingredient.name }}</div>
+                            <div class="ingredient-delete"
+                                 (click)="onDeleteItem(p)"></div>
                         </div>
                     </li>
                     <li class="sl-list-item">
@@ -39,12 +33,15 @@
                 <form class="sl-main"
                       [formGroup]="shoppingListForm"
                       (ngSubmit)="onSaveList()">
-                    <label for="listTitle"></label>
-                    <input type="text"
-                           class="ingredient-inplace"
-                           id="listTitle"
-                           formControlName="title">
-                    <ul class="sl-list">
+                    <div class="sl-full-header">
+                        <div class="sl-type-title">
+                            <input type="text"
+                                   class="title-inplace"
+                                   id="listTitle"
+                                   formControlName="title">
+                        </div>
+                    </div>
+                    <ul class="sl-ingredient-list">
                         <li class="sl-list-item"
                             *ngFor="let ingredient of viewableListObject.ingredients; let p = index"
                             formArrayName="ingredients">
@@ -53,6 +50,8 @@
                                        class="ingredient-inplace"
                                        formControlName="name">
                             </div>
+                            <div class="ingredient-delete"
+                                 (click)="onDeleteItem(p)"></div>
                         </li>
                         <li class="sl-list-item">
                             <div class="ingredient-add"
@@ -64,6 +63,10 @@
             <div class="sl-footer">
                 <div class="list-edit-default"
                      (click)="onMakeDefault()">
+                    <div class="default-circle"
+                         [ngClass]="{
+                        'on': defaultListIndex === listIndex
+                    }"></div>
                     Default
                 </div>
                 <div class="list-edit"
@@ -74,7 +77,7 @@
                          (click)="onSaveList()">Save</div>
                 </ng-template>
                 <div class="list-edit"
-                     (click)="onViewableListClose()">_</div>
+                     (click)="onViewableListClose()">Hide</div>
                 <div class="list-edit"
                      (click)="onDeleteList()">Delete</div>
             </div>
@@ -83,10 +86,12 @@
     <ng-template #emptySpace>
         <div class="sl-empty-space"
              (click)="onAddNewList()">
+            <span class="add-new-text">NEW</span>
             <div class="add-new-sl-contain">
                 <div class="add-new-sl-button">
                 </div>
             </div>
+            <span class="add-new-text">LIST</span>
         </div>
     </ng-template>
 </div>
