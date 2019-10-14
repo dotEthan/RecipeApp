@@ -18,6 +18,7 @@ import { take } from 'rxjs/operators';
 //Proper Typing for shopping lists && refactor out the HTML && default & Edit outline (matching to list)
 export class SlEachComponent implements OnInit {
     @Input() listIndex: number;
+    @Input() viewableListIndex: number;
     defaultListIndex: number;
     editingIngredientIndex: number;
     editingListIndex: number;
@@ -35,10 +36,7 @@ export class SlEachComponent implements OnInit {
             this.editingIngredientIndex = state.editedIngredientIndex;
             this.editingListIndex = state.editedListIndex;
             this.viewableListObject = state.shoppingLists[this.listIndex];
-        });
-
-        this.shoppingListService.viewableListsIndexArray.subscribe((listArray) => {
-            this.viewableListArray = listArray;
+            this.viewableListArray = state.viewableListIndexes;
         });
 
         this.initForm();
@@ -47,7 +45,11 @@ export class SlEachComponent implements OnInit {
     onAddItem() {
         this.store.dispatch(new ShoppingListActions.AddIngredient({ listIndex: this.listIndex, item: new NamedItem('') }));
         this.store.dispatch(new ShoppingListActions.StartEditIngredient({ listIndex: this.listIndex, index: -1 }));
+    }
 
+    onAddNewList() {
+        this.store.dispatch(new ShoppingListActions.CreateList());
+        this.store.dispatch(new ShoppingListActions.AddViewableList(this.viewableListIndex));
     }
 
     onDeleteItem(index: number) {
@@ -87,7 +89,7 @@ export class SlEachComponent implements OnInit {
     }
 
     onViewableListClose() {
-        this.store.dispatch(new ShoppingListActions.MinmaxViewableList((-this.listIndex) - 1));
+        this.store.dispatch(new ShoppingListActions.MinimizeViewableList(this.viewableListIndex));
     }
 
     private initForm() {

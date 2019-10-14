@@ -23,7 +23,13 @@ Have implemented most of the basic recipe app functionality, and gone through a 
 
 ### What isn't working
 
-All Errors fixed. Everything working as expected (for this point in development)
+Recipe Detail component not waiting for fetch recipes to finish. *not breaking, just console errors*
+
+Recipes without Ingredients and/or Directions give error first time in editing mode.  *not breaking, just console errors*
+
+---
+
+Will fix the above after Shopping list design is complete. 
 
 ## Where are we?
 
@@ -65,6 +71,7 @@ All Errors fixed. Everything working as expected (for this point in development)
 * Loading Spinner for all side effects
 * Form Reset on login
 * Warnings for login/register
+* Third Party - How to use Tutorial
 
 ### Future thoughts:
 

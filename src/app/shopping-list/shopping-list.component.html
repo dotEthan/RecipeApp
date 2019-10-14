@@ -4,14 +4,6 @@
       <div class="text-center headline-title">
         <h1>Shopping Lists</h1>
       </div>
-      <div class="sl-new-list"
-           (click)="onAddNewList()">
-        <div class="sl-add-sign">
-        </div>
-        <div class="sl-type-title">
-          Add New List
-        </div>
-      </div>
     </div>
     <div class="row all-lists-contain">
       <div class="col-xs-12">
@@ -21,17 +13,30 @@
           <div class="viewable-lists">
             <app-sl-each *ngFor="let listIndex of viewableListsIndexArray; let i = index"
                          [listIndex]="listIndex"
+                         [viewableListIndex]='i'
                          class="sl-list"
                          [ngClass]="{ 'sl-default-list' : defaultListIndex === i}">
             </app-sl-each>
           </div>
           <div class="full-shopping-lists">
-            <app-sl-button *ngFor="let shoppingList of (shoppingListState$ | async).shoppingLists; let i = index"
+            <div *ngFor="let shoppingList of (shoppingListState$ | async).shoppingLists; let i = index"
+                 class="full-shopping-list">
+              <div class="sl-button-contain">
+                <button class="sl-button"
+                        (click)="onSlButtonClick(i)"
+                        [disabled]="viewableListsIndexArray.includes(i)">{{shoppingList.title}} <br />
+                  <div *ngIf="defaultListIndex === i"
+                       class="sl-button-isdefault">(Default)</div>
+                </button>
+              </div>
+
+            </div>
+            <!-- <app-sl-button *ngFor="let shoppingList of (shoppingListState$ | async).shoppingLists; let i = index"
                            [shoppingListTitle]="shoppingList.title"
                            [listIndex]="i"
                            [isDefault]="defaultListIndex===i"
                            class="full-shopping-list">
-            </app-sl-button>
+            </app-sl-button> -->
           </div>
         </div>
       </div>

@@ -38,8 +38,8 @@ export class AuthEffects {
                         return empty();
                     }));
             }),
-            tap(() => {
-                this.store.dispatch(new AuthActions.SetIsRegistration(true));
+            map(() => {
+                new AuthActions.SetIsRegistration(true);
             })
         );
 

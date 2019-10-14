@@ -10,7 +10,7 @@ import { ShoppingListService } from '../shopping-list.service';
   templateUrl: './sl-button.component.html',
   styleUrls: ['./sl-button.component.sass']
 })
-export class SlButtonComponent implements OnInit, OnChanges {
+export class SlButtonComponent implements OnInit {
   @Input() shoppingListTitle: any;
   @Input() listIndex: number;
   @Input() isDefault: boolean;
@@ -27,16 +27,12 @@ export class SlButtonComponent implements OnInit, OnChanges {
       // console.log("button disabled?", this.listIndex, ' - ', (this.viewableList.indexOf(this.listIndex)));
 
       console.log("viewable: ", this.viewableList);
-      // console.log('is button ', this.listIndex, " disabled?: ", this.isDisabled);
+      console.log('is button ', this.listIndex, " disabled?: ", this.isDisabled);
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
-  }
-
   onSlButtonClick(listIndex) {
-    this.store.dispatch(new ShoppingListActions.MinmaxViewableList(listIndex));
+    this.store.dispatch(new ShoppingListActions.MaximizeViewableList(listIndex));
   }
 
 }

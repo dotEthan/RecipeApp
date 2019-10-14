@@ -23,12 +23,13 @@ export class RecipeEffects {
         .pipe(ofType(RecipesActions.FETCH_RECIPES),
             switchMap((action) => {
                 let uid = firebase.auth().currentUser.uid;
-                console.log('recipes fetch start', uid);
+                // console.log('recipes fetch start', uid);
                 return from(this.httpClient.get<Recipe[]>('https://angular-testing-a4072.firebaseio.com/' + uid + '/recipes.json')
-                    .pipe(map((response) => {
-                        console.log("recipes response: ", response);
-                        return response;
-                    }),
+                    .pipe(
+                        // map((response) => {
+                        //     console.log("recipes response: ", response);
+                        //     return response;
+                        // }),
                         catchError((err) => {
                             console.log('recipes err: ', err);
                             return empty();
@@ -36,7 +37,7 @@ export class RecipeEffects {
                     ))
             }),
             map((recipes) => {
-                console.log('fetching recipes:', recipes);
+                // console.log('fetching recipes:', recipes);
                 for (let recipe of recipes) {
                     // console.log('in for loop', recipe);
                     if (!recipe['ingredients']) {
@@ -68,7 +69,8 @@ export class RecipeEffects {
                 };
 
                 return this.httpClient.put<Recipe[]>('https://angular-testing-a4072.firebaseio.com/' + uid + '/recipes.json', recipesState.recipes, httpOptions)
-                    .pipe(map((response) => console.log("the response", response)),
+                    .pipe(
+                        // map((response) => console.log("the response", response)),
                         catchError((err) => {
                             console.log('put request error: ', err);
                             return empty();

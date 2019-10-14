@@ -26,14 +26,13 @@ export class ShoppingListComponent implements OnInit {
     private windowResizeService: WindowResizeService) { }
 
   ngOnInit() {
-    console.log('oninit');
-
     this.shoppingListState$ = this.store.pipe(select('shoppingLists'));
 
     this.store.select('shoppingLists').subscribe(state => {
       this.defaultListIndex = state.defaultListIndex;
       this.shoppingListLength = state.shoppingLists.length;
       this.viewableListsIndexArray = state.viewableListIndexes;
+      console.log(state.shoppingLists);
     });
 
     this.windowResizeService.windowWidth.subscribe((width) => {
@@ -42,10 +41,8 @@ export class ShoppingListComponent implements OnInit {
 
     console.log('widnow width: ', this.viewableListsIndexArray);
   }
-
-
-  onAddNewList() {
-    this.store.dispatch(new ShoppingListActions.CreateList());
-    this.store.dispatch(new ShoppingListActions.AddViewableList());
+  onSlButtonClick(listIndex) {
+    this.store.dispatch(new ShoppingListActions.MaximizeViewableList(listIndex));
   }
+
 }

@@ -10,6 +10,8 @@ export const CREATE_LIST = 'CREATE_LIST';
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const DELETE_LIST = 'DELETE_LIST';
 export const FETCH_SHOPPING_LISTS = 'FETCH_SHOPPING_LISTS';
+export const MAXIMIZE_VIEWABLE_LIST = 'MAXIMIZE_VIEWABLE_LIST';
+export const MINIMIZE_VIEWABLE_LIST = 'MINIMIZE_VIEWABLE_LIST';
 export const SET_SHOPPING_LISTS = 'SET_SHOPPING_LISTS';
 export const START_EDIT_INGREDIENT = 'START_EDIT_INGREDIENT';
 export const START_EDIT_LIST = 'START_EDIT_LIST';
@@ -19,7 +21,7 @@ export const SWITCH_DEFAULT = 'SWITCH_DEFAULT';
 export const UPDATE_INGREDIENT = 'UPDATE_INGREDIENT';
 export const UPDATE_LIST = 'UPDATE_LIST';
 export const UPDATE_SCREEN_RES = 'UPDATE_SCREEN_RES';
-export const MINMAX_VIEWABLE_LIST = 'MINMAX_VIEWABLE_LIST';
+export const UPDATE_VIEWABLE_LIST = 'UPDATE_VIEWABLE_LIST';
 
 export class AddIngredient implements Action {
     readonly type = ADD_INGREDIENT;
@@ -36,7 +38,7 @@ export class AddIngredients implements Action {
 export class AddViewableList implements Action {
     readonly type = ADD_VIEWABLE_LIST;
 
-    // constructor(public payload: number) { }
+    constructor(public payload: number) { }
 }
 
 export class CreateList implements Action {
@@ -57,7 +59,18 @@ export class DeleteList implements Action {
 
 export class FetchShoppingLists implements Action {
     readonly type = FETCH_SHOPPING_LISTS;
-    constructor() { }
+}
+
+export class MaximizeViewableList implements Action {
+    readonly type = MAXIMIZE_VIEWABLE_LIST;
+
+    constructor(public payload: number) { }
+}
+
+export class MinimizeViewableList implements Action {
+    readonly type = MINIMIZE_VIEWABLE_LIST;
+
+    constructor(public payload: number) { }
 }
 
 export class SetShoppingLists implements Action {
@@ -110,10 +123,8 @@ export class UpdateScreenRes implements Action {
     constructor(public payload: number) { }
 }
 
-export class MinmaxViewableList implements Action {
-    readonly type = MINMAX_VIEWABLE_LIST;
-
-    constructor(public payload: number) { }
+export class UpdateViewableList implements Action {
+    readonly type = UPDATE_VIEWABLE_LIST;
 }
 
 export type ShoppingListActionsTypes =
@@ -124,6 +135,8 @@ export type ShoppingListActionsTypes =
     DeleteIngredient |
     DeleteList |
     FetchShoppingLists |
+    MaximizeViewableList |
+    MinimizeViewableList |
     SetShoppingLists |
     StartEditIngredient |
     StartEditList |
@@ -133,4 +146,4 @@ export type ShoppingListActionsTypes =
     UpdateIngredient |
     UpdateList |
     UpdateScreenRes |
-    MinmaxViewableList;
+    UpdateViewableList;

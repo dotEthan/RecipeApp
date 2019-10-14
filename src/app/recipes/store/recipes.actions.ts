@@ -23,19 +23,17 @@ export class DeleteRecipe implements Action {
 
 export class FetchRecipes implements Action {
     readonly type = FETCH_RECIPES
-    constructor() { console.log('fetch'); }
+
 }
 
 export class SetRecipes implements Action {
     readonly type = SET_RECIPES
 
-    constructor(public payload: Recipe[]) { console.log('set'); }
+    constructor(public payload: Recipe[]) { }
 }
 
 export class StoreRecipes implements Action {
     readonly type = STORE_RECIPES
-
-    constructor() { console.log('store'); }
 }
 
 export class UpdateRecipe implements Action {
