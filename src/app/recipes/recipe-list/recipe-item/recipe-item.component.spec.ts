@@ -38,7 +38,16 @@ describe('RecipeItemComponent', () => {
         fixture = TestBed.createComponent(RecipeItemComponent);
         component = fixture.componentInstance;
         component.index = 1;
-        component.recipe = { name: 'Recipe 1', description: 'good', imagePath: 'main.jpg', ingredients: [] };
+        component.recipe = {
+            name: 'Recipe 1',
+            description: 'good',
+            imagePath: 'main.jpg',
+            ingredients: [],
+            directions: [],
+            url: '',
+            keyword: '',
+            tags: []
+        };
         fixture.detectChanges();
     });
 

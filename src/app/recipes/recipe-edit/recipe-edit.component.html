@@ -1,22 +1,19 @@
 <div class="overlay-shadow"
      (click)="onOverlayShadowClick($event)">
-  <div class="recipe-overlay">
-    <div class="overlay-contain">
+  <div class="recipe-overlay edit">
+    <div class="overlay-contain edit">
       <div class="form-contain">
         <form [formGroup]="recipeForm"
               (ngSubmit)="onSubmit()">
-          <div class="row">
-            <div class="col-xs-12 text-center">
-              <button type="submit"
-                      [disabled]="!recipeForm.valid"
-                      class="btn btn-success"
-                      style="margin-right: 25px">Save</button>
-              <button type="button"
-                      class="btn btn-danger"
-                      (click)="onCancel()">Cancel</button>
-            </div>
+          <div class="save-cancel-btns text-center">
+            <button type="submit"
+                    [disabled]="!recipeForm.valid"
+                    [ngClass]="{'valid': recipeForm.valid}"
+                    class="recipe-edit-button save">Save</button>
+            <button type="button"
+                    class="recipe-edit-button cancel"
+                    (click)="onCancel()">Cancel</button>
           </div>
-          <hr>
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">

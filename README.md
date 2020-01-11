@@ -54,11 +54,12 @@ Will fix the above after Shopping list design is complete.
 * Shopping List Saving
 
 ### Working on Now:
-* Redesign - Edit Recipe & Shopping List
-* Tooltips for "Recipe Detail" add "to shoppinglist"
+* Paused as I'm starting a new position. Will resume once life settles down a bit again.
 
 ### To Come:
 
+* Redesign - Edit Recipe & Shopping List
+* Tooltips for "Recipe Detail" add "to shoppinglist"
 * ShoppingList Entry Animation
 * Reminder - Refactor Header & sl-each
 * warn if closing without saving
