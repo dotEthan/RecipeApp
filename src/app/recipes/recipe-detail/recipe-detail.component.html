@@ -9,23 +9,23 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <div class="overlay-contain">
-      <div class="recipe-header">
-        <div class="recipe-image-contain">
-          <img [src]="(recipeState | async).recipes[id].imagePath"
-               alt=" {{ (recipeState | async).recipes[id].name }}"
-               class="recipe-image-bg">
-        </div>
-        <div class="recipe-detail-title">
-          <div class="recipe-name">
-            <h4>{{ (recipeState | async).recipes[id].name }}</h4>
-          </div>
-          <div class="recipe-description">
-            <h5 class="recipe-description-title">Description:</h5>
-            <p class="recipe-description-text">{{ (recipeState | async).recipes[id].description }}</p>
-          </div>
-        </div>
-      </div>
       <div class="recipe-overlay-content">
+        <div class="recipe-header">
+          <div class="recipe-image-contain">
+            <img [src]="(recipeState | async).recipes[id].imagePath"
+                 alt=" {{ (recipeState | async).recipes[id].name }}"
+                 class="recipe-image-bg">
+          </div>
+          <div class="recipe-detail-title">
+            <div class="recipe-name">
+              <h4>{{ (recipeState | async).recipes[id].name }}</h4>
+            </div>
+            <div class="recipe-description">
+              <h5 class="recipe-description-title">Description:</h5>
+              <p class="recipe-description-text">{{ (recipeState | async).recipes[id].description }}</p>
+            </div>
+          </div>
+        </div>
         <div class="recipe-manage-row">
           <div class="recipe-manage-buttons">
             <button class="manage-btn-1"

@@ -4,7 +4,7 @@
         <ul class="items-list">
             <li [className]="itemType === 'ingredient' ? 'ingredient-contain' : 'direction-contain'"
                 *ngFor='let item of items'>
-                <div [className]="itemType === 'ingredient' ? 'ingredient-text' : 'direction-text'"
+                <div [className]="itemType === 'ingredient' ? 'text ingredient-text' : 'text direction-text'"
                      (click)="itemType === 'ingredient' ? onAddIngredientToList(item) : null">
                     - {{ item.name }}
                 </div>
