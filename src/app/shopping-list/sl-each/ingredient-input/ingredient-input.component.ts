@@ -22,6 +22,7 @@ export class IngredientInputComponent implements OnInit {
   }
 
   saveIngredient(newValue: string) {
+    console.log(newValue);
     this.savedIngredient.emit(newValue);
   }
 
