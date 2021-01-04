@@ -93,8 +93,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             oldDeleteLists.splice(action.payload, 1);
             oldViewableList.splice(indexToRemove, 1, -1);
             const nonDeletedViewableListIndexes = oldViewableList.map((thisIndex) => (thisIndex > action.payload) ? thisIndex - 1 : thisIndex);
-            console.log(oldDeleteLists);
-            console.log(nonDeletedViewableListIndexes);
+
             return {
                 ...state,
                 shoppingLists: oldDeleteLists,
@@ -141,7 +140,8 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
             return {
                 ...state,
-                editedListIndex: action.payload
+                editedListIndex: action.payload,
+                editedIngredientIndex: -1
             }
 
         case ShoppingListActions.STOP_EDIT:

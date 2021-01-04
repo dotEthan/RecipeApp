@@ -69,12 +69,17 @@
                     }"></div>
                     Default
                 </div>
-                <div class="list-edit"
-                     *ngIf="editingListIndex !== listIndex; else editForm"
-                     (click)="onEditList()">Edit</div>
-                <ng-template #editForm>
+                <ng-container *ngIf="editingListIndex === listIndex && editingIngredientIndex !== -1; else enableSave">
+                    <div class="list-edit">Disabled</div>
+                </ng-container>
+                <ng-template #enableSave>
                     <div class="list-edit"
-                         (click)="onSaveList()">Save</div>
+                         *ngIf="editingListIndex !== listIndex; else saveForm"
+                         (click)="onEditList()">Edit</div>
+                    <ng-template #saveForm>
+                        <div class="list-edit"
+                             (click)="onSaveList()">Save</div>
+                    </ng-template>
                 </ng-template>
                 <div class="list-edit"
                      (click)="onViewableListClose()">Hide</div>

@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import { NamedItem } from '../../shared/namedItem.model';
-import { ShoppingList } from '../shoping-list.model';
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';

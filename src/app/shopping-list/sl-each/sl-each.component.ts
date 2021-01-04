@@ -4,9 +4,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import * as fromShoppingList from '../store/shopping-list.reducers';
 import { NamedItem } from '../../shared/namedItem.model';
-import { ShoppingList } from '../shoping-list.model';
 import * as ShoppingListActions from '../store/shopping-list.actions';
-import { ShoppingListService } from '../shopping-list.service';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -26,8 +24,7 @@ export class SlEachComponent implements OnInit {
     viewableListObject: { title: string, ingredients: NamedItem[], default: boolean };
     viewableListArray: number[];
 
-    constructor(private store: Store<fromShoppingList.FeatureState>,
-        private shoppingListService: ShoppingListService) { }
+    constructor(private store: Store<fromShoppingList.FeatureState>) { }
 
     ngOnInit() {
 
@@ -60,12 +57,9 @@ export class SlEachComponent implements OnInit {
         this.store.dispatch(new ShoppingListActions.DeleteList(this.listIndex));
     }
 
-    onEditItem(index: number) {
-        this.store.dispatch(new ShoppingListActions.StartEditIngredient({ listIndex: this.listIndex, index: index }));
-    }
-
     onEditList() {
         this.store.dispatch(new ShoppingListActions.StartEditList(this.listIndex));
+        this.initForm()
     }
 
     onMakeDefault() {
@@ -95,7 +89,7 @@ export class SlEachComponent implements OnInit {
     private initForm() {
         let shoppingListTitle = '';
         let ingredientsArray = new FormArray([]);
-        if (this.editingListIndex !== this.listIndex && this.editingIngredientIndex === -1) {
+        if (this.listIndex > -1) {
             this.store.select('shoppingLists')
                 .pipe(take(1))
                 .subscribe((state: fromShoppingList.State) => {
