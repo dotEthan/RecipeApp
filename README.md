@@ -1,5 +1,5 @@
 # Recipeasy
-[Landing Page is Here!](https://stupefied-morse-5e1233.netlify.com/)
+[Landing Page is Here!](https://stupefied-morse-5e1233.netlify.com/) (Test Mode Broken as new backend underway)
 
 You can register to save your own recipes or use the "Test Mode" button on the main page to load dummy recipes to test functionality with.
 
